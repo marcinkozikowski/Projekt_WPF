@@ -55,6 +55,7 @@
         </Menu>
         <!-- Główny Tab control Samochody Klienci Rezerwacje Wypozyczenia -->
         <TabControl Name="MainTabControl" Margin="5" TabStripPlacement="Left" Width="auto" Height="auto" Grid.Row="1">
+            <!-- Zakładka Samochody -->
             <TabItem Name="CarTab" Height="50" >
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -78,7 +79,7 @@
                 </TabControl>
 
             </TabItem>
-
+            <!-- Zakładka Klienci -->
             <TabItem Name="ClientTab" Height="50">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
@@ -98,7 +99,7 @@
                 </TabControl>
 
             </TabItem>
-
+            <!-- Zakładka Wypożyczenia -->
             <TabItem Name="RentTab" Height="50">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
@@ -108,7 +109,7 @@
                 </TabItem.Header>
 
             </TabItem>
-
+            <!-- Zakładka Rezerwacje -->
             <TabItem Name="BookingTab" Height="50">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
