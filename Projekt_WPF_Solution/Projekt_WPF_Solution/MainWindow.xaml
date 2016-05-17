@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         FontFamily="CalibriLight"
         FontSize="14"
-        Title="MainWindow" Height="350" Width="525">
+        Title="Wypożyczalnia Samochodów" Height="350" Width="525" Icon="RentCarBlue.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
