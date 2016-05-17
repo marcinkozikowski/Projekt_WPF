@@ -10,25 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Projekt_WPF_Solution
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ContactWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ContactWindow : Window
     {
-        public MainWindow()
+        public ContactWindow()
         {
             InitializeComponent();
-        }
-
-        private void ContatcMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            ContactWindow contactWindow = new ContactWindow();
-            contactWindow.ShowDialog();
         }
     }
 }

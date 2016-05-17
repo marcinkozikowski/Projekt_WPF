@@ -6,26 +6,26 @@
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
         mc:Ignorable="d"
         FontFamily="CalibriLight"
-        FontSize="14"
+        FontSize="16"
         Title="Wypożyczalnia Samochodów" Height="350" Width="525" Icon="RentCarBlue.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu Grid.Row="0">
+        <Menu Grid.Row="0" FontSize="18">
             <MenuItem Header="Pliki">
-                <MenuItem Header="Otwórz" >
+                <MenuItem Name="OpenMenuItem" Header="Otwórz" >
                     <MenuItem.Icon>
                         <Image   Source="Icons/Open.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Zapisz">
+                <MenuItem Name="SaveMenuItem" Header="Zapisz">
                     <MenuItem.Icon>
                         <Image   Source="Icons/Save.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Header="Zakończ">
+                <MenuItem Name="CloseMenuItem"  Header="Zakończ">
                     <MenuItem.Icon>
                         <Image   Source="Icons/Close.ico"/>
                     </MenuItem.Icon>
@@ -38,8 +38,16 @@
                 <MenuItem.Icon>
                     <Image   Source="Icons/Help.ico"/>
                 </MenuItem.Icon>
-                <MenuItem Header="O programie"/>
-                <MenuItem Header="Kontakt"/>
+                <MenuItem Name="AboutMenuItem" Header="O programie">
+                    <MenuItem.Icon>
+                        <Image   Source="Icons/Info.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Name="ContatcMenuItem"  Header="Kontakt" Click="ContatcMenuItem_Click">
+                    <MenuItem.Icon>
+                        <Image   Source="Icons/Contact.ico"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <TabControl Name="TabControl" Margin="3" TabStripPlacement="Left" Width="auto" Height="auto" Grid.Row="1">
