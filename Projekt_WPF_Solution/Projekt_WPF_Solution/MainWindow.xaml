@@ -52,20 +52,66 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <TabControl Name="TabControl" Margin="5" TabStripPlacement="Left" Width="auto" Height="auto" Grid.Row="1">
-            <TabItem Name="CarTab" Header="Samochody" Height="50" >
+        <TabControl Name="MainTabControl" Margin="5" TabStripPlacement="Left" Width="auto" Height="auto" Grid.Row="1">
+            <TabItem Name="CarTab" Height="50" >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Name="img" Height="auto" Width="auto" Source="Icons/car.png" HorizontalAlignment="Left" />
+                        <TextBlock Text="Samochody" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabControl Name="CarTabControl" Margin="5" TabStripPlacement="Top" Width="auto" Height="auto">
+                    <TabItem Header="Lista Wszystkich Samochodów">
+                        
+                    </TabItem>
+                    
+                    <TabItem Header="Lista Dostępnych Samochodów">
+
+                    </TabItem>
+
+                    <TabItem Header="Dodaj nowy Samochodów">
+
+                    </TabItem>
+                </TabControl>
 
             </TabItem>
 
-            <TabItem Name="ClientTab" Header="Klienci" Height="50">
+            <TabItem Name="ClientTab" Height="50">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
+                        <Image  Height="auto" Width="auto" Source="Icons/client.png" HorizontalAlignment="Left"/>
+                        <Label Content="Klienci" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabControl Name="ClientTabControl" Margin="5" TabStripPlacement="Top" Width="auto" Height="auto">
+                    <TabItem Header="Lista Wszystkich Klientów">
+
+                    </TabItem>
+
+                    <TabItem Header="Dodaj nowego Klienta">
+
+                    </TabItem>
+                </TabControl>
 
             </TabItem>
 
-            <TabItem Name="RentTab" Header="Wypożyczenia" Height="50">
+            <TabItem Name="RentTab" Height="50">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
+                        <Image  Height="auto" Width="auto" Source="Icons/carRent.png" HorizontalAlignment="Left"/>
+                        <Label Content="Wypożyczenia" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                    </StackPanel>
+                </TabItem.Header>
 
             </TabItem>
 
-            <TabItem Name="BookingTab" Header="Rezerwacje" Height="50">
+            <TabItem Name="BookingTab" Height="50">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
+                        <Image  Height="auto" Width="auto" Source="Icons/booking.png" HorizontalAlignment="Left"/>
+                        <Label Content="Rezerwacje" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                    </StackPanel>
+                </TabItem.Header>
 
             </TabItem>
         </TabControl>
@@ -84,12 +130,12 @@
             </StackPanel>
             <Rectangle Width="2" Height="auto" Fill="DarkGray" Grid.Column="1"/>
             <StackPanel Orientation="Horizontal" Grid.Column="2">
-                <Image Source="Icons/Booking.jpg" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image Source="Icons/booking.png" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Liczba rezerwacji: 0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             </StackPanel>
             <Rectangle Width="2" Height="auto" Fill="DarkGray" Grid.Column="3"/>
             <StackPanel Orientation="Horizontal" Grid.Column="4">
-                <Image Source="Icons/CarRental.png" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Image Source="Icons/carRent.png" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Liczba wypożyczeń: 0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
             </StackPanel>
         </Grid>

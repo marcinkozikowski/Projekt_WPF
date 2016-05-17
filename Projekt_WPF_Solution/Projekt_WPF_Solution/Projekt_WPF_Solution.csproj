@@ -141,10 +141,16 @@
     <Resource Include="Icons\Warning.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\booking.jpg" />
+    <Resource Include="Icons\car.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icons\CarRental.png" />
+    <Resource Include="Icons\client.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\booking.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\carRent.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
