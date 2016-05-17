@@ -15,6 +15,7 @@
             <RowDefinition />
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        <!-- Menu u gory aplikacji  -->
         <Menu Grid.Row="0" FontSize="18" Background="LightGray">
             <MenuItem Header="Pliki">
                 <MenuItem Name="OpenMenuItem" Header="Otwórz" >
@@ -52,6 +53,7 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
+        <!-- Główny Tab control Samochody Klienci Rezerwacje Wypozyczenia -->
         <TabControl Name="MainTabControl" Margin="5" TabStripPlacement="Left" Width="auto" Height="auto" Grid.Row="1">
             <TabItem Name="CarTab" Height="50" >
                 <TabItem.Header>
@@ -60,6 +62,7 @@
                         <TextBlock Text="Samochody" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                     </StackPanel>
                 </TabItem.Header>
+                <!-- Tab Control zakładki Samochody -->
                 <TabControl Name="CarTabControl" Margin="5" TabStripPlacement="Top" Width="auto" Height="auto">
                     <TabItem Header="Lista Wszystkich Samochodów">
                         
@@ -69,7 +72,7 @@
 
                     </TabItem>
 
-                    <TabItem Header="Dodaj nowy Samochodów">
+                    <TabItem Header="Dodaj nowy Samochód">
 
                     </TabItem>
                 </TabControl>
@@ -83,6 +86,7 @@
                         <Label Content="Klienci" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                     </StackPanel>
                 </TabItem.Header>
+                <!-- Tab Control zakładki Klienci -->
                 <TabControl Name="ClientTabControl" Margin="5" TabStripPlacement="Top" Width="auto" Height="auto">
                     <TabItem Header="Lista Wszystkich Klientów">
 
@@ -115,6 +119,7 @@
 
             </TabItem>
         </TabControl>
+        <!-- Dolny Panel z powiadomieniami i ostrzeżeniami -->
         <Grid Name="BottomAlertPanel" Grid.Row="2" VerticalAlignment="Bottom" Background="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
