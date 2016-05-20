@@ -4,13 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
+        xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
         mc:Ignorable="d"
         FontFamily="CalibriLight"
         FontSize="16"
         Title="Wypożyczalnia Samochodów" MinHeight="500" Width="800" Icon="RentCarBlue.ico"
         Background="LightGray">
     <Window.Resources>
-        <local:StackPanelHeightConverter x:Key="StackPanelHeightConverter"/>
+        <converter:StackPanelHeightConverter x:Key="StackPanelHeightConverter"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>

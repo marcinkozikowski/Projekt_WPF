@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Projekt_WPF_Solution
+namespace Projekt_WPF_Solution.Converters
 {
     class StackPanelHeightConverter : IValueConverter
     {
