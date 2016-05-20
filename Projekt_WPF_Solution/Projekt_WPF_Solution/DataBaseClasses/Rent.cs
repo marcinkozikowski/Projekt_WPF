@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_WPF_Solution.DataBaseClasses
 {
-    class Rent
+    public class Rent
     {
         DateTime rentStart, rentEnd;
         Car rentedCar;

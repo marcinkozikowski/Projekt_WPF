@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_WPF_Solution.DataBaseClasses
 {
-    class Car
+    public class Car
     {
         #region Variables
         private string maker { get; set; }               // Producent

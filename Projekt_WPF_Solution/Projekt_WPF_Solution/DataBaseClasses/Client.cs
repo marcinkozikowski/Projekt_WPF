@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projekt_WPF_Solution.DataBaseClasses
 {
-    class Client
+    public class Client
     {
         #region Variables
         private int id;
