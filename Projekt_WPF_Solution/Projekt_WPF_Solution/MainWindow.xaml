@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         FontFamily="CalibriLight"
         FontSize="16"
-        Title="Wypożyczalnia Samochodów" Height="400" Width="800" Icon="RentCarBlue.ico"
+        Title="Wypożyczalnia Samochodów" MinHeight="500" Width="800" Icon="RentCarBlue.ico"
         Background="LightGray">
+    <Window.Resources>
+        <local:StackPanelHeightConverter x:Key="StackPanelHeightConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -20,35 +23,35 @@
             <MenuItem Header="Pliki">
                 <MenuItem Name="OpenMenuItem" Header="Otwórz" >
                     <MenuItem.Icon>
-                        <Image   Source="Icons/Open.ico"/>
+                        <Image MaxHeight="40"  Source="Icons/Open.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Name="SaveMenuItem" Header="Zapisz">
                     <MenuItem.Icon>
-                        <Image   Source="Icons/Save.ico"/>
+                        <Image MaxHeight="40" Source="Icons/Save.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Name="CloseMenuItem"  Header="Zakończ">
                     <MenuItem.Icon>
-                        <Image   Source="Icons/Close.ico"/>
+                        <Image MaxHeight="40" Source="Icons/Close.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem.Icon>
-                    <Image   Source="Icons/File.ico"/>
+                    <Image MaxHeight="40" Source="Icons/File.ico"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="Pomoc">
                 <MenuItem.Icon>
-                    <Image   Source="Icons/Help.ico"/>
+                    <Image MaxHeight="40"  Source="Icons/Help.ico"/>
                 </MenuItem.Icon>
                 <MenuItem Name="AboutMenuItem" Header="O programie">
                     <MenuItem.Icon>
-                        <Image   Source="Icons/Info.ico"/>
+                        <Image MaxHeight="40"  Source="Icons/Info.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Name="ContatcMenuItem"  Header="Kontakt" Click="ContatcMenuItem_Click">
                     <MenuItem.Icon>
-                        <Image   Source="Icons/Contact.ico"/>
+                        <Image  MaxHeight="40" Source="Icons/Contact.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -56,17 +59,16 @@
         <!-- Główny Tab control Samochody Klienci Rezerwacje Wypozyczenia -->
         <TabControl Name="MainTabControl" Margin="5" TabStripPlacement="Left" Width="auto" Height="auto" Grid.Row="1">
             <!-- Zakładka Samochody -->
-            <TabItem Name="CarTab" Height="auto" >
+            <TabItem Name="CarTab" Height="auto">
                 <TabItem.Header>
-                    <Expander Name="CarExpander">
-
+                    <Expander Name="CarExpander" IsExpanded="{Binding Path=IsSelected, ElementName=CarTab,Mode=TwoWay}">
                         <Expander.Header>
                             <StackPanel Orientation="Horizontal" Height="50">
                                 <Image Name="img" Height="auto" Width="auto" Source="Icons/car.png" HorizontalAlignment="Left" />
                                 <TextBlock Text="Samochody" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel Height="{Binding ElementName=MainTabControl, Path=ActualHeight}">
+                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Margin="4" Content="Option 1" Grid.Row="0"/>
                             <Button Margin="4" Content="Option 2" Grid.Row="1"/>
                         </StackPanel>
@@ -78,14 +80,14 @@
             <!-- Zakładka Klienci -->
             <TabItem Name="ClientTab" Height="auto">
                 <TabItem.Header>
-                    <Expander Name="ClientExpander">
+                    <Expander Name="ClientExpander" IsExpanded="{Binding Path=IsSelected, ElementName=ClientTab,Mode=TwoWay}">
                         <Expander.Header>
                             <StackPanel Orientation="Horizontal" Width="auto" Height="50">
                                 <Image  Height="auto" Width="auto" Source="Icons/client.png" HorizontalAlignment="Left"/>
                                 <Label Content="Klienci" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel Height="{Binding ElementName=MainTabControl, Path=ActualHeight}">
+                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Margin="4" Content="Option 1" />
                             <Button Margin="4" Content="Option 2" />
                             <Button Margin="4" Content="Option 3" />
@@ -97,14 +99,14 @@
             <!-- Zakładka Wypożyczenia -->
             <TabItem Name="RentTab" Height="auto">
                 <TabItem.Header>
-                    <Expander Name="RentalExpander">
+                    <Expander Name="RentalExpander" IsExpanded="{Binding Path=IsSelected, ElementName=RentTab,Mode=TwoWay}">
                         <Expander.Header>
                             <StackPanel Orientation="Horizontal" Width="auto" Height="50">
                                 <Image  Height="auto" Width="auto" Source="Icons/carRent.png" HorizontalAlignment="Left"/>
                                 <Label Content="Wypożyczenia" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel Height="{Binding ElementName=MainTabControl, Path=ActualHeight}">
+                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Margin="4" Content="Option 1" />
                             <Button Margin="4" Content="Option 2" />
                             <Button Margin="4" Content="Option 3" />
@@ -116,14 +118,14 @@
             <!-- Zakładka Rezerwacje -->
             <TabItem Name="BookingTab" Height="auto">
                 <TabItem.Header>
-                    <Expander Name="BookingExpander">
+                    <Expander Name="BookingExpander" IsExpanded="{Binding Path=IsSelected, ElementName=BookingTab,Mode=TwoWay}">
                         <Expander.Header>
                             <StackPanel Orientation="Horizontal" Width="auto" Height="50">
                                 <Image  Height="auto" Width="auto" Source="Icons/booking.png" HorizontalAlignment="Left"/>
                                 <Label Content="Rezerwacje" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel Height="{Binding ElementName=MainTabControl, Path=ActualHeight}">
+                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Margin="4" Content="Option 1" />
                             <Button Margin="4" Content="Option 2" />
                             <Button Margin="4" Content="Option 3" />
