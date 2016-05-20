@@ -145,7 +145,6 @@
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            
             <StackPanel Orientation="Horizontal" Grid.Column="0">
                 <Image Source="Icons/Warning.png" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Nie zwrócono: 0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
