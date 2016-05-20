@@ -58,17 +58,17 @@
             <!-- Zakładka Samochody -->
             <TabItem Name="CarTab" Height="auto" >
                 <TabItem.Header>
-                    <Expander>
+                    <Expander Name="CarExpander">
+
                         <Expander.Header>
                             <StackPanel Orientation="Horizontal" Height="50">
                                 <Image Name="img" Height="auto" Width="auto" Source="Icons/car.png" HorizontalAlignment="Left" />
                                 <TextBlock Text="Samochody" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel>
-                            <Button Margin="4" Content="Option 1" />
-                            <Button Margin="4" Content="Option 2" />
-                            <Button Margin="4" Content="Option 3" />
+                        <StackPanel Height="{Binding ElementName=MainTabControl, Path=ActualHeight}">
+                            <Button Margin="4" Content="Option 1" Grid.Row="0"/>
+                            <Button Margin="4" Content="Option 2" Grid.Row="1"/>
                         </StackPanel>
                     </Expander>
                 </TabItem.Header>
@@ -76,51 +76,59 @@
 
             </TabItem>
             <!-- Zakładka Klienci -->
-            <TabItem Name="ClientTab" Height="50">
+            <TabItem Name="ClientTab" Height="auto">
                 <TabItem.Header>
-                    <Expander>
+                    <Expander Name="ClientExpander">
                         <Expander.Header>
-                            <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
+                            <StackPanel Orientation="Horizontal" Width="auto" Height="50">
                                 <Image  Height="auto" Width="auto" Source="Icons/client.png" HorizontalAlignment="Left"/>
                                 <Label Content="Klienci" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel>
+                        <StackPanel Height="{Binding ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Margin="4" Content="Option 1" />
                             <Button Margin="4" Content="Option 2" />
                             <Button Margin="4" Content="Option 3" />
                         </StackPanel>
                     </Expander>
                 </TabItem.Header>
-                <!-- Tab Control zakładki Klienci -->
-                <TabControl Name="ClientTabControl" Margin="5" TabStripPlacement="Top" Width="auto" Height="auto">
-                    <TabItem Header="Lista Wszystkich Klientów">
-
-                    </TabItem>
-
-                    <TabItem Header="Dodaj nowego Klienta">
-
-                    </TabItem>
-                </TabControl>
-
+                
             </TabItem>
             <!-- Zakładka Wypożyczenia -->
-            <TabItem Name="RentTab" Height="50">
+            <TabItem Name="RentTab" Height="auto">
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
-                        <Image  Height="auto" Width="auto" Source="Icons/carRent.png" HorizontalAlignment="Left"/>
-                        <Label Content="Wypożyczenia" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                    </StackPanel>
+                    <Expander Name="RentalExpander">
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal" Width="auto" Height="50">
+                                <Image  Height="auto" Width="auto" Source="Icons/carRent.png" HorizontalAlignment="Left"/>
+                                <Label Content="Wypożyczenia" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                            </StackPanel>
+                        </Expander.Header>
+                        <StackPanel Height="{Binding ElementName=MainTabControl, Path=ActualHeight}">
+                            <Button Margin="4" Content="Option 1" />
+                            <Button Margin="4" Content="Option 2" />
+                            <Button Margin="4" Content="Option 3" />
+                        </StackPanel>
+                    </Expander>
                 </TabItem.Header>
 
             </TabItem>
             <!-- Zakładka Rezerwacje -->
-            <TabItem Name="BookingTab" Height="50">
+            <TabItem Name="BookingTab" Height="auto">
                 <TabItem.Header>
-                    <StackPanel Orientation="Horizontal" Width="auto" Height="auto">
-                        <Image  Height="auto" Width="auto" Source="Icons/booking.png" HorizontalAlignment="Left"/>
-                        <Label Content="Rezerwacje" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                    </StackPanel>
+                    <Expander Name="BookingExpander">
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal" Width="auto" Height="50">
+                                <Image  Height="auto" Width="auto" Source="Icons/booking.png" HorizontalAlignment="Left"/>
+                                <Label Content="Rezerwacje" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
+                            </StackPanel>
+                        </Expander.Header>
+                        <StackPanel Height="{Binding ElementName=MainTabControl, Path=ActualHeight}">
+                            <Button Margin="4" Content="Option 1" />
+                            <Button Margin="4" Content="Option 2" />
+                            <Button Margin="4" Content="Option 3" />
+                        </StackPanel>
+                    </Expander>
                 </TabItem.Header>
 
             </TabItem>
