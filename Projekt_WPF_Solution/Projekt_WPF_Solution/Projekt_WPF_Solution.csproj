@@ -62,6 +62,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddNewClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContactWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -72,6 +76,9 @@
     </Page>
     <Compile Include="AddNewCarWindow.xaml.cs">
       <DependentUpon>AddNewCarWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddNewClientWindow.xaml.cs">
+      <DependentUpon>AddNewClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -165,6 +172,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\brakZdjecia.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\CheckSign.png" />
+    <Resource Include="Icons\CrossSign.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

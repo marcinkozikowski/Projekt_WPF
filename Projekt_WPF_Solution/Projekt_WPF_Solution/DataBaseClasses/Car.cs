@@ -18,6 +18,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private bool rented { get; set;  }              // Czy samochod jest aktualnie wypozyczony
         private bool booked { get; set; }               // Czy dany samochod został zarezerwowany
         #endregion
+
         #region Properties
         public string Maker { get { return maker; } set { maker = value; } }
         public string Model { get { return model; } set { model = value; } }

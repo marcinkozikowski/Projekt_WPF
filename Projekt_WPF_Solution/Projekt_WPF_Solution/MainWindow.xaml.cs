@@ -34,9 +34,16 @@ namespace Projekt_WPF_Solution
 
         private void AddNewCar_Click(object sender, RoutedEventArgs e)
         {
-            //Car newCar = new Car();
+            Car newCar = new Car();
             //AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar);
-            //newCarWindow.ShowDialog();
+            AddNewCarWindow newCarWindow = new AddNewCarWindow();
+            newCarWindow.ShowDialog();
+        }
+
+        private void AddNewClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewClientWindow newClientWindow = new AddNewClientWindow();
+            newClientWindow.ShowDialog();
         }
     }
 }

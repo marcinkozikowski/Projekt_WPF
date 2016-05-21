@@ -12,6 +12,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private int id;
         private string name, surname, pesel, idNumber;
         private bool isMale;
+
         #endregion
         #region Properties
         public int Id { get { return id; } set { id = value; } }

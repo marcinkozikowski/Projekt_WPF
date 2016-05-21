@@ -11,9 +11,9 @@
     
     <Grid Name="MainAddCarGrid" ShowGridLines="false">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -72,8 +72,19 @@
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
-            <Button Name="AddCarButton" Margin="3" HorizontalAlignment="Right" Content="Dodaj" Padding="5"/>
-            <Button Name="CancelCarButton" Margin="3" HorizontalAlignment="Left" Content="Anuluj" Padding="5"/>
+            <Button Name="AddCarButton" Margin="3" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Icons/CheckSign.png"/>
+                    <Label Content="Dodaj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="CancelCarButton" Margin="3" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Icons/CrossSign.png"/>
+                    <Label Content="Anuluj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>
