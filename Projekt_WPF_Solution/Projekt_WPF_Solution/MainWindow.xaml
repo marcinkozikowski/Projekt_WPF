@@ -70,8 +70,7 @@
                             </StackPanel>
                         </Expander.Header>
                         <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
-                            <Button Name="AddNewCarButton" Margin="4" Content="Option 1" Grid.Row="0" Click="AddNewCarButton_Click"/>
-                            <Button Margin="4" Content="Option 2" Grid.Row="1"/>
+                            <Button Name="AddNewCar" Margin="4" Content="Dodaj samochód" Grid.Row="0" Click="AddNewCar_Click"/>
                         </StackPanel>
                     </Expander>
                 </TabItem.Header>
@@ -145,7 +144,6 @@
                 <ColumnDefinition Width="0.1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-            
             <StackPanel Orientation="Horizontal" Grid.Column="0">
                 <Image Source="Icons/Warning.png" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Nie zwrócono: 0" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>

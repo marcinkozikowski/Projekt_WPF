@@ -82,6 +82,8 @@
     </Compile>
     <Compile Include="Converters\StackPanelHeightConverter.cs" />
     <Compile Include="DataBaseClasses\Car.cs" />
+    <Compile Include="DataBaseClasses\Client.cs" />
+    <Compile Include="DataBaseClasses\Rent.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

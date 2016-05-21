@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Projekt_WPF_Solution.DataBaseClasses;
 
 namespace Projekt_WPF_Solution
 {
@@ -31,10 +32,11 @@ namespace Projekt_WPF_Solution
             contactWindow.ShowDialog();
         }
 
-        private void AddNewCarButton_Click(object sender, RoutedEventArgs e)
+        private void AddNewCar_Click(object sender, RoutedEventArgs e)
         {
-            AddNewCarWindow w = new AddNewCarWindow();
-            w.ShowDialog();
+            //Car newCar = new Car();
+            //AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar);
+            //newCarWindow.ShowDialog();
         }
     }
 }
