@@ -5,39 +5,75 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
         mc:Ignorable="d"
-        Title="Dodaj nowy samochód" Height="300" Width="606">
+        FontSize="16"
+        Icon="Icons\car.png"
+        Title="Dodaj nowy samochód" Height="450" Width="750">
     
-    <Grid Name="MainAddCarGrid" ShowGridLines="True">
+    <Grid Name="MainAddCarGrid" ShowGridLines="false">
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Image Grid.Column="0" Grid.Row="0" Source="Images\brakZdjecia.gif"/>
-        
-        <Grid Name="LeftAddCarGrid" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+        <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
+            <Image Source="Images\brakZdjecia.gif" Margin="2"/>
+        </GroupBox>
+        <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
+            <Grid Name="LeftAddCarGrid">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="Marka" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="3"/>
-            <Label Content="Model" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="3"/>
-            <Label Content="Data produkcji" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <Calendar Grid.Row="2" Grid.Column="1" Margin="3"/>
+                <Label Content="Marka" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <ComboBox Name="MarkaComboBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <Label Content="Model" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="ModelTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <Label Content="Data produkcji" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <DatePicker Name="DataProdukcjiDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+            </Grid>
+        </GroupBox>
+        
+        <GroupBox Header="Informacje szczegółowe" Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="3">
+            <Grid Name="BottomAddCarGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Label Content="Pojemność silnika" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="PojemnoscTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <Label Content="Typ nadwozia" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <ComboBox Name="TypComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <Label Content="Klasa samochodu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <ComboBox Name="KlasaTextBox" Grid.Row="2" Grid.Column="1" Margin="3"/>
 
-        </Grid>
-        <Calendar Grid.Column="1" HorizontalAlignment="Left" Margin="80,-35,0,0" VerticalAlignment="Top"/>
+                <Label Content="Numer rejestracyjny" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="NrRejTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center"/>
+                <Label Content="Spalanie na 100/km" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="SpalanieTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center"/>
+            </Grid>
+        </GroupBox>
+
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
+            <Button Name="AddCarButton" Margin="3" HorizontalAlignment="Right" Content="Dodaj" Padding="5"/>
+            <Button Name="CancelCarButton" Margin="3" HorizontalAlignment="Left" Content="Anuluj" Padding="5"/>
+        </StackPanel>
     </Grid>
 </Window>

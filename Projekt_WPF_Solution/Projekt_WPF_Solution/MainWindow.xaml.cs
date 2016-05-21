@@ -30,5 +30,11 @@ namespace Projekt_WPF_Solution
             ContactWindow contactWindow = new ContactWindow();
             contactWindow.ShowDialog();
         }
+
+        private void AddNewCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewCarWindow w = new AddNewCarWindow();
+            w.ShowDialog();
+        }
     }
 }
