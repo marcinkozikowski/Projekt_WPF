@@ -70,7 +70,8 @@
                             </StackPanel>
                         </Expander.Header>
                         <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
-                            <Button Name="AddNewCar" Margin="4" Content="Dodaj samochód" Grid.Row="0" Click="AddNewCar_Click"/>
+                            <Button Margin="4" Content="Option 1" Grid.Row="0"/>
+                            <Button Margin="4" Content="Option 2" Grid.Row="1"/>
                         </StackPanel>
                     </Expander>
                 </TabItem.Header>
