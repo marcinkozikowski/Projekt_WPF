@@ -50,7 +50,7 @@
                         <Image MaxHeight="40"  Source="Icons/Info.ico"/>
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem Name="ContatcMenuItem"  Header="Kontakt" Click="ContatcMenuItem_Click">
+                <MenuItem Name="ContactMenuItem"  Header="Kontakt" Click="ContactMenuItem_Click">
                     <MenuItem.Icon>
                         <Image  MaxHeight="40" Source="Icons/Contact.ico"/>
                     </MenuItem.Icon>
@@ -74,7 +74,9 @@
                         </StackPanel>
                     </Expander>
                 </TabItem.Header>
-                
+                <ListBox Name="CarListBox" Padding="3px" Margin="3px"
+                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"/>
+
 
             </TabItem>
             <!-- Zakładka Klienci -->
@@ -92,7 +94,8 @@
                         </StackPanel>
                     </Expander>
                 </TabItem.Header>
-                
+                <ListBox Name="ClientListBox" Padding="3px" Margin="3px"
+                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"/>
             </TabItem>
             <!-- Zakładka Wypożyczenia -->
             <TabItem Name="RentTab" Height="auto">

@@ -8,7 +8,7 @@
         Title="Dodaj nowego klienta" Height="450" Width="750"
         FontSize="16"
         Icon="Icons\client.png">
-    <Grid Name="MainAddCarGrid" ShowGridLines="false">
+    <Grid Name="MainAddClientGrid" ShowGridLines="false">
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
             <RowDefinition Height="8*"/>
@@ -23,7 +23,7 @@
             <Image Source="Images\brakZdjecia.gif" Margin="2"/>
         </GroupBox>
         <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
-            <Grid Name="LeftAddCarGrid">
+            <Grid Name="LeftAddClientGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -34,16 +34,16 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Imię" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="ImieTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <TextBox Name="ImieTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name}"/>
                 <Label Content="Nazwisko" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="NazwiskoTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <TextBox Name="NazwiskoTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Surname}"/>
                 <Label Content="Data urodzenia" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <DatePicker Name="DataUrodzeniaDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <DatePicker Name="DataUrodzeniaDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedDate="{Binding Path=Born}"/>
             </Grid>
         </GroupBox>
 
         <GroupBox Header="Informacje szczegółowe" Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="3">
-            <Grid Name="BottomAddCarGrid">
+            <Grid Name="BottomAddClientGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -57,30 +57,33 @@
                 </Grid.ColumnDefinitions>
 
                 <Label Content="Pesel" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="PeselTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <TextBox Name="PeselTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Pesel, ValidatesOnDataErrors=True}"/>
                 <Label Content="Płeć" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <ComboBox Name="PlecComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center"/>
+                <ComboBox Name="PlecComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="Mężczyzna"/>
+                    <ComboBoxItem Content="Kobieta"/>
+                </ComboBox>
                 <Label Content="Numer telefonu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="NrTelTextBox" Grid.Row="2" Grid.Column="1" Margin="3"/>
+                <TextBox Name="NrTelTextBox" Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding Path=PhoneNumber}"/>
 
                 <Label Content="Adres" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="AdresTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center"/>
+                <TextBox Name="AdresTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Address}"/>
                 <Label Content="Miejścowość" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="MiejscowoscTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center"/>
+                <TextBox Name="MiejscowoscTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=City}"/>
                 <Label Content="Rodzaj klienta" Grid.Row="2" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center"/>
+                <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
             </Grid>
         </GroupBox>
 
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
-            <Button Name="AddCarButton" Margin="3" HorizontalAlignment="Right">
+            <Button Name="AddClientButton" Margin="3" HorizontalAlignment="Right" Click="AddClientButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Icons/CheckSign.png"/>
                     <Label Content="Dodaj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Button>
 
-            <Button Name="CancelCarButton" Margin="3" HorizontalAlignment="Right">
+            <Button Name="CancelClientButton" Margin="3" HorizontalAlignment="Right" Click="CancelClientButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Icons/CrossSign.png"/>
                     <Label Content="Anuluj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>

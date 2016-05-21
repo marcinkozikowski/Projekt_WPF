@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Projekt_WPF_Solution.DataBaseClasses;
 
 namespace Projekt_WPF_Solution
 {
@@ -19,9 +20,23 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class AddNewClientWindow : Window
     {
-        public AddNewClientWindow()
+        Client newClient;
+        public AddNewClientWindow(Client newClient)
         {
             InitializeComponent();
+            this.newClient = newClient;
+            MainAddClientGrid.DataContext = newClient;
+            
+        }
+
+        private void AddClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
+
+        private void CancelClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }
