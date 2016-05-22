@@ -69,8 +69,8 @@
                                 <TextBlock Text="Samochody" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
-                            <Button Margin="4" Content="Dodaj nowy" Grid.Row="0" VerticalAlignment="Center" Click="AddNewCar_Click"/>
+                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}" Orientation="Vertical">
+                            <Button Margin="4"  Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
                         </StackPanel>
                     </Expander>
                 </TabItem.Header>

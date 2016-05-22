@@ -22,6 +22,7 @@ namespace Projekt_WPF_Solution
         public AddNewCarWindow()
         {
             InitializeComponent();
+            MarkaComboBox.Items.Add("Audi");
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private bool isMale;
 
         #endregion
+
         #region Properties
         public int Id { get { return id; } set { id = value; } }
         public string Name { get { return Name1; } set { Name1 = value; } }
