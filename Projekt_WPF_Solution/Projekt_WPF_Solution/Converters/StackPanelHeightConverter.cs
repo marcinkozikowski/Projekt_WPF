@@ -13,7 +13,7 @@ namespace Projekt_WPF_Solution.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             double height = (double)value;
-            return Math.Abs(height - 4*62);
+            return Math.Abs(height - 3*62);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

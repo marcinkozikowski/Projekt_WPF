@@ -134,28 +134,7 @@
                             </StackPanel>
                         </Expander.Header>
                         <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
-                            <Button Margin="4" Content="Option 1" />
-                            <Button Margin="4" Content="Option 2" />
-                            <Button Margin="4" Content="Option 3" />
-                        </StackPanel>
-                    </Expander>
-                </TabItem.Header>
-
-            </TabItem>
-            <!-- Zakładka Rezerwacje -->
-            <TabItem Name="BookingTab" Height="auto">
-                <TabItem.Header>
-                    <Expander Name="BookingExpander" IsExpanded="{Binding Path=IsSelected, ElementName=BookingTab,Mode=TwoWay}">
-                        <Expander.Header>
-                            <StackPanel Orientation="Horizontal" Width="auto" Height="50">
-                                <Image  Height="auto" Width="auto" Source="Icons/booking.png" HorizontalAlignment="Left"/>
-                                <Label Content="Rezerwacje" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
-                            </StackPanel>
-                        </Expander.Header>
-                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
-                            <Button Margin="4" Content="Option 1" />
-                            <Button Margin="4" Content="Option 2" />
-                            <Button Margin="4" Content="Option 3" />
+                            <Button Margin="4" Content="Nowe wypożyczenie" Name="NewRentalButton" Click="NewRentalButton_Click" />
                         </StackPanel>
                     </Expander>
                 </TabItem.Header>

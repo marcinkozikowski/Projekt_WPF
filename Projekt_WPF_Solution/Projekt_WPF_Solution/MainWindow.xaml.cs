@@ -86,5 +86,11 @@ namespace Projekt_WPF_Solution
             }
             return maxId;
         }
+
+        private void NewRentalButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewRentalWindow newRenatlWindow = new AddNewRentalWindow();
+            newRenatlWindow.ShowDialog();
+        }
     }
 }

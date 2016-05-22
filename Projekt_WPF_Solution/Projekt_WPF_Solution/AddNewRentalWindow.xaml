@@ -5,11 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
         mc:Ignorable="d"
-        Title="Nowe wypożyczenie" Height="450" Width="750">
+        Title="Nowe wypożyczenie" MinHeight="775" MinWidth="750">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.75*"/>
         </Grid.RowDefinitions>
         
         <GroupBox Header="Informacje o kliencie" Margin="3" Grid.Row="0">
@@ -25,8 +28,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
-                    <Image Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter}, UpdateSourceTrigger=PropertyChanged}" 
-                   Margin="2" />
+                        <!-- Tutaj wywalilem Image bo wypierdala ciagle jakis blad -->
                 </GroupBox>
                 <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
                     <Grid Name="LeftAddClientGrid">
@@ -80,16 +82,16 @@
                         <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
                     </Grid>
                 </GroupBox>
-                <Button  Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
-                    <StackPanel Orientation="Horizontal" MaxHeight="30">
+                <Button  Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="3" >
+                    <StackPanel Orientation="Horizontal" MaxHeight="40">
                         <Image Source="Icons\search.png"/>
-                        <Label Content="Wyszukaj klienta"/>
+                        <Label Content="Wyszukaj klienta" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                     </StackPanel>
                 </Button>
             </Grid>
         </GroupBox>
         <!-- Informacje o miejscu odbioru i zwrotu pojazdu -->
-        <GroupBox Header="Miejsce odbioru i zwrotu" Grid.Row="1">
+        <GroupBox Header="Miejsce odbioru i zwrotu samochodu" Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -105,7 +107,77 @@
                 <Label Name="MiejsceZwrotuLabel" Grid.Column="2" Content="Miejsce zwrotu: " Margin="3"/>
                 <ComboBox Name="MiejsceZwrotuComboBox" Grid.Column="3" Margin="3"/>
             </Grid>
-            
         </GroupBox>
+        <GroupBox Header="Okres wypożyczenia" Grid.Row="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Label Name="OdLabel" Grid.Column="0" Content="Od: " Margin="3"/>
+                <DatePicker Name="OdDataPicker" Grid.Column="1" Margin="3"/>
+                <Label Name="DoLabel" Grid.Column="2" Content="Do: " Margin="3"/>
+                <DatePicker Name="DoDataPicker" Grid.Column="3" Margin="3"/>
+            </Grid>
+        </GroupBox>
+
+    <!-- Wybor samochodu -->
+        <GroupBox Header="Wybór samochodu" Grid.Row="3" Margin="3">
+            <Grid  ShowGridLines="false">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
+                    <!-- Tutaj wywalilem Image bo wypierdala ciagle jakis blad -->
+                </GroupBox>
+                <GroupBox Header="Samochód" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Numer rejestracyjny: " Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                        <TextBox Name="NrRejTextBox"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" VerticalContentAlignment="Center" />
+                        <Button Grid.Row="1" Grid.Column="2" Margin="3" HorizontalAlignment="Right">
+                            <StackPanel Orientation="Horizontal" MaxHeight="40">
+                                <Image Source="Icons\search.png"/>
+                                <Label Content="Wyszukaj samochód" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+                </Grid>
+        </GroupBox>
+<!--Przyciski dodaj i anuluj -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right" >
+            <Button Name="AddRentalButton" Margin="3" HorizontalAlignment="Right" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Icons/CheckSign.png"/>
+                    <Label Content="Dodaj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="CancelRenatlButton" Margin="3" HorizontalAlignment="Right" >
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Icons/CrossSign.png"/>
+                    <Label Content="Anuluj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>
