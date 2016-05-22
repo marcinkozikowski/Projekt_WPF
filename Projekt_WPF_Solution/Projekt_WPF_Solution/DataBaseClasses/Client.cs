@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 
 namespace Projekt_WPF_Solution.DataBaseClasses
 {
-    public class Client : IDataErrorInfo
+    public class Client : IDataErrorInfo, INotifyPropertyChanged
     {
         #region Variables
         private int id, phoneNumber;
-        private string name, surname, pesel, address, city, type;
+        private string name, surname, pesel, address, city, type, image;
         private bool isMale;
         private DateTime born;
-
         #endregion
         #region Properties
         public int Id { get { return id; } set { id = value; } }                                //ID 
@@ -27,8 +26,17 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string Address { get { return address; } set { address = value; } }              //Adres
         public string City { get { return city; } set { city = value; } }                       //Miasto
         public string Type { get { return type; } set { type = value; } }                       //Typ klienta
+        public string Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }                    //Ścieżka do pliku jpg
+        #endregion
 
-
+        public Client(int id)
+        {
+            name = surname = pesel = address = city = type = string.Empty;
+            this.id = id;
+            phoneNumber = 0;
+            image = "brakZdjecia.gif";
+        }
+        #region IDataErrorInfo
         public string Error
         {
             get
@@ -37,14 +45,13 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 return null;
             }
         }
-
         public string this[string columnName]
         {
             get
             {
-                if(columnName.Equals("Pesel"))
+                if (columnName.Equals("Pesel"))
                 {
-                    if(Pesel.Count() != 11)
+                    if (Pesel.Count() != 11)
                     {
                         return "Zły pesel";
                     }
@@ -53,12 +60,13 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             }
         }
         #endregion
-
-        public Client()
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string property)
         {
-            name = surname = pesel = address = city = type = string.Empty;
-            id = int.MaxValue;
-            phoneNumber = 0;
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
+        #endregion
     }
 }

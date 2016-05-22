@@ -47,7 +47,7 @@ namespace Projekt_WPF_Solution
 
         private void AddNewCar_Click(object sender, RoutedEventArgs e)
         {
-            Car newCar = new Car();
+            Car newCar = new Car(FindCarMaxID()+1);
             AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar);
             if(newCarWindow.ShowDialog() == true)
             {
@@ -57,7 +57,7 @@ namespace Projekt_WPF_Solution
 
         private void AddNewClientButton_Click(object sender, RoutedEventArgs e)
         {
-            Client newClient = new Client();
+            Client newClient = new Client(FindClientMaxID()+1);
             AddNewClientWindow newClientWindow = new AddNewClientWindow(newClient);
             if(newClientWindow.ShowDialog() == true)
             {
@@ -66,5 +66,25 @@ namespace Projekt_WPF_Solution
         }
 
         #endregion
+
+        private int FindCarMaxID()
+        {
+            int maxId = 0;
+            foreach(Car car in cars)
+            {
+                maxId = Math.Max(maxId, car.Id);
+            }
+            return maxId;
+        }
+
+        private int FindClientMaxID()
+        {
+            int maxId = 0;
+            foreach(Client client in clients)
+            {
+                maxId = Math.Max(maxId, client.Id);
+            }
+            return maxId;
+        }
     }
 }

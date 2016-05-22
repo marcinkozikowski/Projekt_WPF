@@ -11,9 +11,36 @@
         Title="Wypożyczalnia Samochodów" MinHeight="500" Width="800" Icon="RentCarBlue.ico"
         Background="LightGray">
     <Window.Resources>
+        <converter:ImagePathConverter x:Key="ImagePathConverter"/>
         <converter:StackPanelHeightConverter x:Key="StackPanelHeightConverter"/>
+        
+        
+
+        <DataTemplate x:Key="CarDataTemplate">
+            <Border Margin="3px" BorderBrush="Black" CornerRadius="3">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" SharedSizeGroup="photo"/>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter} }"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pojazd:"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=MakerAndModel}" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Rok modelowy:"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=ManufacturedYear}" />
+                </Grid>
+            </Border>
+        </DataTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition />
@@ -75,9 +102,8 @@
                     </Expander>
                 </TabItem.Header>
                 <ListBox Name="CarListBox" Padding="3px" Margin="3px"
-                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"/>
-
-
+                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"
+                         ItemTemplate="{StaticResource CarDataTemplate}"/>
             </TabItem>
             <!-- Zakładka Klienci -->
             <TabItem Name="ClientTab" Height="auto">

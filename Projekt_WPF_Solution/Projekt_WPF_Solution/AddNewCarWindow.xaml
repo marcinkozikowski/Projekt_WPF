@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
+        xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
         mc:Ignorable="d"
         FontSize="16"
         Icon="Icons\car.png"
         Title="Dodaj nowy samochód" Height="450" Width="750">
+    <Window.Resources>
+        <converter:ImagePathConverter x:Key="ImagePathConverter" />
+    </Window.Resources>
     
     <Grid Name="MainAddCarGrid" ShowGridLines="false">
         <Grid.RowDefinitions>
@@ -21,7 +25,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
-            <Image Source="Images\brakZdjecia.gif" Margin="2"/>
+            <Image Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter}, UpdateSourceTrigger=PropertyChanged}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         </GroupBox>
         <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
             <Grid Name="LeftAddCarGrid">
@@ -39,7 +43,8 @@
                 <Label Content="Model" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                 <TextBox Name="ModelTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Model}"/>
                 <Label Content="Data produkcji" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <DatePicker Name="DataProdukcjiDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedDate="{Binding Path=ManufacturedYear}"/>
+                <DatePicker Name="DataProdukcjiDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedDate="{Binding Path=ManufacturedYear}"
+                            />
             </Grid>
         </GroupBox>
         
@@ -58,7 +63,7 @@
                 </Grid.ColumnDefinitions>
                 
                 <Label Content="Pojemność silnika [cm3]" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="PojemnoscTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Engine}"/>
+                <TextBox Name="PojemnoscTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Engine, ValidatesOnDataErrors=True}"/>
                 <Label Content="Typ nadwozia" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                 <ComboBox Name="TypComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=BodyType}" />
                 <Label Content="Klasa samochodu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
@@ -67,7 +72,7 @@
                 <Label Content="Numer rejestracyjny" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                 <TextBox Name="NrRejTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=RegPlate}"/>
                 <Label Content="Spalanie na 100/km" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="SpalanieTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=FuelConsumption}"/>
+                <TextBox Name="SpalanieTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=FuelConsumption, ValidatesOnDataErrors=True}"/>
             </Grid>
         </GroupBox>
 

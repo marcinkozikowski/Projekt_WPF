@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\ImagePathConverter.cs" />
     <Compile Include="Validators\Validator.cs" />
     <Page Include="AddNewCarWindow.xaml">
       <SubType>Designer</SubType>
@@ -177,6 +178,10 @@
   <ItemGroup>
     <Resource Include="Icons\CheckSign.png" />
     <Resource Include="Icons\CrossSign.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Cars\" />
+    <Folder Include="Images\Clients\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
