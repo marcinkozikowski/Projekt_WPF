@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Projekt_WPF_Solution.DataBaseClasses;
+using System.Collections.ObjectModel;
 
 namespace Projekt_WPF_Solution
 {
@@ -21,12 +22,24 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<Car> cars;
+        private ListCollectionView carsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(cars); } }
+
+        private ObservableCollection<Client> clients;
+        private ListCollectionView clientsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(clients); } }
+
+        #region Methods
         public MainWindow()
         {
             InitializeComponent();
+            cars = new ObservableCollection<Car>();
+            CarListBox.ItemsSource = carsView;
+
+            clients = new ObservableCollection<Client>();
+            ClientListBox.ItemsSource = clientsView;
         }
 
-        private void ContatcMenuItem_Click(object sender, RoutedEventArgs e)
+        private void ContactMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ContactWindow contactWindow = new ContactWindow();
             contactWindow.ShowDialog();
@@ -34,16 +47,44 @@ namespace Projekt_WPF_Solution
 
         private void AddNewCar_Click(object sender, RoutedEventArgs e)
         {
-            Car newCar = new Car();
-            //AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar);
-            AddNewCarWindow newCarWindow = new AddNewCarWindow();
-            newCarWindow.ShowDialog();
+            Car newCar = new Car(FindCarMaxID()+1);
+            AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar);
+            if(newCarWindow.ShowDialog() == true)
+            {
+                cars.Add(newCar);
+            }
         }
 
         private void AddNewClientButton_Click(object sender, RoutedEventArgs e)
         {
-            AddNewClientWindow newClientWindow = new AddNewClientWindow();
-            newClientWindow.ShowDialog();
+            Client newClient = new Client(FindClientMaxID()+1);
+            AddNewClientWindow newClientWindow = new AddNewClientWindow(newClient);
+            if(newClientWindow.ShowDialog() == true)
+            {
+                clients.Add(newClient);
+            }
+        }
+
+        #endregion
+
+        private int FindCarMaxID()
+        {
+            int maxId = 0;
+            foreach(Car car in cars)
+            {
+                maxId = Math.Max(maxId, car.Id);
+            }
+            return maxId;
+        }
+
+        private int FindClientMaxID()
+        {
+            int maxId = 0;
+            foreach(Client client in clients)
+            {
+                maxId = Math.Max(maxId, client.Id);
+            }
+            return maxId;
         }
     }
 }

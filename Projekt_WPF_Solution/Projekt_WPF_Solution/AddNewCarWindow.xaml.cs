@@ -11,6 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Projekt_WPF_Solution.DataBaseClasses;
+using Projekt_WPF_Solution.Validators;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Projekt_WPF_Solution
 {
@@ -19,10 +23,60 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class AddNewCarWindow : Window
     {
-        public AddNewCarWindow()
+        Car newCar;
+
+        public AddNewCarWindow(Car newCar)
         {
             InitializeComponent();
-            MarkaComboBox.Items.Add("Audi");
+            this.newCar = newCar;
+            MainAddCarGrid.DataContext = newCar;
+        }
+
+        private void AddCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(Validator.IsValid(this))
+            {
+                DialogResult = true;
+            }
+            else
+            {
+                MessageBox.Show("Niepoprawne dane!");
+            }
+        }
+
+        private void CancelCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "Image File(*.jpg; *.bmp; *.gif)| *.jpg; *.bmp; *.gif";
+            op.Title = "Wybierz zdjęcie:";
+            if(op.ShowDialog() == true)
+            {
+                string[] split = op.FileName.Split('.').ToArray();
+                string filename = newCar.Id + "." + split[split.Count() - 1]; ;
+                string dir = GetDirectory() + "\\" + filename;
+                File.Copy(op.FileName, dir, true);
+                newCar.Image = "Cars\\" + filename;
+            }            
+        }
+
+        private string GetDirectory()
+        {
+            string dir = null, imgdir;
+            do
+            {
+                if (dir == null)
+                    dir = Directory.GetCurrentDirectory();
+                else
+                    dir = Directory.GetParent(dir).ToString();
+                imgdir = System.IO.Path.Combine(dir, "Images");
+                imgdir = System.IO.Path.Combine(imgdir, "Cars");
+            } while (!Directory.Exists(imgdir));
+            return imgdir;
         }
     }
 }
