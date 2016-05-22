@@ -12,6 +12,7 @@
     <Window.Resources>
         <converter:ImagePathConverter x:Key="ImagePathConverter" />
     </Window.Resources>
+    
     <Grid Name="MainAddClientGrid" ShowGridLines="false">
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
