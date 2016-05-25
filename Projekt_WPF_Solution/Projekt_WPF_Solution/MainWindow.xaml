@@ -96,9 +96,22 @@
                                 <TextBlock Text="Samochody" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}" Orientation="Vertical">
-                            <Button Margin="4"  Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <Grid Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+
+                            <Button Margin="4"  Grid.Row="0" Name="AddNewCarButton" Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
+                            <Button Margin="4"  Grid.Row="1" Name="DeleteCarButton" Content="Usuń samochód" VerticalAlignment="Center"/>
+                            <Button Margin="4"  Grid.Row="2" Name="SearchCarButton" Content="Wyszukaj samochód" VerticalAlignment="Center"/>
+                        </Grid>
+                        <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}" Orientation="Vertical">
+                            <Button Margin="4"  Name="AddNewCarButton" Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
+                            <Button Margin="4"  Name="DeleteCarButton" Content="Usuń samochód" VerticalAlignment="Center"/>
+                            <Button Margin="4"  Name="SearchCarButton" Content="Wyszukaj samochód" VerticalAlignment="Center"/>
+                        </StackPanel>-->
                     </Expander>
                 </TabItem.Header>
                 <ListBox Name="CarListBox" Padding="3px" Margin="3px"
@@ -115,9 +128,21 @@
                                 <Label Content="Klienci" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
+                        <Grid Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Name="AddNewClientButton" Margin="4" Content="Dodaj nowego" Click="AddNewClientButton_Click" VerticalAlignment="Center"/>
+                            <Button Grid.Row="1" Name="DeleteClientButton" Margin="4" Content="Usuń klienta" ToolTip="Usuwa klienta zaznaczonego na liście" VerticalAlignment="Center"/>
+                            <Button Grid.Row="2" Name="SearchClientButton" Margin="4" Content="Wyszukaj klienta" VerticalAlignment="Center"/>
+                        </Grid>
+                        <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Name="AddNewClientButton" Margin="4" Content="Dodaj nowego" Click="AddNewClientButton_Click"/>
-                        </StackPanel>
+                            <Button Name="DeleteClientButton" Margin="4" Content="Usuń klienta" ToolTip="Usuwa klienta zaznaczonego na liście"/>
+                            <Button Name="SearchClientButton" Margin="4" Content="Wyszukaj klienta"/>
+                        </StackPanel>-->
                     </Expander>
                 </TabItem.Header>
                 <ListBox Name="ClientListBox" Padding="3px" Margin="3px"
@@ -133,12 +158,23 @@
                                 <Label Content="Wypożyczenia" Margin="3,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Right" HorizontalContentAlignment="Right"/>
                             </StackPanel>
                         </Expander.Header>
-                        <StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
+                        <Grid Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0"  Margin="4" Content="Nowe wypożyczenie" Name="NewRentalButton" Click="NewRentalButton_Click" VerticalAlignment="Center" />
+                            <Button Grid.Row="1" Margin="4" Content="Usuń wypożyczenie" Name="DeleteRentalButton"  VerticalAlignment="Center"/>
+                            <Button Grid.Row="2" Margin="4" Content="Wyszukaj wypożyczenie" Name="SearchRentalButton"  VerticalAlignment="Center"/>
+                           </Grid>
+                        <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Margin="4" Content="Nowe wypożyczenie" Name="NewRentalButton" Click="NewRentalButton_Click" />
-                        </StackPanel>
+                        </StackPanel>-->
                     </Expander>
                 </TabItem.Header>
-
+                <ListBox Name="RentListBox" Padding="3px" Margin="3px"
+                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"/>
             </TabItem>
         </TabControl>
         <!-- Dolny Panel z powiadomieniami i ostrzeżeniami -->
