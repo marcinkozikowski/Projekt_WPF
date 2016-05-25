@@ -15,19 +15,13 @@ using System.Windows.Shapes;
 namespace Projekt_WPF_Solution
 {
     /// <summary>
-    /// Interaction logic for AddNewRentalWindow.xaml
+    /// Interaction logic for SearchClientWindow.xaml
     /// </summary>
-    public partial class AddNewRentalWindow : Window
+    public partial class SearchClientWindow : Window
     {
-        public AddNewRentalWindow()
+        public SearchClientWindow()
         {
             InitializeComponent();
-        }
-
-        private void SearchClientButton_Click(object sender, RoutedEventArgs e)
-        {
-            SearchClientWindow searchClientWindow = new SearchClientWindow();
-            searchClientWindow.ShowDialog();
         }
     }
 }

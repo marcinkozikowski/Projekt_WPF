@@ -82,7 +82,7 @@
                         <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
                     </Grid>
                 </GroupBox>
-                <Button  Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="1" MinHeight="35">
+                <Button Name="SearchClientButton" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="1" MinHeight="35" Click="SearchClientButton_Click">
                     <StackPanel Orientation="Horizontal" MaxHeight="40">
                         <Image Source="Icons\search.png"/>
                         <Label Content="Wyszukaj klienta" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>

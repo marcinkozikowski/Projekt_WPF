@@ -92,5 +92,26 @@ namespace Projekt_WPF_Solution
             AddNewRentalWindow newRenatlWindow = new AddNewRentalWindow();
             newRenatlWindow.ShowDialog();
         }
+
+        private void SearchClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchClientWindow searchClientWindow = new SearchClientWindow();
+            searchClientWindow.ShowDialog();
+        }
+
+        private void DeleteClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Czy napewno chcesz usunąć zaznaczony wpis?", "Czy jestes pewien?", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+        }
+
+        private void DeleteRentalButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Czy napewno chcesz usunąć zaznaczony wpis?", "Czy jestes pewien?", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+        }
+
+        private void DeleteCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Czy napewno chcesz usunąć zaznaczony wpis?", "Czy jestes pewien?", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+        }
     }
 }
