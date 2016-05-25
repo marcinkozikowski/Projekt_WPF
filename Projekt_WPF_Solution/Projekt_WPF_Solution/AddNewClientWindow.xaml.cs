@@ -46,6 +46,7 @@ namespace Projekt_WPF_Solution
         private void CancelClientButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+            this.Close();
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

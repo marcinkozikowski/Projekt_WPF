@@ -23,5 +23,15 @@ namespace Projekt_WPF_Solution
         {
             InitializeComponent();
         }
+
+        private void DeletClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Czy napewno chcesz usunąć zaznaczony wpis?", "Czy jestes pewien?", MessageBoxButton.OKCancel, MessageBoxImage.Error);
+        }
+
+        private void CloseSearchClientWButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

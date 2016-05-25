@@ -29,5 +29,10 @@ namespace Projekt_WPF_Solution
             SearchClientWindow searchClientWindow = new SearchClientWindow();
             searchClientWindow.ShowDialog();
         }
+
+        private void CancelRenatlButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
