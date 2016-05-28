@@ -58,7 +58,7 @@ namespace Projekt_WPF_Solution
             if(op.ShowDialog() == true)
             {
                 string[] split = op.FileName.Split('.').ToArray();
-                string filename = newCar.Id + "." + split[split.Count() - 1]; ;
+                string filename = newCar.RegPlate + "." + split[split.Count() - 1]; ;
                 string dir = GetDirectory() + "\\" + filename;
                 File.Copy(op.FileName, dir, true);
                 newCar.Image = "Cars\\" + filename;

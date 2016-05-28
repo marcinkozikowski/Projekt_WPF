@@ -57,7 +57,7 @@ namespace Projekt_WPF_Solution
             if (op.ShowDialog() == true)
             {
                 string[] split = op.FileName.Split('.').ToArray();
-                string filename = newClient.Id + "." + split[split.Count() - 1]; ;
+                string filename = newClient.Pesel + "." + split[split.Count() - 1]; ;
                 string dir = GetDirectory() + "\\" + filename;
                 File.Copy(op.FileName, dir, true);
                 newClient.Image = "Clients\\" + filename;

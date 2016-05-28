@@ -38,6 +38,7 @@
     <ApplicationIcon>RentCarBlue.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=6.8.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -61,7 +62,9 @@
     <Compile Include="AddNewRentalWindow.xaml.cs">
       <DependentUpon>AddNewRentalWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Commands\MyCommands.cs" />
     <Compile Include="Converters\ImagePathConverter.cs" />
+    <Compile Include="DataBaseClasses\IDBAccess.cs" />
     <Compile Include="SearchCarWindow.xaml.cs">
       <DependentUpon>SearchCarWindow.xaml</DependentUpon>
     </Compile>
