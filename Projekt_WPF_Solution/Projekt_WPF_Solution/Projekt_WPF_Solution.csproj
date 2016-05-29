@@ -66,6 +66,7 @@
     <Compile Include="Converters\ImagePathConverter.cs" />
     <Compile Include="Converters\IntToBoolConverter.cs" />
     <Compile Include="DataBaseClasses\IDBAccess.cs" />
+    <Compile Include="DataBaseClasses\SqlDataGetters.cs" />
     <Compile Include="SearchCarWindow.xaml.cs">
       <DependentUpon>SearchCarWindow.xaml</DependentUpon>
     </Compile>

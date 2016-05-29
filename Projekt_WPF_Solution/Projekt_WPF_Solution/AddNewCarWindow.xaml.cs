@@ -23,19 +23,23 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class AddNewCarWindow : Window
     {
-        Car newCar;
+        Car car, backup;
 
-        public AddNewCarWindow(Car newCar)
+        public AddNewCarWindow(Car car)
         {
             InitializeComponent();
-            this.newCar = newCar;
-            MainAddCarGrid.DataContext = newCar;
+            MarkaComboBox.ItemsSource = SqlDataGetters.Brands;
+            TypComboBox.ItemsSource = SqlDataGetters.BodyTypes;
+            this.car = car;
+            this.backup = new Car(car);
+            MainAddCarGrid.DataContext = backup;
         }
 
         private void AddCarButton_Click(object sender, RoutedEventArgs e)
         {
             if(Validator.IsValid(this))
             {
+                car = backup;
                 DialogResult = true;
             }
             else
@@ -58,10 +62,10 @@ namespace Projekt_WPF_Solution
             if(op.ShowDialog() == true)
             {
                 string[] split = op.FileName.Split('.').ToArray();
-                string filename = newCar.RegPlate + "." + split[split.Count() - 1]; ;
+                string filename = car.RegPlate + "." + split[split.Count() - 1]; ;
                 string dir = GetDirectory() + "\\" + filename;
                 File.Copy(op.FileName, dir, true);
-                newCar.Image = "Cars\\" + filename;
+                car.Image = "Cars\\" + filename;
             }            
         }
 

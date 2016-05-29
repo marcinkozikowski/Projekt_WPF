@@ -11,6 +11,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
     public class Client : IDataErrorInfo, INotifyPropertyChanged
     {
         #region Variables
+        private int id;
         private string pesel;
         private string name;
         private string surname;
@@ -22,8 +23,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private string type;
         private string image;
         #endregion
-
         #region Properties
+        public int ID { get { return id; } set { id = value; } }                                //ID PRIMARY KEY
         public string Pesel { get { return pesel; } set { pesel = value; } }                    //PESEL (KLUCZ GLOWNY)
         public string Name { get { return name; } set { name = value; } }                       //Imię 
         public string Surname { get { return surname; } set { surname = value; } }              //Nazwisko
@@ -35,7 +36,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string Type { get { return type; } set { type = value; } }                       //Typ klienta
         public string Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }                    //Ścieżka do pliku jpg
         #endregion
-
+        #region Constructors
         //Pesel, Name, Surname, Born, IsMale, PhoneNumber, Address, City, Type, Image
         public Client(string pesel, string name, string surname, DateTime born, bool isMale, int phoneNumber, string address, string city, string type, string image)
         {
@@ -62,8 +63,23 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.Image = "brakZdjecia.gif";
         }
 
+        public Client(Client c)
+        {
+            this.id = c.id;
+            this.pesel = c.pesel;
+            this.name = c.name;
+            this.surname = c.surname;
+            this.born = c.born;
+            this.isMale = c.isMale;
+            this.phoneNumber = c.phoneNumber;
+            this.address = c.address;
+            this.city = c.city;
+            this.type = c.type;
+            this.image = c.image;
+        }
+        #endregion
         #region SQL
-        public bool Insert()
+        public bool SqlInsert()
         {
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
@@ -82,6 +98,39 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@City", this.City);
                     cmd.Parameters.AddWithValue("@Type", this.Type);
                     cmd.Parameters.AddWithValue("@Image", this.Image);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (MySqlException)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool SqlUpdate()
+        {
+            IDBaccess db = new IDBaccess();
+            if (db.OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = db.CreateCommand();
+                    cmd.CommandText = "UPDATE clients SET Pesel = @Pesel, Name = @Name, Surname = @Surname, Born = @Born, IsMale = @IsMale, PhoneNumber = @PhoneNumber, Address = @Address, City = @City, Type = @Type, Image = @Image WHERE ID = @ID";
+                    cmd.Parameters.AddWithValue("@Pesel", this.Pesel);
+                    cmd.Parameters.AddWithValue("@Name", this.Name);
+                    cmd.Parameters.AddWithValue("@Surname", this.Surname);
+                    cmd.Parameters.AddWithValue("@Born", this.Born);
+                    cmd.Parameters.AddWithValue("@IsMale", this.IsMale);
+                    cmd.Parameters.AddWithValue("@PhoneNumber", this.PhoneNumber);
+                    cmd.Parameters.AddWithValue("@Address", this.Address);
+                    cmd.Parameters.AddWithValue("@City", this.City);
+                    cmd.Parameters.AddWithValue("@Type", this.Type);
+                    cmd.Parameters.AddWithValue("@Image", this.Image);
+                    cmd.Parameters.AddWithValue("@ID", this.ID);
                     cmd.ExecuteNonQuery();
                     return true;
                 }
@@ -128,5 +177,19 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
         #endregion
+        public void PropertyUpdate(Client c)
+        {
+            this.id = c.id;
+            this.pesel = c.pesel;
+            this.name = c.name;
+            this.surname = c.surname;
+            this.born = c.born;
+            this.isMale = c.isMale;
+            this.phoneNumber = c.phoneNumber;
+            this.address = c.address;
+            this.city = c.city;
+            this.type = c.type;
+            this.image = c.image;
+        }
     }
 }

@@ -23,12 +23,12 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class AddNewClientWindow : Window
     {
-        Client newClient;
-        public AddNewClientWindow(Client newClient)
+        Client client;
+        public AddNewClientWindow(Client client)
         {
             InitializeComponent();
-            this.newClient = newClient;
-            MainAddClientGrid.DataContext = newClient;
+            this.client = client;
+            MainAddClientGrid.DataContext = client;
         }
 
         private void AddClientButton_Click(object sender, RoutedEventArgs e)
@@ -36,6 +36,7 @@ namespace Projekt_WPF_Solution
             if (Validator.IsValid(this))
             {
                 DialogResult = true;
+
             }
             else
             {
@@ -57,10 +58,10 @@ namespace Projekt_WPF_Solution
             if (op.ShowDialog() == true)
             {
                 string[] split = op.FileName.Split('.').ToArray();
-                string filename = newClient.Pesel + "." + split[split.Count() - 1]; ;
+                string filename = client.Pesel + "." + split[split.Count() - 1]; ;
                 string dir = GetDirectory() + "\\" + filename;
                 File.Copy(op.FileName, dir, true);
-                newClient.Image = "Clients\\" + filename;
+                client.Image = "Clients\\" + filename;
             }
 
         }

@@ -11,7 +11,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
     public class Car : IDataErrorInfo, INotifyPropertyChanged
     {
         #region Variables
-        private string regPlate { get; set; }           //Numery rejestacyjne (KLUCZ GLOWNY)
+        private int id { get; set; }                    //ID PRIMARY KEY
+        private string regPlate { get; set; }           //Numery rejestacyjne
         private string maker { get; set; }               // Producent
         private string model { get; set; }               // Model
         private int manufacturedYear { get; set; }       // Data produkcji auta
@@ -24,6 +25,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private bool booked { get; set; }               // Czy dany samochod został zarezerwowany
         #endregion
         #region Properties
+        public int ID { get { return id; } set { id = value; } }
         public string RegPlate { get { return regPlate; } set { regPlate = value; } }
         public string Maker { get { return maker; } set { maker = value; } }
         public string Model { get { return model; } set { model = value; } }
@@ -37,8 +39,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public bool Booked { get { return booked; } set { booked = value; } }
         public string MakerAndModel { get { return maker + " " + model; } }
         #endregion
-
-
+        #region Constructors
         public Car()
         {
             this.RegPlate = string.Empty;
@@ -48,7 +49,6 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.BodyType = string.Empty;
             this.Image = "brakZdjecia.gif";
         }
-
         public Car(string regPlate, string maker, string model, int manufacturedYear, int engine, string type, string bodyType, double fuelConsumption, string image)
         {
             this.regPlate = regPlate;
@@ -61,9 +61,22 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.fuelConsumption = fuelConsumption;
             this.image = image;
         }
-
+        public Car(Car car)
+        {
+            this.id = car.id;
+            this.regPlate = car.regPlate;
+            this.maker = car.maker;
+            this.model = car.model;
+            this.manufacturedYear = car.manufacturedYear;
+            this.engine = car.engine;
+            this.type = car.type;
+            this.bodyType = car.bodyType;
+            this.fuelConsumption = car.fuelConsumption;
+            this.image = car.image;
+        }
+        #endregion
         #region SQL
-        public bool Insert()
+        public bool SqlInsert()
         {
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
@@ -94,8 +107,38 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 return false;
             }
         }
-
-
+        public bool SqlUpdate()
+        {
+            IDBaccess db = new IDBaccess();
+            if (db.OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = db.CreateCommand();
+                    cmd.CommandText = "UPDATE cars SET RegPlate = @RegPlate, Maker = @Maker, Model = @Model, ManufacturedYear = @ManufacturedYear, Engine = @Engine, Type = @Type, BodyType = @BodyType, FuelConsumption = @FuelConsumption, Image = @Image WHERE ID = @ID";
+                    cmd.Parameters.AddWithValue("@RegPlate", this.RegPlate);
+                    cmd.Parameters.AddWithValue("@Maker", this.Maker);
+                    cmd.Parameters.AddWithValue("@Model", this.Model);
+                    cmd.Parameters.AddWithValue("@ManufacturedYear", this.ManufacturedYear);
+                    cmd.Parameters.AddWithValue("@Engine", this.Engine);
+                    cmd.Parameters.AddWithValue("@Type", this.Type);
+                    cmd.Parameters.AddWithValue("@BodyType", this.BodyType);
+                    cmd.Parameters.AddWithValue("@FuelConsumption", this.FuelConsumption);
+                    cmd.Parameters.AddWithValue("@Image", this.Image);
+                    cmd.Parameters.AddWithValue("@ID", this.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (MySqlException)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
         #endregion
         #region IDataErrorInfo
         public string Error
@@ -136,5 +179,19 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
         #endregion
+
+        public void PropertyUpdate(Car car)
+        {
+            this.id = car.id;
+            this.regPlate = car.regPlate;
+            this.maker = car.maker;
+            this.model = car.model;
+            this.manufacturedYear = car.manufacturedYear;
+            this.engine = car.engine;
+            this.type = car.type;
+            this.bodyType = car.bodyType;
+            this.fuelConsumption = car.fuelConsumption;
+            this.image = car.image;
+        }
     }
 }

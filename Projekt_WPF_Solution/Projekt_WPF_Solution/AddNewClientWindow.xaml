@@ -86,7 +86,7 @@
             <Button Name="AddClientButton" Margin="3" HorizontalAlignment="Right" Click="AddClientButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Icons/CheckSign.png"/>
-                    <Label Content="Dodaj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Label Content="OK" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Button>
 

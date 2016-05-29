@@ -39,7 +39,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 _connection.Open();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 /*//When handling errors, you can your application's response based on the error number.
                 //The two most common error numbers when connecting are as follows:
@@ -68,7 +68,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 _connection.Close();
                 return true;
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 return false;
             }

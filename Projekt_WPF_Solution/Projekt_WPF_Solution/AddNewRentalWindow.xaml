@@ -168,7 +168,7 @@
             <Button Name="AddRentalButton" Margin="0,1,5,1" HorizontalAlignment="Right" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Icons/CheckSign.png"/>
-                    <Label Content="Dodaj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Label Content="OK" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Button>
 

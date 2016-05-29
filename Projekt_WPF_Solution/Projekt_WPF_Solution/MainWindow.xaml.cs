@@ -23,88 +23,20 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Car> cars;
-        private ListCollectionView carsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(cars); } }
-
-        private ObservableCollection<Client> clients;
-        private ListCollectionView clientsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(clients); } }
-
-        private ObservableCollection<Rent> rents;
-        private ListCollectionView rentsView {  get { return (ListCollectionView)CollectionViewSource.GetDefaultView(rents); } }
+        private ListCollectionView carsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Cars); } }
+        private ListCollectionView clientsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Clients); } }
+        private ListCollectionView rentsView {  get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Rents); } }
 
 
 
         public MainWindow()
         {
             InitializeComponent();
-            this.GetCars();
-            this.GetClients();
-            this.GetRents();
-        }
-
-        #region SqlData
-        private void GetCars()
-        {
-            cars = new ObservableCollection<Car>();
-            IDBaccess db = new IDBaccess();
-            if (db.OpenConnection() == true)
-            {
-                MySqlCommand cmd = db.CreateCommand();
-                cmd.CommandText = "SELECT RegPlate, Maker, Model, ManufacturedYear, Engine, Type, BodyType, FuelConsumption, Image FROM cars";
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Car newCar = new Car(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetString(6), reader.GetDouble(7), reader.GetString(8));
-                    cars.Add(newCar);
-                }
-                db.CloseConnection();
-            }
+            SqlDataGetters.GetAll();
             CarListBox.ItemsSource = carsView;
-        }
-        private void GetClients()
-        {
-            clients = new ObservableCollection<Client>();
-            IDBaccess db = new IDBaccess();
-            if (db.OpenConnection() == true)
-            {
-                MySqlCommand cmd = db.CreateCommand();
-                cmd.CommandText = "SELECT Pesel, Name, Surname, Born, IsMale, PhoneNumber, Address, City, Type, Image from Clients";
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Client newClient = new Client(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetBoolean(4), reader.GetInt32(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9));
-                    clients.Add(newClient);
-                }
-                db.CloseConnection();
-            }
             ClientListBox.ItemsSource = clientsView;
-        }
-        private void GetRents()
-        {
-            rents = new ObservableCollection<Rent>();
-            IDBaccess db = new IDBaccess();
-            if (db.OpenConnection() == true)
-            {
-                MySqlCommand cmd = db.CreateCommand();
-                cmd.CommandText = "SELECT ID, CarRegPlate, ClientPesel, RentStart, RentEnd from rents";
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int id = reader.GetInt32(0);
-                    Car car = cars.Single(i => i.RegPlate.Equals(reader.GetString(1)));
-                    Client client = clients.Single(i => i.Pesel.Equals(reader.GetString(2)));
-                    DateTime start = reader.GetDateTime(3);
-                    DateTime end = reader.GetDateTime(4);
-
-                    Rent rent = new Rent(id, start, end, car, client);
-                    rents.Add(rent);
-                }
-                db.CloseConnection();
-            }
             RentListBox.ItemsSource = rentsView;
         }
-        #endregion
-
 
         private void ContactMenuItem_Click(object sender, RoutedEventArgs e)
         {
@@ -119,13 +51,13 @@ namespace Projekt_WPF_Solution
             AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar);
             if (newCarWindow.ShowDialog() == true)
             {
-                if (!newCar.Insert())
+                if (!newCar.SqlInsert())
                 {
                     MessageBox.Show("BŁĄD DODAWANIA");
                 }
                 else
                 {
-                    this.GetCars();
+                    SqlDataGetters.GetAll();
                 }
             }
         }
@@ -136,21 +68,21 @@ namespace Projekt_WPF_Solution
             AddNewClientWindow newClientWindow = new AddNewClientWindow(newClient);
             if (newClientWindow.ShowDialog() == true)
             {
-                if (!newClient.Insert())
+                if (!newClient.SqlInsert())
                 {
                     MessageBox.Show("BŁĄD DODAWANIA");
                 }
                 else
                 {
-                    this.GetClients();
+                    SqlDataGetters.GetAll();
                 }
             }
         }
 
         private void AddNewRentalButton_Click(object sender, RoutedEventArgs e)
         {
-            AddNewRentalWindow newRenatlWindow = new AddNewRentalWindow();
-            newRenatlWindow.ShowDialog();
+            //AddNewRentalWindow newRenatlWindow = new AddNewRentalWindow();
+            //newRenatlWindow.ShowDialog();
         }
 
         #endregion
@@ -163,7 +95,7 @@ namespace Projekt_WPF_Solution
             searchClientWindow.ShowDialog();
         }
 
-        #region DeleteCommand
+        #region Commands
         private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             ListBox lw = e.Source as ListBox;
@@ -195,21 +127,21 @@ namespace Projekt_WPF_Solution
                             cmd.CommandText = "DELETE FROM cars WHERE RegPlate = @RegPlate";
                             cmd.Parameters.AddWithValue("@RegPlate", (selectedItem as Car).RegPlate);
                             cmd.ExecuteNonQuery();
-                            this.GetCars();
+                           // this.GetCars();
                         }
                         else if (selectedItem is Client)
                         {
                             cmd.CommandText = "DELETE FROM clients WHERE Pesel = @Pesel";
                             cmd.Parameters.AddWithValue("@Pesel", (selectedItem as Client).Pesel);
                             cmd.ExecuteNonQuery();
-                            this.GetClients();
+                           // this.GetClients();
                         }
                         else if (selectedItem is Rent)
                         {
                             cmd.CommandText = "DELETE FROM rents WHERE ID = @Id";
                             cmd.Parameters.AddWithValue("@Id", (selectedItem as Rent).Id);
                             cmd.ExecuteNonQuery();
-                            this.GetRents();
+                           // this.GetRents();
                         }
                     }
                     catch (MySqlException)
@@ -221,6 +153,48 @@ namespace Projekt_WPF_Solution
                 {
                     MessageBox.Show("BŁĄD");
                 }
+            }
+        }
+        private void Edit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            ListBox lw = e.Source as ListBox;
+            if (lw != null && lw.SelectedItems.Count > 0)
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
+        }
+        private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            ListBox lw = e.Source as ListBox;
+            var selectedItem = lw.SelectedItem;
+            if(selectedItem is Car)
+            {
+                Car car = new Car(selectedItem as Car);
+                AddNewCarWindow newCarWindow = new AddNewCarWindow(car);
+                if(newCarWindow.ShowDialog() == true)
+                {
+                    car.SqlUpdate();
+                    (selectedItem as Car).PropertyUpdate(car);
+                }
+
+            }
+            else if(selectedItem is Client)
+            {
+                Client client = new Client(selectedItem as Client);
+                AddNewClientWindow newClientWindow = new AddNewClientWindow(client);
+                if (newClientWindow.ShowDialog() == true)
+                {
+                    client.SqlUpdate();
+                    (selectedItem as Client).PropertyUpdate(client);
+                }
+            }
+            else if(selectedItem is Rent)
+            {
+
             }
         }
         #endregion
