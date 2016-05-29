@@ -11,6 +11,7 @@
         Icon="Icons\client.png">
     <Window.Resources>
         <converter:ImagePathConverter x:Key="ImagePathConverter" />
+        <converter:IntToBoolConverter x:Key="IntToBoolConverter"/>
     </Window.Resources>
     
     <Grid Name="MainAddClientGrid" ShowGridLines="false">
@@ -65,8 +66,8 @@
                 <Label Content="Pesel" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                 <TextBox Name="PeselTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Pesel, ValidatesOnDataErrors=True}"/>
                 <Label Content="Płeć" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <ComboBox Name="PlecComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center">
-                    <ComboBoxItem Content="Mężczyzna"/>
+                <ComboBox Name="PlecComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedIndex="{Binding Path=IsMale, Mode=TwoWay, Converter={StaticResource IntToBoolConverter}}">
+                    <ComboBoxItem Content="Mężczyzna" />
                     <ComboBoxItem Content="Kobieta"/>
                 </ComboBox>
                 <Label Content="Numer telefonu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
