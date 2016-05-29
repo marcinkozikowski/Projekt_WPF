@@ -29,6 +29,9 @@ namespace Projekt_WPF_Solution
         private ObservableCollection<Client> clients;
         private ListCollectionView clientsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(clients); } }
 
+        private ObservableCollection<Rent> rents;
+        private ListCollectionView rentsView {  get { return (ListCollectionView)CollectionViewSource.GetDefaultView(rents); } }
+
 
 
         public MainWindow()
@@ -36,6 +39,7 @@ namespace Projekt_WPF_Solution
             InitializeComponent();
             this.GetCars();
             this.GetClients();
+            this.GetRents();
         }
 
         #region SqlData
@@ -74,6 +78,30 @@ namespace Projekt_WPF_Solution
                 db.CloseConnection();
             }
             ClientListBox.ItemsSource = clientsView;
+        }
+        private void GetRents()
+        {
+            rents = new ObservableCollection<Rent>();
+            IDBaccess db = new IDBaccess();
+            if (db.OpenConnection() == true)
+            {
+                MySqlCommand cmd = db.CreateCommand();
+                cmd.CommandText = "SELECT ID, CarRegPlate, ClientPesel, RentStart, RentEnd from rents";
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = reader.GetInt32(0);
+                    Car car = cars.Single(i => i.RegPlate.Equals(reader.GetString(1)));
+                    Client client = clients.Single(i => i.Pesel.Equals(reader.GetString(2)));
+                    DateTime start = reader.GetDateTime(3);
+                    DateTime end = reader.GetDateTime(4);
+
+                    Rent rent = new Rent(id, start, end, car, client);
+                    rents.Add(rent);
+                }
+                db.CloseConnection();
+            }
+            RentListBox.ItemsSource = rentsView;
         }
         #endregion
 
@@ -139,7 +167,7 @@ namespace Projekt_WPF_Solution
         private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             ListBox lw = e.Source as ListBox;
-            if(lw != null && lw.SelectedItems.Count > 0)
+            if (lw != null && lw.SelectedItems.Count > 0)
             {
                 e.CanExecute = true;
             }
@@ -148,7 +176,6 @@ namespace Projekt_WPF_Solution
                 e.CanExecute = false;
             }
         }
-
         private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Czy napewno chcesz usunąć zaznaczony wpis?", "Czy jestes pewien?", MessageBoxButton.OKCancel, MessageBoxImage.Error);
@@ -156,27 +183,43 @@ namespace Projekt_WPF_Solution
             {
                 ListBox lw = e.Source as ListBox;
                 var selectedItem = lw.SelectedItem;
-                if (selectedItem is Car)
+
+                IDBaccess db = new IDBaccess();
+                if (db.OpenConnection() == true)
                 {
-                    if(!(selectedItem as Car).Delete())
+                    try
                     {
-                        MessageBox.Show("Błąd usuwania");
+                        MySqlCommand cmd = db.CreateCommand();
+                        if (selectedItem is Car)
+                        {
+                            cmd.CommandText = "DELETE FROM cars WHERE RegPlate = @RegPlate";
+                            cmd.Parameters.AddWithValue("@RegPlate", (selectedItem as Car).RegPlate);
+                            cmd.ExecuteNonQuery();
+                            this.GetCars();
+                        }
+                        else if (selectedItem is Client)
+                        {
+                            cmd.CommandText = "DELETE FROM clients WHERE Pesel = @Pesel";
+                            cmd.Parameters.AddWithValue("@Pesel", (selectedItem as Client).Pesel);
+                            cmd.ExecuteNonQuery();
+                            this.GetClients();
+                        }
+                        else if (selectedItem is Rent)
+                        {
+                            cmd.CommandText = "DELETE FROM rents WHERE ID = @Id";
+                            cmd.Parameters.AddWithValue("@Id", (selectedItem as Rent).Id);
+                            cmd.ExecuteNonQuery();
+                            this.GetRents();
+                        }
                     }
-                    else
+                    catch (MySqlException)
                     {
-                        this.GetCars();
+                        MessageBox.Show("BŁĄD");
                     }
                 }
-                else if (selectedItem is Client)
+                else
                 {
-                    if (!(selectedItem as Client).Delete())
-                    {
-                        MessageBox.Show("Błąd usuwania");
-                    }
-                    else
-                    {
-                        this.GetClients();
-                    }
+                    MessageBox.Show("BŁĄD");
                 }
             }
         }

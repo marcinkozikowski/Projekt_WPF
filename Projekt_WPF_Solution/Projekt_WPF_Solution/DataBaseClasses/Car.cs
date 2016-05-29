@@ -95,29 +95,6 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             }
         }
 
-        public bool Delete()
-        {
-            IDBaccess db = new IDBaccess();
-            if(db.OpenConnection() == true)
-            {
-                try
-                {
-                    MySqlCommand cmd = db.CreateCommand();
-                    cmd.CommandText = "DELETE FROM cars WHERE RegPlate = @RegPlate";
-                    cmd.Parameters.AddWithValue("@RegPlate", this.RegPlate);
-                    cmd.ExecuteNonQuery();
-                    return true;
-                }
-                catch (MySqlException)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         #endregion
         #region IDataErrorInfo
