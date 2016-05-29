@@ -35,6 +35,7 @@ namespace Projekt_WPF_Solution
             GetBrands();
             GetBodyTypes();
         }
+
         private static void GetCars()
         {
             Cars = new ObservableCollection<Car>();

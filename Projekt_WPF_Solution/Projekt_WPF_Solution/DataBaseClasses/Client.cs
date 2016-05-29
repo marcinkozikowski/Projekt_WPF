@@ -35,6 +35,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string City { get { return city; } set { city = value; } }                       //Miasto
         public string Type { get { return type; } set { type = value; } }                       //Typ klienta
         public string Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }                    //Ścieżka do pliku jpg
+        public string NameSurname {  get { return name + " " + surname; } }                     //Imię i nazwisko
         #endregion
         #region Constructors
         //Pesel, Name, Surname, Born, IsMale, PhoneNumber, Address, City, Type, Image

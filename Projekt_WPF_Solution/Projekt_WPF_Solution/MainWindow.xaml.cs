@@ -27,8 +27,6 @@ namespace Projekt_WPF_Solution
         private ListCollectionView clientsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Clients); } }
         private ListCollectionView rentsView {  get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Rents); } }
 
-
-
         public MainWindow()
         {
             InitializeComponent();

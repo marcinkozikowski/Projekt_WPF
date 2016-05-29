@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Projekt_WPF_Solution.DataBaseClasses;
 
 namespace Projekt_WPF_Solution
 {
@@ -19,9 +20,11 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class SearchClientWindow : Window
     {
+        private ListCollectionView clientsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Clients); } }
         public SearchClientWindow()
         {
             InitializeComponent();
+            ClientsListBox.ItemsSource = clientsView;
         }
 
         private void DeletClientButton_Click(object sender, RoutedEventArgs e)
@@ -32,6 +35,32 @@ namespace Projekt_WPF_Solution
         private void CloseSearchClientWButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void SearchClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            clientsView.Filter = delegate (object item)
+            {
+                Client client = item as Client;
+                if (client != null)
+                {
+                    if (NameSurnameRadioButton.IsChecked == true)
+                    {
+                        return client.NameSurname.Equals(SearchClientTextBox.Text);
+                    }
+                    else if (PeselRadioButton.IsChecked == true)
+                    {
+                        return client.Pesel.Equals(SearchClientTextBox.Text);
+
+                    }
+                    else if (CityRadioButton.IsChecked == true)
+                    {
+                        return client.City.Equals(SearchClientTextBox.Text);
+                    }
+
+                }
+                return false;
+            };
         }
     }
 }
