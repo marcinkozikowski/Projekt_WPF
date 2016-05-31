@@ -49,8 +49,9 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.BodyType = string.Empty;
             this.Image = "brakZdjecia.gif";
         }
-        public Car(string regPlate, string maker, string model, int manufacturedYear, int engine, string type, string bodyType, double fuelConsumption, string image)
+        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, string type, string bodyType, double fuelConsumption, string image)
         {
+            this.id = id;
             this.regPlate = regPlate;
             this.maker = maker;
             this.model = model;
@@ -130,6 +131,29 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     return true;
                 }
                 catch (MySqlException)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool SqlDelete()
+        {
+            IDBaccess db = new IDBaccess();
+            if(db.OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = db.CreateCommand();
+                    cmd.CommandText = "DELETE FROM cars WHERE ID = @ID";
+                    cmd.Parameters.AddWithValue("@ID", this.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch(MySqlException)
                 {
                     return false;
                 }

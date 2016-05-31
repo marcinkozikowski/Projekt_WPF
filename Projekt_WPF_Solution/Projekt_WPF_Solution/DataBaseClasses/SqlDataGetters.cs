@@ -43,11 +43,11 @@ namespace Projekt_WPF_Solution
             if (db.OpenConnection() == true)
             {
                 MySqlCommand cmd = db.CreateCommand();
-                cmd.CommandText = "SELECT RegPlate, Maker, Model, ManufacturedYear, Engine, Type, BodyType, FuelConsumption, Image FROM cars";
+                cmd.CommandText = "SELECT ID, RegPlate, Maker, Model, ManufacturedYear, Engine, Type, BodyType, FuelConsumption, Image FROM cars";
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Car newCar = new Car(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetInt32(3), reader.GetInt32(4), reader.GetString(5), reader.GetString(6), reader.GetDouble(7), reader.GetString(8));
+                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetString(6), reader.GetString(7), reader.GetDouble(8), reader.GetString(9));
                     Cars.Add(newCar);
                 }
                 db.CloseConnection();
@@ -60,11 +60,11 @@ namespace Projekt_WPF_Solution
             if (db.OpenConnection() == true)
             {
                 MySqlCommand cmd = db.CreateCommand();
-                cmd.CommandText = "SELECT Pesel, Name, Surname, Born, IsMale, PhoneNumber, Address, City, Type, Image from Clients";
+                cmd.CommandText = "SELECT ID, Pesel, Name, Surname, Born, IsMale, PhoneNumber, Address, City, Type, Image from Clients";
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Client newClient = new Client(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetBoolean(4), reader.GetInt32(5), reader.GetString(6), reader.GetString(7), reader.GetString(8), reader.GetString(9));
+                    Client newClient = new Client(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4), reader.GetBoolean(5), reader.GetInt32(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10));
                     Clients.Add(newClient);
                 }
                 db.CloseConnection();
@@ -77,7 +77,7 @@ namespace Projekt_WPF_Solution
             if (db.OpenConnection() == true)
             {
                 MySqlCommand cmd = db.CreateCommand();
-                cmd.CommandText = "SELECT ID, CarID, ClientID, RentStart, RentEnd from rents";
+                cmd.CommandText = "SELECT ID, CarID, ClientID, RentStart, RentEnd, isReturned from rents";
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -86,8 +86,9 @@ namespace Projekt_WPF_Solution
                     Client client = Clients.Single(i => i.ID == reader.GetInt32(2));
                     DateTime start = reader.GetDateTime(3);
                     DateTime end = reader.GetDateTime(4);
+                    bool isReturned = reader.GetBoolean(5);
 
-                    Rent rent = new Rent(id, start, end, car, client);
+                    Rent rent = new Rent(id, start, end, car, client, isReturned);
                     Rents.Add(rent);
                 }
                 db.CloseConnection();

@@ -61,8 +61,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Wybierz"  Margin="3" HorizontalContentAlignment="Center"/>
-            <Button Grid.Column="1" Content="Wyświetl" Margin="3" HorizontalContentAlignment="Center"/>
-            <Button Grid.Column="2" Content="Usuń"     Margin="3" HorizontalContentAlignment="Center" Name="DeletClientButton" Click="DeletClientButton_Click"/>
+            <Button Grid.Column="1" Content="Wyświetl" Margin="3" HorizontalContentAlignment="Center" Name="ShowClientButton" Click="ShowClientButton_Click" />
+            <Button Grid.Column="2" Content="Usuń"     Margin="3" HorizontalContentAlignment="Center" Name="DeleteClientButton" Click="DeleteClientButton_Click"/>
             <Button Grid.Column="3" Content="Zamknij"     Margin="3" HorizontalContentAlignment="Center" Name="CloseSearchClientWButton" Click="CloseSearchClientWButton_Click"/>
         </Grid>
     </Grid>

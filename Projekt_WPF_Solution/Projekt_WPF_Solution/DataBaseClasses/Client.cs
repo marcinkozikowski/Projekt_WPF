@@ -39,8 +39,9 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         #endregion
         #region Constructors
         //Pesel, Name, Surname, Born, IsMale, PhoneNumber, Address, City, Type, Image
-        public Client(string pesel, string name, string surname, DateTime born, bool isMale, int phoneNumber, string address, string city, string type, string image)
+        public Client(int id, string pesel, string name, string surname, DateTime born, bool isMale, int phoneNumber, string address, string city, string type, string image)
         {
+            this.id = id;
             this.pesel = pesel;
             this.name = name;
             this.surname = surname;
@@ -131,6 +132,29 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@City", this.City);
                     cmd.Parameters.AddWithValue("@Type", this.Type);
                     cmd.Parameters.AddWithValue("@Image", this.Image);
+                    cmd.Parameters.AddWithValue("@ID", this.ID);
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (MySqlException)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool SqlDelete()
+        {
+            IDBaccess db = new IDBaccess();
+            if (db.OpenConnection() == true)
+            {
+                try
+                {
+                    MySqlCommand cmd = db.CreateCommand();
+                    cmd.CommandText = "DELETE FROM clients WHERE ID = @ID";
                     cmd.Parameters.AddWithValue("@ID", this.ID);
                     cmd.ExecuteNonQuery();
                     return true;

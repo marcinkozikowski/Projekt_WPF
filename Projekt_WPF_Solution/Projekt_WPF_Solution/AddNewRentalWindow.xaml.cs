@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Projekt_WPF_Solution.DataBaseClasses;
 namespace Projekt_WPF_Solution
 {
     /// <summary>
@@ -19,9 +19,18 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class AddNewRentalWindow : Window
     {
-        public AddNewRentalWindow()
+        Rent rent;
+        bool isEnabled;
+
+
+        public AddNewRentalWindow(Rent rent, bool isEnabled)
         {
             InitializeComponent();
+            this.rent = rent;
+            ClientGrid.DataContext = rent.RentingPerson;
+            this.isEnabled = isEnabled;
+            MainRentalGrid.DataContext = rent;
+            MainRentalGrid.IsEnabled = isEnabled;
         }
 
         private void SearchClientButton_Click(object sender, RoutedEventArgs e)

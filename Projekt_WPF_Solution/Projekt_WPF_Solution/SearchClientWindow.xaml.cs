@@ -27,7 +27,7 @@ namespace Projekt_WPF_Solution
             ClientsListBox.ItemsSource = clientsView;
         }
 
-        private void DeletClientButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteClientButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Czy napewno chcesz usunąć zaznaczony wpis?", "Czy jestes pewien?", MessageBoxButton.OKCancel, MessageBoxImage.Error);
         }
@@ -39,28 +39,41 @@ namespace Projekt_WPF_Solution
 
         private void SearchClientButton_Click(object sender, RoutedEventArgs e)
         {
-            clientsView.Filter = delegate (object item)
+            if(SearchClientTextBox.Text.Equals(string.Empty))
             {
-                Client client = item as Client;
-                if (client != null)
+                clientsView.Filter = null;
+            }
+            else
+            {
+                clientsView.Filter = delegate (object item)
                 {
-                    if (NameSurnameRadioButton.IsChecked == true)
+                    Client client = item as Client;
+                    if (client != null)
                     {
-                        return client.NameSurname.Equals(SearchClientTextBox.Text);
-                    }
-                    else if (PeselRadioButton.IsChecked == true)
-                    {
-                        return client.Pesel.Equals(SearchClientTextBox.Text);
+                        if (NameSurnameRadioButton.IsChecked == true)
+                        {
+                            return client.NameSurname.Equals(SearchClientTextBox.Text);
+                        }
+                        else if (PeselRadioButton.IsChecked == true)
+                        {
+                            return client.Pesel.Equals(SearchClientTextBox.Text);
+
+                        }
+                        else if (CityRadioButton.IsChecked == true)
+                        {
+                            return client.City.Equals(SearchClientTextBox.Text);
+                        }
 
                     }
-                    else if (CityRadioButton.IsChecked == true)
-                    {
-                        return client.City.Equals(SearchClientTextBox.Text);
-                    }
+                    return false;
+                };
+            }
+        }
 
-                }
-                return false;
-            };
+        private void ShowClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewClientWindow client = new AddNewClientWindow(ClientsListBox.SelectedItem as Client, false);
+            client.ShowDialog();
         }
     }
 }

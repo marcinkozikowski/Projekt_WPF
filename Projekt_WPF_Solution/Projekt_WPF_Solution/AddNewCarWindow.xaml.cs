@@ -23,23 +23,25 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class AddNewCarWindow : Window
     {
-        Car car, backup;
+        Car car;
+        bool isEditable;
 
-        public AddNewCarWindow(Car car)
+
+        public AddNewCarWindow(Car car, bool isEditable)
         {
             InitializeComponent();
             MarkaComboBox.ItemsSource = SqlDataGetters.Brands;
             TypComboBox.ItemsSource = SqlDataGetters.BodyTypes;
             this.car = car;
-            this.backup = new Car(car);
-            MainAddCarGrid.DataContext = backup;
+            this.isEditable = isEditable;
+            MainAddCarGrid.DataContext = this.car;
+            MainAddCarGrid.IsEnabled = isEditable;
         }
 
         private void AddCarButton_Click(object sender, RoutedEventArgs e)
         {
             if(Validator.IsValid(this))
             {
-                car = backup;
                 DialogResult = true;
             }
             else

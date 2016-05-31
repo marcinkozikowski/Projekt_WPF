@@ -13,76 +13,79 @@
         <converter:ImagePathConverter x:Key="ImagePathConverter" />
         <converter:IntToBoolConverter x:Key="IntToBoolConverter"/>
     </Window.Resources>
-    
-    <Grid Name="MainAddClientGrid" ShowGridLines="false">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
-            <Image Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter}, UpdateSourceTrigger=PropertyChanged}" 
+        <Grid Name="MainAddClientGrid" ShowGridLines="false">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
+                <Image Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter}, UpdateSourceTrigger=PropertyChanged}" 
                    Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
-        </GroupBox>
-        <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
-            <Grid Name="LeftAddClientGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label Content="Imię" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="ImieTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name}"/>
-                <Label Content="Nazwisko" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="NazwiskoTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Surname}"/>
-                <Label Content="Data urodzenia" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <DatePicker Name="DataUrodzeniaDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedDate="{Binding Path=Born}"/>
-            </Grid>
-        </GroupBox>
+            </GroupBox>
+            <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
+                <Grid Name="LeftAddClientGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Imię" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <TextBox Name="ImieTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name}"/>
+                    <Label Content="Nazwisko" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <TextBox Name="NazwiskoTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Surname}"/>
+                    <Label Content="Data urodzenia" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <DatePicker Name="DataUrodzeniaDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedDate="{Binding Path=Born}"/>
+                </Grid>
+            </GroupBox>
 
-        <GroupBox Header="Informacje szczegółowe" Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="3">
-            <Grid Name="BottomAddClientGrid">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+            <GroupBox Header="Informacje szczegółowe" Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="3">
+                <Grid Name="BottomAddClientGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                <Label Content="Pesel" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="PeselTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Pesel, ValidatesOnDataErrors=True}"/>
-                <Label Content="Płeć" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <ComboBox Name="PlecComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedIndex="{Binding Path=IsMale, Mode=TwoWay, Converter={StaticResource IntToBoolConverter}}">
-                    <ComboBoxItem Content="Mężczyzna" />
-                    <ComboBoxItem Content="Kobieta"/>
-                </ComboBox>
-                <Label Content="Numer telefonu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="NrTelTextBox" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=PhoneNumber}"/>
+                    <Label Content="Pesel" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <TextBox Name="PeselTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Pesel, ValidatesOnDataErrors=True}"/>
+                    <Label Content="Płeć" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <ComboBox Name="PlecComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedIndex="{Binding Path=IsMale, Mode=TwoWay, Converter={StaticResource IntToBoolConverter}}">
+                        <ComboBoxItem Content="Mężczyzna" />
+                        <ComboBoxItem Content="Kobieta"/>
+                    </ComboBox>
+                    <Label Content="Numer telefonu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <TextBox Name="NrTelTextBox" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=PhoneNumber}"/>
 
-                <Label Content="Adres" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="AdresTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Address}"/>
-                <Label Content="Miejścowość" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="MiejscowoscTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=City}"/>
-                <Label Content="Rodzaj klienta" Grid.Row="2" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
-            </Grid>
-        </GroupBox>
-
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
+                    <Label Content="Adres" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <TextBox Name="AdresTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Address}"/>
+                    <Label Content="Miejścowość" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <TextBox Name="MiejscowoscTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=City}"/>
+                    <Label Content="Rodzaj klienta" Grid.Row="2" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                    <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <StackPanel Name="ButtonPanel" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="1" HorizontalAlignment="Right">
             <Button Name="AddClientButton" Margin="3" HorizontalAlignment="Right" Click="AddClientButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Icons/CheckSign.png"/>
@@ -98,4 +101,5 @@
             </Button>
         </StackPanel>
     </Grid>
+    
 </Window>

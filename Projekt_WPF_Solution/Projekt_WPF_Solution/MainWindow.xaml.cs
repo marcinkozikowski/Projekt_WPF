@@ -25,15 +25,15 @@ namespace Projekt_WPF_Solution
     {
         private ListCollectionView carsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Cars); } }
         private ListCollectionView clientsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Clients); } }
-        private ListCollectionView rentsView {  get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Rents); } }
+        private ListCollectionView rentsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Rents); } }
 
         public MainWindow()
         {
             InitializeComponent();
             SqlDataGetters.GetAll();
-            CarListBox.ItemsSource = carsView;
-            ClientListBox.ItemsSource = clientsView;
-            RentListBox.ItemsSource = rentsView;
+            CarListBox.ItemsSource = SqlDataGetters.Cars;
+            ClientListBox.ItemsSource = SqlDataGetters.Clients;
+            RentListBox.ItemsSource = SqlDataGetters.Rents;
         }
 
         private void ContactMenuItem_Click(object sender, RoutedEventArgs e)
@@ -46,7 +46,7 @@ namespace Projekt_WPF_Solution
         private void AddNewCar_Click(object sender, RoutedEventArgs e)
         {
             Car newCar = new Car();
-            AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar);
+            AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar, true);
             if (newCarWindow.ShowDialog() == true)
             {
                 if (!newCar.SqlInsert())
@@ -59,11 +59,10 @@ namespace Projekt_WPF_Solution
                 }
             }
         }
-
         private void AddNewClientButton_Click(object sender, RoutedEventArgs e)
         {
             Client newClient = new Client();
-            AddNewClientWindow newClientWindow = new AddNewClientWindow(newClient);
+            AddNewClientWindow newClientWindow = new AddNewClientWindow(newClient, true);
             if (newClientWindow.ShowDialog() == true)
             {
                 if (!newClient.SqlInsert())
@@ -76,11 +75,21 @@ namespace Projekt_WPF_Solution
                 }
             }
         }
-
         private void AddNewRentalButton_Click(object sender, RoutedEventArgs e)
         {
-            //AddNewRentalWindow newRenatlWindow = new AddNewRentalWindow();
-            //newRenatlWindow.ShowDialog();
+            Rent newRent = new Rent();
+            AddNewRentalWindow newRenatlWindow = new AddNewRentalWindow(newRent, true);
+            if(newRenatlWindow.ShowDialog() == true)
+            {
+                if(!newRent.SqlInsert())
+                {
+                    MessageBox.Show("Błąd dodawania");
+                }
+                else
+                {
+                    SqlDataGetters.GetAll();
+                }
+            }
         }
 
         #endregion
@@ -113,43 +122,28 @@ namespace Projekt_WPF_Solution
             {
                 ListBox lw = e.Source as ListBox;
                 var selectedItem = lw.SelectedItem;
+                bool deleted = false;
 
-                IDBaccess db = new IDBaccess();
-                if (db.OpenConnection() == true)
+                if (selectedItem is Car)
                 {
-                    try
-                    {
-                        MySqlCommand cmd = db.CreateCommand();
-                        if (selectedItem is Car)
-                        {
-                            cmd.CommandText = "DELETE FROM cars WHERE RegPlate = @RegPlate";
-                            cmd.Parameters.AddWithValue("@RegPlate", (selectedItem as Car).RegPlate);
-                            cmd.ExecuteNonQuery();
-                           // this.GetCars();
-                        }
-                        else if (selectedItem is Client)
-                        {
-                            cmd.CommandText = "DELETE FROM clients WHERE Pesel = @Pesel";
-                            cmd.Parameters.AddWithValue("@Pesel", (selectedItem as Client).Pesel);
-                            cmd.ExecuteNonQuery();
-                           // this.GetClients();
-                        }
-                        else if (selectedItem is Rent)
-                        {
-                            cmd.CommandText = "DELETE FROM rents WHERE ID = @Id";
-                            cmd.Parameters.AddWithValue("@Id", (selectedItem as Rent).Id);
-                            cmd.ExecuteNonQuery();
-                           // this.GetRents();
-                        }
-                    }
-                    catch (MySqlException)
-                    {
-                        MessageBox.Show("BŁĄD");
-                    }
+                    deleted = (selectedItem as Car).SqlDelete();
+                }
+                else if (selectedItem is Client)
+                {
+                    deleted = (selectedItem as Client).SqlDelete();
+                }
+                else if (selectedItem is Rent)
+                {
+                    deleted = (selectedItem as Rent).SqlDelete();
+                }
+
+                if(!deleted)
+                {
+                    MessageBox.Show("Błąd usuwania!");
                 }
                 else
                 {
-                    MessageBox.Show("BŁĄD");
+                    SqlDataGetters.GetAll();
                 }
             }
         }
@@ -169,30 +163,36 @@ namespace Projekt_WPF_Solution
         {
             ListBox lw = e.Source as ListBox;
             var selectedItem = lw.SelectedItem;
-            if(selectedItem is Car)
+            if (selectedItem is Car)
             {
                 Car car = new Car(selectedItem as Car);
-                AddNewCarWindow newCarWindow = new AddNewCarWindow(car);
-                if(newCarWindow.ShowDialog() == true)
+                AddNewCarWindow newCarWindow = new AddNewCarWindow(car, true);
+                if (newCarWindow.ShowDialog() == true)
                 {
                     car.SqlUpdate();
                     (selectedItem as Car).PropertyUpdate(car);
                 }
 
             }
-            else if(selectedItem is Client)
+            else if (selectedItem is Client)
             {
                 Client client = new Client(selectedItem as Client);
-                AddNewClientWindow newClientWindow = new AddNewClientWindow(client);
+                AddNewClientWindow newClientWindow = new AddNewClientWindow(client, true);
                 if (newClientWindow.ShowDialog() == true)
                 {
                     client.SqlUpdate();
                     (selectedItem as Client).PropertyUpdate(client);
                 }
             }
-            else if(selectedItem is Rent)
+            else if (selectedItem is Rent)
             {
-
+                Rent rent = new Rent(selectedItem as Rent);
+                AddNewRentalWindow newRentalWindow = new AddNewRentalWindow(rent, true);
+                if(newRentalWindow.ShowDialog() == true)
+                {
+                    rent.SqlUpdate();
+                    (selectedItem as Rent).PropertyUpdate(rent);
+                }
             }
         }
         #endregion

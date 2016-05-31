@@ -24,11 +24,14 @@ namespace Projekt_WPF_Solution
     public partial class AddNewClientWindow : Window
     {
         Client client;
-        public AddNewClientWindow(Client client)
+        bool isEditable;
+        public AddNewClientWindow(Client client, bool isEditable)
         {
             InitializeComponent();
             this.client = client;
+            this.isEditable = isEditable;
             MainAddClientGrid.DataContext = client;
+            MainAddClientGrid.IsEnabled = this.isEditable;
         }
 
         private void AddClientButton_Click(object sender, RoutedEventArgs e)

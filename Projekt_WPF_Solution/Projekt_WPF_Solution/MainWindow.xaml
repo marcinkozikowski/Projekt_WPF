@@ -124,7 +124,7 @@
                 </TabItem.Header>
                 <ListBox Name="CarListBox" Padding="3px" Margin="3px"
                          HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"
-                         ItemTemplate="{StaticResource CarDataTemplate}"/>
+                         ItemTemplate="{StaticResource CarDataTemplate}" />
             </TabItem>
             <!-- Zakładka Klienci -->
             <TabItem Name="ClientTab" Height="auto">
@@ -157,7 +157,8 @@
                     </Expander>
                 </TabItem.Header>
                 <ListBox Name="ClientListBox" Padding="3px" Margin="3px"
-                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"/>
+                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"
+                         ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"/>
             </TabItem>
             <!-- Zakładka Wypożyczenia -->
             <TabItem Name="RentTab" Height="auto">
