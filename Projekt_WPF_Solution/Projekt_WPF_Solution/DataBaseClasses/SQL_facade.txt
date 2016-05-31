@@ -1,0 +1,96 @@
+CREATE TABLE CARS
+(
+    ID int Primary Key NOT NULl AUTO_INCREMENT,
+    RegPlate varchar(32) UNIQUE not null, 
+    Maker varchar(32) not null,
+    Model varchar(32) not null,
+    ManufacturedYear int not null,
+    Engine int not null,
+    Type int not null,
+    BodyType varchar(32) not null,
+    FuelConsumption double not null,
+	Image varchar(64) not null
+	CONSTRAINT BodyFK FOREIGN KEY (Type) 
+                     REFERENCES Car_Type(ID),
+);
+
+CREATE TABLE Car_Type
+(
+    ID int Primary Key NOT NULl AUTO_INCREMENT,
+    Type varchar(32) UNIQUE not null, 
+    Price double not null,
+);
+
+CREATE TABLE CLIENTS
+(
+    ID int Primary Key NOT NULl AUTO_INCREMENT,
+    Pesel numeric(11) not null UNIQUE,
+    Name varchar(32) not null,
+    Surname varchar(32) not null,
+    Born date not null,
+    IsMale boolean not null,
+    PhoneNumber int not null,
+    Address varchar(32) not null,
+    City varchar(32) not null,
+    Type varchar(32) not null,
+    Image varchar(64) not null
+);
+
+CREATE TABLE RENTS
+(
+    ID int Primary Key NOT NULl AUTO_INCREMENT,
+    CarID int not null,
+    CONSTRAINT CarFK FOREIGN KEY (CarID) 
+                     REFERENCES CARS(ID),
+    ClientID int not null,
+    Constraint ClientFK FOREIGN KEY (ClientID) 
+                     REFERENCES CLIENTS(ID),
+    RentStart date not null,
+    RentEnd date not null,
+	isReturned boolean not null
+);
+
+CREATE TABLE car_bodytype (
+  bodytype varchar(32) NOT NULL UNIQUE
+);
+
+CREATE TABLE car_brand
+(
+	brand varchar(32) NOT NULL UNIQUE
+);
+
+
+
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('BI7363G', 'FSO', 'POLONEZ', '1997', '1600', 1, 'Hatchback', '15', "brakZdjecia.gif");
+
+INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('95000000000', 'JAN', 'KOWALSKI', '1989-01-01', '1', '123456789', "KWIATOWA", "Warszawa", 'Person', "brakZdjecia.gif");
+
+INSERT INTO `rents` (`CarID`, `ClientID`, `RentStart`, `RentEnd`, `isReturned`) VALUES ('1', '1', '2016-05-22', '2016-05-27', '0');
+
+
+
+INSERT INTO `car_brand` (`brand`) VALUES ('AUDI');
+INSERT INTO `car_brand` (`brand`) VALUES ('BMW');
+INSERT INTO `car_brand` (`brand`) VALUES ('MERCEDES');
+INSERT INTO `car_brand` (`brand`) VALUES ('SKODA');
+INSERT INTO `car_brand` (`brand`) VALUES ('VOLVO');
+INSERT INTO `car_brand` (`brand`) VALUES ('RENAULT');
+INSERT INTO `car_brand` (`brand`) VALUES ('OPEL');
+INSERT INTO `car_brand` (`brand`) VALUES ('FSO');
+INSERT INTO `car_brand` (`brand`) VALUES ('FIAT');
+
+INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('1','Miejski','200.00');
+INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('2','Dostawczy','250.00');
+INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('3','Terenowy','300.00');
+INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('4','Premium','450.00');
+INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('5','Sport','350.00');
+INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('6','SUV','400.00');
+
+
+INSERT INTO `car_bodytype` (`bodytype`) VALUES ('Hatchback');
+INSERT INTO `car_bodytype` (`bodytype`) VALUES ('Sedan');
+INSERT INTO `car_bodytype` (`bodytype`) VALUES ('Liftback');
+INSERT INTO `car_bodytype` (`bodytype`) VALUES ('Kombi');
+INSERT INTO `car_bodytype` (`bodytype`) VALUES ('Pickup');
+INSERT INTO `car_bodytype` (`bodytype`) VALUES ('Kabriolet');
+INSERT INTO `car_bodytype` (`bodytype`) VALUES ('Minivan');
