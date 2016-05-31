@@ -157,8 +157,7 @@
                     </Expander>
                 </TabItem.Header>
                 <ListBox Name="ClientListBox" Padding="3px" Margin="3px"
-                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"
-                         ItemsSource="{Binding UpdateSourceTrigger=PropertyChanged}"/>
+                         HorizontalContentAlignment="Stretch"/>
             </TabItem>
             <!-- Zakładka Wypożyczenia -->
             <TabItem Name="RentTab" Height="auto">
