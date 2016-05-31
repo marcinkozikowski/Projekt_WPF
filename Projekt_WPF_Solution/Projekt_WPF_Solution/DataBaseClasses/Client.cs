@@ -23,6 +23,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private string type;
         private string image;
         #endregion
+
         #region Properties
         public int ID { get { return id; } set { id = value; } }                                //ID PRIMARY KEY
         public string Pesel { get { return pesel; } set { pesel = value; } }                    //PESEL (KLUCZ GLOWNY)

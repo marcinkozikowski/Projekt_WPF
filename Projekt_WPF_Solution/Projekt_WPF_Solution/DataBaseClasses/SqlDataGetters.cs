@@ -17,38 +17,18 @@ namespace Projekt_WPF_Solution
         private static ObservableCollection<Rent> rents = new ObservableCollection<Rent>();
         private static List<string> brands;
         private static List<string> bodyTypes;
+        private static List<DataBaseClasses.Type> cartypes;
 
         #endregion
+
         #region Properties
         public static ObservableCollection<Car> Cars { get { return cars; } set { cars = value; } }
         public static ObservableCollection<Client> Clients { get { return clients; } set { clients = value; } }
         public static ObservableCollection<Rent> Rents { get { return rents; } set { rents = value; } }
         public static List<string> Brands { get { return brands; } set { brands = value; } }
         public static List<string> BodyTypes { get { return bodyTypes; } set { bodyTypes = value; } }
+        public static List<DataBaseClasses.Type> CarTypes { get { return cartypes; } set { cartypes = value; } }
         #endregion
-
-        private static void ClearCars()
-        {
-            for (int i = 0; i < cars.Count; i++)
-            {
-                cars.RemoveAt(0);
-            }
-        }
-        private static void ClearClients()
-        {
-            for(int i = 0; i < clients.Count; i++)
-            {
-                clients.RemoveAt(0);
-            }
-        }
-        private static void ClearRents()
-        {
-            for (int i = 0; i < rents.Count; i++)
-            {
-                rents.RemoveAt(0);
-            }
-        }
-
 
         public static void GetAll()
         {
@@ -61,7 +41,7 @@ namespace Projekt_WPF_Solution
 
         private static void GetCars()
         {
-            ClearCars();
+            cars.Clear();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {
@@ -76,9 +56,27 @@ namespace Projekt_WPF_Solution
                 db.CloseConnection();
             }
         }
+        private static void GetTypes()
+        {
+            CarTypes = new List<DataBaseClasses.Type>();
+            cartypes.Clear();
+            IDBaccess db = new IDBaccess();
+            if (db.OpenConnection() == true)
+            {
+                MySqlCommand cmd = db.CreateCommand();
+                cmd.CommandText = "SELECT ID, Type, Price from car_type";
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    DataBaseClasses.Type newType = new DataBaseClasses.Type(reader.GetInt32(0), reader.GetString(1), reader.GetDouble(2));
+                    CarTypes.Add(newType);
+                }
+                db.CloseConnection();
+            }
+        }
         private static void GetClients()
         {
-            ClearClients();
+            clients.Clear();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {
@@ -95,7 +93,7 @@ namespace Projekt_WPF_Solution
         }
         private static void GetRents()
         {
-            ClearRents();
+            rents.Clear();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {
