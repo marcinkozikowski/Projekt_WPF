@@ -12,9 +12,9 @@ namespace Projekt_WPF_Solution
     public static class SqlDataGetters
     {
         #region Variables
-        private static ObservableCollection<Car> cars;
-        private static ObservableCollection<Client> clients;
-        private static ObservableCollection<Rent> rents;
+        private static ObservableCollection<Car> cars = new ObservableCollection<Car>();
+        private static ObservableCollection<Client> clients = new ObservableCollection<Client>();
+        private static ObservableCollection<Rent> rents = new ObservableCollection<Rent>();
         private static List<string> brands;
         private static List<string> bodyTypes;
 
@@ -27,6 +27,29 @@ namespace Projekt_WPF_Solution
         public static List<string> BodyTypes { get { return bodyTypes; } set { bodyTypes = value; } }
         #endregion
 
+        private static void ClearCars()
+        {
+            for (int i = 0; i < cars.Count; i++)
+            {
+                cars.RemoveAt(0);
+            }
+        }
+        private static void ClearClients()
+        {
+            for(int i = 0; i < clients.Count; i++)
+            {
+                clients.RemoveAt(0);
+            }
+        }
+        private static void ClearRents()
+        {
+            for (int i = 0; i < rents.Count; i++)
+            {
+                rents.RemoveAt(0);
+            }
+        }
+
+
         public static void GetAll()
         {
             GetCars();
@@ -38,7 +61,7 @@ namespace Projekt_WPF_Solution
 
         private static void GetCars()
         {
-            Cars = new ObservableCollection<Car>();
+            ClearCars();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {
@@ -55,7 +78,7 @@ namespace Projekt_WPF_Solution
         }
         private static void GetClients()
         {
-            Clients = new ObservableCollection<Client>();
+            ClearClients();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {
@@ -72,7 +95,7 @@ namespace Projekt_WPF_Solution
         }
         private static void GetRents()
         {
-            Rents = new ObservableCollection<Rent>();
+            ClearRents();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {

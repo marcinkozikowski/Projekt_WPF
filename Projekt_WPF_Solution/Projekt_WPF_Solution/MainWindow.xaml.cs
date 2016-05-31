@@ -131,6 +131,8 @@ namespace Projekt_WPF_Solution
                 else if (selectedItem is Client)
                 {
                     deleted = (selectedItem as Client).SqlDelete();
+                    SqlDataGetters.Clients.Remove(selectedItem as Client);
+
                 }
                 else if (selectedItem is Rent)
                 {
@@ -143,7 +145,7 @@ namespace Projekt_WPF_Solution
                 }
                 else
                 {
-                    SqlDataGetters.GetAll();
+                    //SqlDataGetters.GetAll();
                 }
             }
         }
