@@ -17,7 +17,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private string model { get; set; }               // Model
         private int manufacturedYear { get; set; }       // Data produkcji auta
         private int engine { get; set; }            // Pojemność silnika
-        private int type { get; set; }               // Klasa/Rodzaj auta terenowe, miejskie, premium
+        //private int type { get; set; }               // Klasa/Rodzaj auta terenowe, miejskie, premium
+        private DataBaseClasses.Type type { get; set; } // Klasa/Rodzaj auta terenowe, miejskie, premium
         private string bodyType { get; set; }           //Rodzaj nadwozia
         private double fuelConsumption { get; set; }     // Spalanie na 100/km
         private string image { get; set; }              // Zdjecie samochodu
@@ -31,7 +32,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string Model { get { return model; } set { model = value; } }
         public int ManufacturedYear { get { return manufacturedYear; } set { manufacturedYear = value; } }
         public int Engine { get { return engine; } set { engine = value; } }
-        public int Type { get { return type; } set { type = value; } }
+        //public int Type { get { return type; } set { type = value; } }
+        public DataBaseClasses.Type Type { get { return type; } set { Type = value; } }
         public string BodyType { get { return bodyType; } set { bodyType = value; } }
         public double FuelConsumption { get { return fuelConsumption; } set { fuelConsumption = value; } }
         public string Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }
@@ -48,7 +50,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.BodyType = string.Empty;
             this.Image = "brakZdjecia.gif";
         }
-        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, int type, string bodyType, double fuelConsumption, string image)
+        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, DataBaseClasses.Type type, string bodyType, double fuelConsumption, string image)
         {
             this.id = id;
             this.regPlate = regPlate;
@@ -90,7 +92,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@Model", this.Model);
                     cmd.Parameters.AddWithValue("@ManufacturedYear", this.ManufacturedYear);
                     cmd.Parameters.AddWithValue("@Engine", this.Engine);
-                    cmd.Parameters.AddWithValue("@Type", this.Type);
+                    cmd.Parameters.AddWithValue("@Type", this.Type.Id);
                     cmd.Parameters.AddWithValue("@BodyType", this.BodyType);
                     cmd.Parameters.AddWithValue("@FuelConsumption", this.FuelConsumption);
                     cmd.Parameters.AddWithValue("@Image", this.Image);
@@ -121,7 +123,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@Model", this.Model);
                     cmd.Parameters.AddWithValue("@ManufacturedYear", this.ManufacturedYear);
                     cmd.Parameters.AddWithValue("@Engine", this.Engine);
-                    cmd.Parameters.AddWithValue("@Type", this.Type);
+                    cmd.Parameters.AddWithValue("@Type", this.Type.Id);
                     cmd.Parameters.AddWithValue("@BodyType", this.BodyType);
                     cmd.Parameters.AddWithValue("@FuelConsumption", this.FuelConsumption);
                     cmd.Parameters.AddWithValue("@Image", this.Image);
@@ -142,7 +144,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public bool SqlDelete()
         {
             IDBaccess db = new IDBaccess();
-            if(db.OpenConnection() == true)
+            if (db.OpenConnection() == true)
             {
                 try
                 {
@@ -152,7 +154,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.ExecuteNonQuery();
                     return true;
                 }
-                catch(MySqlException)
+                catch (MySqlException)
                 {
                     return false;
                 }

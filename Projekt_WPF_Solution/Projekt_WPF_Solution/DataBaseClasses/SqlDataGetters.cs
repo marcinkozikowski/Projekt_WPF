@@ -15,12 +15,11 @@ namespace Projekt_WPF_Solution
         private static ObservableCollection<Car> cars = new ObservableCollection<Car>();
         private static ObservableCollection<Client> clients = new ObservableCollection<Client>();
         private static ObservableCollection<Rent> rents = new ObservableCollection<Rent>();
-        private static List<string> brands;
-        private static List<string> bodyTypes;
-        private static List<DataBaseClasses.Type> cartypes;
+        private static List<string> brands = new List<string>();
+        private static List<string> bodyTypes = new List<string>();
+        private static List<DataBaseClasses.Type> cartypes = new List<DataBaseClasses.Type>();
 
         #endregion
-
         #region Properties
         public static ObservableCollection<Car> Cars { get { return cars; } set { cars = value; } }
         public static ObservableCollection<Client> Clients { get { return clients; } set { clients = value; } }
@@ -32,14 +31,31 @@ namespace Projekt_WPF_Solution
 
         public static void GetAll()
         {
+            GetTypes();
             GetCars();
             GetClients();
             GetRents();
             GetBrands();
             GetBodyTypes();
-            GetTypes();
         }
 
+        private static void GetTypes()
+        {
+            cartypes.Clear();
+            IDBaccess db = new IDBaccess();
+            if (db.OpenConnection() == true)
+            {
+                MySqlCommand cmd = db.CreateCommand();
+                cmd.CommandText = "SELECT ID, Type, Price from car_type";
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    DataBaseClasses.Type newType = new DataBaseClasses.Type(reader.GetInt32(0), reader.GetString(1), reader.GetDouble(2));
+                    CarTypes.Add(newType);
+                }
+                db.CloseConnection();
+            }
+        }
         private static void GetCars()
         {
             cars.Clear();
@@ -51,25 +67,9 @@ namespace Projekt_WPF_Solution
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetString(7), reader.GetDouble(8), reader.GetString(9));
+                    DataBaseClasses.Type type = SqlDataGetters.CarTypes.Single(i => i.Id == reader.GetInt32(6));
+                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), type, reader.GetString(7), reader.GetDouble(8), reader.GetString(9));
                     Cars.Add(newCar);
-                }
-                db.CloseConnection();
-            }
-        }
-        private static void GetTypes()
-        {
-            cartypes = new List<DataBaseClasses.Type>();
-            IDBaccess db = new IDBaccess();
-            if (db.OpenConnection() == true)
-            {
-                MySqlCommand cmd = db.CreateCommand();
-                cmd.CommandText = "SELECT ID, Type, Price from car_type";
-                MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    DataBaseClasses.Type newType = new DataBaseClasses.Type(reader.GetInt32(0), reader.GetString(1), reader.GetDouble(2));
-                    CarTypes.Add(newType);
                 }
                 db.CloseConnection();
             }
@@ -117,7 +117,7 @@ namespace Projekt_WPF_Solution
         }
         private static void GetBrands()
         {
-            Brands = new List<string>();
+            Brands.Clear();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {
@@ -133,7 +133,7 @@ namespace Projekt_WPF_Solution
         }
         private static void GetBodyTypes()
         {
-            BodyTypes = new List<string>();
+            BodyTypes.Clear();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Projekt_WPF_Solution.DataBaseClasses;
+using Projekt_WPF_Solution.Commands;
 using System.Collections.ObjectModel;
 using MySql.Data.MySqlClient;
 
@@ -34,6 +35,11 @@ namespace Projekt_WPF_Solution
             CarListBox.ItemsSource = SqlDataGetters.Cars;
             ClientListBox.ItemsSource = SqlDataGetters.Clients;
             RentListBox.ItemsSource = SqlDataGetters.Rents;
+
+            Loaded += delegate
+            {
+                MyCommands.BindCommands(this);
+            };
         }
 
         private void ContactMenuItem_Click(object sender, RoutedEventArgs e)
@@ -46,7 +52,7 @@ namespace Projekt_WPF_Solution
         private void AddNewCar_Click(object sender, RoutedEventArgs e)
         {
             Car newCar = new Car();
-            AddNewCarWindow newCarWindow = new AddNewCarWindow(newCar, true);
+            CarWindow newCarWindow = new CarWindow(newCar);
             if (newCarWindow.ShowDialog() == true)
             {
                 if (!newCar.SqlInsert())
@@ -62,7 +68,7 @@ namespace Projekt_WPF_Solution
         private void AddNewClientButton_Click(object sender, RoutedEventArgs e)
         {
             Client newClient = new Client();
-            AddNewClientWindow newClientWindow = new AddNewClientWindow(newClient, true);
+            ClientWindow newClientWindow = new ClientWindow(newClient);
             if (newClientWindow.ShowDialog() == true)
             {
                 if (!newClient.SqlInsert())
@@ -78,7 +84,7 @@ namespace Projekt_WPF_Solution
         private void AddNewRentalButton_Click(object sender, RoutedEventArgs e)
         {
             Rent newRent = new Rent();
-            AddNewRentalWindow newRenatlWindow = new AddNewRentalWindow(newRent, true);
+            RentalWindow newRenatlWindow = new RentalWindow(newRent);
             if(newRenatlWindow.ShowDialog() == true)
             {
                 if(!newRent.SqlInsert())
@@ -101,103 +107,6 @@ namespace Projekt_WPF_Solution
             SearchClientWindow searchClientWindow = new SearchClientWindow();
             searchClientWindow.ShowDialog();
         }
-
-        #region Commands
-        private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            ListBox lw = e.Source as ListBox;
-            if (lw != null && lw.SelectedItems.Count > 0)
-            {
-                e.CanExecute = true;
-            }
-            else
-            {
-                e.CanExecute = false;
-            }
-        }
-        private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            MessageBoxResult result = MessageBox.Show("Czy napewno chcesz usunąć zaznaczony wpis?", "Czy jestes pewien?", MessageBoxButton.OKCancel, MessageBoxImage.Error);
-            if (result == MessageBoxResult.OK)
-            {
-                ListBox lw = e.Source as ListBox;
-                var selectedItem = lw.SelectedItem;
-                bool deleted = false;
-
-                if (selectedItem is Car)
-                {
-                    deleted = (selectedItem as Car).SqlDelete();
-                }
-                else if (selectedItem is Client)
-                {
-                    deleted = (selectedItem as Client).SqlDelete();
-                    SqlDataGetters.Clients.Remove(selectedItem as Client);
-
-                }
-                else if (selectedItem is Rent)
-                {
-                    deleted = (selectedItem as Rent).SqlDelete();
-                }
-
-                if(!deleted)
-                {
-                    MessageBox.Show("Błąd usuwania!");
-                }
-                else
-                {
-                    //SqlDataGetters.GetAll();
-                }
-            }
-        }
-        private void Edit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            ListBox lw = e.Source as ListBox;
-            if (lw != null && lw.SelectedItems.Count > 0)
-            {
-                e.CanExecute = true;
-            }
-            else
-            {
-                e.CanExecute = false;
-            }
-        }
-        private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
-        {
-            ListBox lw = e.Source as ListBox;
-            var selectedItem = lw.SelectedItem;
-            if (selectedItem is Car)
-            {
-                Car car = new Car(selectedItem as Car);
-                AddNewCarWindow newCarWindow = new AddNewCarWindow(car, true);
-                if (newCarWindow.ShowDialog() == true)
-                {
-                    car.SqlUpdate();
-                    (selectedItem as Car).PropertyUpdate(car);
-                }
-
-            }
-            else if (selectedItem is Client)
-            {
-                Client client = new Client(selectedItem as Client);
-                AddNewClientWindow newClientWindow = new AddNewClientWindow(client, true);
-                if (newClientWindow.ShowDialog() == true)
-                {
-                    client.SqlUpdate();
-                    (selectedItem as Client).PropertyUpdate(client);
-                }
-            }
-            else if (selectedItem is Rent)
-            {
-                Rent rent = new Rent(selectedItem as Rent);
-                AddNewRentalWindow newRentalWindow = new AddNewRentalWindow(rent, true);
-                if(newRentalWindow.ShowDialog() == true)
-                {
-                    rent.SqlUpdate();
-                    (selectedItem as Rent).PropertyUpdate(rent);
-                }
-            }
-        }
-        #endregion
-
+        
     }
 }

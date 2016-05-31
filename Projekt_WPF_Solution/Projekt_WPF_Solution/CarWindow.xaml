@@ -1,0 +1,91 @@
+﻿<Window x:Class="Projekt_WPF_Solution.CarWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projekt_WPF_Solution"
+        xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
+        mc:Ignorable="d"
+        FontSize="16"
+        Icon="Icons\car.png"
+        Title="Dodaj nowy samochód" Height="450" Width="750">
+    <Window.Resources>
+        <ResourceDictionary Source="ResourceDictionary.xaml"/>
+    </Window.Resources>
+    <Grid Name="MainAddCarGrid" ShowGridLines="false">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
+            <Image Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter}, UpdateSourceTrigger=PropertyChanged}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+        </GroupBox>
+        <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
+            <Grid Name="LeftAddCarGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Marka" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <ComboBox Name="MarkaComboBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Maker}"/>
+                <Label Content="Model" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="ModelTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Model}"/>
+                <Label Content="Data produkcji" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="DataProdukcjiDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=ManufacturedYear}"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Informacje szczegółowe" Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="3">
+            <Grid Name="BottomAddCarGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Label Content="Pojemność silnika [cm3]" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="PojemnoscTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Engine, ValidatesOnDataErrors=True}"/>
+                <Label Content="Typ nadwozia" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <ComboBox Name="TypComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=BodyType}" />
+                <Label Content="Klasa samochodu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <ComboBox Name="KlasaComboBox" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
+
+                <Label Content="Numer rejestracyjny" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="NrRejTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=RegPlate}"/>
+                <Label Content="Spalanie na 100/km" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                <TextBox Name="SpalanieTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=FuelConsumption, ValidatesOnDataErrors=True}"/>
+            </Grid>
+        </GroupBox>
+        <StackPanel Name="ButtonPanel" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
+            <Button Name="AddCarButton" Margin="3" HorizontalAlignment="Right" Click="AddCarButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Icons/CheckSign.png"/>
+                    <Label Content="OK" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+
+            <Button Name="CancelCarButton" Margin="3" HorizontalAlignment="Right" Click="CancelCarButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="Icons/CrossSign.png"/>
+                    <Label Content="Anuluj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -39,6 +39,10 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.price = t.price;
         }
         #endregion
+        public override string ToString()
+        {
+            return CarType;
+        }
     }
 
 

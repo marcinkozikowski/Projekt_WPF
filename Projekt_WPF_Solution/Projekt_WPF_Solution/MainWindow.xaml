@@ -11,39 +11,8 @@
         FontSize="16"
         Title="Wypożyczalnia Samochodów" MinHeight="500" Width="800" Icon="RentCarBlue.ico"
         Background="LightGray">
-    <Window.CommandBindings>
-        <CommandBinding Command="commands:MyCommands.Delete" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
-        <CommandBinding Command="commands:MyCommands.Edit" CanExecute="Edit_CanExecute" Executed="Edit_Executed" />
-    </Window.CommandBindings>
     <Window.Resources>
-        <converter:ImagePathConverter x:Key="ImagePathConverter"/>
-        <converter:StackPanelHeightConverter x:Key="StackPanelHeightConverter"/>
-        
-        
-
-        <DataTemplate x:Key="CarDataTemplate">
-            <Border Margin="3px" BorderBrush="Black" CornerRadius="3">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" SharedSizeGroup="photo"/>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
-                           Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter} }"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pojazd:"/>
-                    <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=MakerAndModel}" />
-                    <TextBlock Grid.Column="1" Grid.Row="1" Text="Rok modelowy:"/>
-                    <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=ManufacturedYear}" />
-                </Grid>
-            </Border>
-        </DataTemplate>
+        <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </Window.Resources>
     <Grid Grid.IsSharedSizeScope="True">
         <Grid.RowDefinitions>
@@ -106,14 +75,11 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
 
                             <Button Margin="4"  Grid.Row="0" Name="AddNewCarButton" Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
-                            <!--<Button Margin="4"  Grid.Row="1" Name="DeleteCarButton" Content="Usuń samochód" VerticalAlignment="Center" Click="DeleteCarButton_Click"/>-->
-                            <Button Margin="4" Grid.Row="1" Name="EditCarButton" Content="Edytuj samochód" VerticalAlignment="Center" Command="commands:MyCommands.Edit" CommandTarget="{Binding ElementName=CarListBox}"/>
-                            <Button Margin="4"  Grid.Row="2" Name="DeleteCarButton" Content="Usuń samochód" VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=CarListBox}"/>
-                            <Button Margin="4"  Grid.Row="3" Name="SearchCarButton" Content="Wyszukaj samochód" VerticalAlignment="Center"/>
+                            <Button Margin="4"  Grid.Row="1" Name="DeleteCarButton" Content="Usuń samochód" VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=CarListBox}"/>
+                            <Button Margin="4"  Grid.Row="2" Name="SearchCarButton" Content="Wyszukaj samochód" VerticalAlignment="Center"/>
                         </Grid>
                         <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}" Orientation="Vertical">
                             <Button Margin="4"  Name="AddNewCarButton" Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
@@ -123,8 +89,11 @@
                     </Expander>
                 </TabItem.Header>
                 <ListBox Name="CarListBox" Padding="3px" Margin="3px"
-                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="False"
-                         ItemTemplate="{StaticResource CarDataTemplate}" />
+                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                         ItemTemplate="{StaticResource CarDataTemplate}">
+                </ListBox>
+
+                <!--MouseDoubleClick="CarListBox_MouseDoubleClick"-->
             </TabItem>
             <!-- Zakładka Klienci -->
             <TabItem Name="ClientTab" Height="auto">
@@ -141,13 +110,10 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Button Grid.Row="0" Name="AddNewClientButton" Margin="4" Content="Dodaj nowego" Click="AddNewClientButton_Click" VerticalAlignment="Center"/>
-                            <!--<Button Grid.Row="1" Name="DeleteClientButton" Margin="4" Content="Usuń klienta" ToolTip="Usuwa klienta zaznaczonego na liście" VerticalAlignment="Center" Click="DeleteClientButton_Click"/>-->
-                            <Button Grid.Row="1" Name="EditClientButton" Content="Edytuj klienta" VerticalAlignment="Center" Command="commands:MyCommands.Edit" CommandTarget="{Binding ElementName=ClientListBox}"/>
-                            <Button Grid.Row="2" Name="DeleteClientButton" Margin="4" Content="Usuń klienta" ToolTip="Usuwa klienta zaznaczonego na liście" VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=ClientListBox}"/>
-                            <Button Grid.Row="3" Name="SearchClientButton" Margin="4" Content="Wyszukaj klienta" VerticalAlignment="Center" Click="SearchClientButton_Click"/>
+                            <Button Grid.Row="1" Name="DeleteClientButton" Margin="4" Content="Usuń klienta" ToolTip="Usuwa klienta zaznaczonego na liście" VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=ClientListBox}"/>
+                            <Button Grid.Row="2" Name="SearchClientButton" Margin="4" Content="Wyszukaj klienta" VerticalAlignment="Center" Click="SearchClientButton_Click"/>
                         </Grid>
                         <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Name="AddNewClientButton" Margin="4" Content="Dodaj nowego" Click="AddNewClientButton_Click"/>
@@ -157,7 +123,8 @@
                     </Expander>
                 </TabItem.Header>
                 <ListBox Name="ClientListBox" Padding="3px" Margin="3px"
-                         HorizontalContentAlignment="Stretch"/>
+                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                         ItemTemplate="{StaticResource ClientDataTemplate}"/>
             </TabItem>
             <!-- Zakładka Wypożyczenia -->
             <TabItem Name="RentTab" Height="auto">
@@ -174,14 +141,11 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Button Grid.Row="0"  Margin="4" Content="Nowe wypożyczenie" Name="AddNewRentalButton" Click="AddNewRentalButton_Click" VerticalAlignment="Center" />
-                            <!--<Button Grid.Row="1" Margin="4" Content="Usuń wypożyczenie" Name="DeleteRentalButton"  VerticalAlignment="Center" Click="DeleteRentalButton_Click"/>-->
-                            <Button Grid.Row="1" Margin="4" Name="EditRentalButton" Content="Edytuj wypożyczenie" VerticalAlignment="Center" Command="commands:MyCommands.Edit" CommandTarget="{Binding ElementName=RentListBox}"/>
-                            <Button Grid.Row="2" Margin="4" Content="Usuń wypożyczenie" Name="DeleteRentalButton"  VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=RentListBox}"/>
-                            <Button Grid.Row="3" Margin="4" Content="Wyszukaj wypożyczenie" Name="SearchRentalButton"  VerticalAlignment="Center"/>
-                           </Grid>
+                            <Button Grid.Row="1" Margin="4" Content="Usuń wypożyczenie" Name="DeleteRentalButton"  VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=RentListBox}"/>
+                            <Button Grid.Row="2" Margin="4" Content="Wyszukaj wypożyczenie" Name="SearchRentalButton"  VerticalAlignment="Center"/>
+                        </Grid>
                         <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Margin="4" Content="Nowe wypożyczenie" Name="NewRentalButton" Click="NewRentalButton_Click" />
                         </StackPanel>-->

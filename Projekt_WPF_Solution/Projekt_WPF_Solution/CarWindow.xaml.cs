@@ -19,31 +19,21 @@ using System.IO;
 namespace Projekt_WPF_Solution
 {
     /// <summary>
-    /// Interaction logic for AddNewCarWindow.xaml
+    /// Interaction logic for CarWindow.xaml
     /// </summary>
-    public partial class AddNewCarWindow : Window
+    public partial class CarWindow : Window
     {
         Car car;
-        bool isEditable;
 
-
-        public AddNewCarWindow(Car car, bool isEditable)
+        public CarWindow(Car car)
         {
             InitializeComponent();
             MarkaComboBox.ItemsSource = SqlDataGetters.Brands;
             TypComboBox.ItemsSource = SqlDataGetters.BodyTypes;
-
-            List<string> carTypesToString = new List<string>();
-            for(int i=0;i<SqlDataGetters.CarTypes.Count;i++)
-            {
-                carTypesToString.Add(SqlDataGetters.CarTypes.ElementAt(i).CarType);
-            }
-            KlasaCombotBox.ItemsSource = carTypesToString;
+            KlasaComboBox.ItemsSource = SqlDataGetters.CarTypes;
 
             this.car = car;
-            this.isEditable = isEditable;
             MainAddCarGrid.DataContext = this.car;
-            MainAddCarGrid.IsEnabled = isEditable;
         }
 
         private void AddCarButton_Click(object sender, RoutedEventArgs e)

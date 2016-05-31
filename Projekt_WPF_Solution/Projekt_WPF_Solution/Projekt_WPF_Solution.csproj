@@ -61,8 +61,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddNewRentalWindow.xaml.cs">
-      <DependentUpon>AddNewRentalWindow.xaml</DependentUpon>
+    <Compile Include="RentalWindow.xaml.cs">
+      <DependentUpon>RentalWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\MyCommands.cs" />
     <Compile Include="Converters\ImagePathConverter.cs" />
@@ -80,15 +80,15 @@
       <DependentUpon>SearchRentalWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validators\Validator.cs" />
-    <Page Include="AddNewCarWindow.xaml">
+    <Page Include="CarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddNewClientWindow.xaml">
+    <Page Include="ClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddNewRentalWindow.xaml">
+    <Page Include="RentalWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,11 +100,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddNewCarWindow.xaml.cs">
-      <DependentUpon>AddNewCarWindow.xaml</DependentUpon>
+    <Compile Include="CarWindow.xaml.cs">
+      <DependentUpon>CarWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewClientWindow.xaml.cs">
-      <DependentUpon>AddNewClientWindow.xaml</DependentUpon>
+    <Compile Include="ClientWindow.xaml.cs">
+      <DependentUpon>ClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -121,6 +121,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SearchCarWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

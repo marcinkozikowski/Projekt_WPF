@@ -15,22 +15,18 @@ using Projekt_WPF_Solution.DataBaseClasses;
 namespace Projekt_WPF_Solution
 {
     /// <summary>
-    /// Interaction logic for AddNewRentalWindow.xaml
+    /// Interaction logic for RentalWindow.xaml
     /// </summary>
-    public partial class AddNewRentalWindow : Window
+    public partial class RentalWindow : Window
     {
         Rent rent;
-        bool isEnabled;
 
-
-        public AddNewRentalWindow(Rent rent, bool isEnabled)
+        public RentalWindow(Rent rent)
         {
             InitializeComponent();
             this.rent = rent;
             ClientGrid.DataContext = rent.RentingPerson;
-            this.isEnabled = isEnabled;
             MainRentalGrid.DataContext = rent;
-            MainRentalGrid.IsEnabled = isEnabled;
         }
 
         private void SearchClientButton_Click(object sender, RoutedEventArgs e)

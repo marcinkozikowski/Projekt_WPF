@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Projekt_WPF_Solution.DataBaseClasses;
+using Projekt_WPF_Solution.Commands;
 
 namespace Projekt_WPF_Solution
 {
@@ -24,7 +25,11 @@ namespace Projekt_WPF_Solution
         public SearchClientWindow()
         {
             InitializeComponent();
-            ClientsListBox.ItemsSource = clientsView;
+            ClientListBox.ItemsSource = clientsView;
+            Loaded += delegate
+            {
+                MyCommands.BindCommands(this);
+            };
         }
 
         private void DeleteClientButton_Click(object sender, RoutedEventArgs e)
@@ -37,6 +42,7 @@ namespace Projekt_WPF_Solution
             this.Close();
         }
 
+        #region Filter
         private void SearchClientButton_Click(object sender, RoutedEventArgs e)
         {
             if(SearchClientTextBox.Text.Equals(string.Empty))
@@ -69,11 +75,19 @@ namespace Projekt_WPF_Solution
                 };
             }
         }
+        private void NoneRadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            clientsView.Filter = null;
+        }
+
+        #endregion
 
         private void ShowClientButton_Click(object sender, RoutedEventArgs e)
         {
-            AddNewClientWindow client = new AddNewClientWindow(ClientsListBox.SelectedItem as Client, false);
+            ClientWindow client = new ClientWindow(ClientListBox.SelectedItem as Client);
             client.ShowDialog();
         }
+
+        
     }
 }

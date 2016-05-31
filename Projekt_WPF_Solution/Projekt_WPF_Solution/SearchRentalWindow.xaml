@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
         mc:Ignorable="d"
         Title="SearchRentalWindow" Height="300" Width="300">
+    <Window.Resources>
+        <ResourceDictionary Source="ResourceDictionary.xaml"/>
+    </Window.Resources>
     <Grid>
         
     </Grid>

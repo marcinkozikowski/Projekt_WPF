@@ -19,19 +19,16 @@ using System.IO;
 namespace Projekt_WPF_Solution
 {
     /// <summary>
-    /// Interaction logic for AddNewClientWindow.xaml
+    /// Interaction logic for ClientWindow.xaml
     /// </summary>
-    public partial class AddNewClientWindow : Window
+    public partial class ClientWindow : Window
     {
         Client client;
-        bool isEditable;
-        public AddNewClientWindow(Client client, bool isEditable)
+        public ClientWindow(Client client)
         {
             InitializeComponent();
             this.client = client;
-            this.isEditable = isEditable;
             MainAddClientGrid.DataContext = client;
-            MainAddClientGrid.IsEnabled = this.isEditable;
         }
 
         private void AddClientButton_Click(object sender, RoutedEventArgs e)

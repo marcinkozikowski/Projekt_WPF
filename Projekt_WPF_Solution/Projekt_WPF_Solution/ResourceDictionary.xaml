@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Projekt_WPF_Solution"
+                    xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
+                    xmlns:commands="clr-namespace:Projekt_WPF_Solution.Commands">
+    <!--Converters-->
+    <converter:ImagePathConverter x:Key="ImagePathConverter"/>
+    <converter:IntToBoolConverter x:Key="IntToBoolConverter"/>
+    <converter:StackPanelHeightConverter x:Key="StackPanelHeightConverter"/>
+    <!--DataTemplates-->
+    <DataTemplate x:Key="CarDataTemplate">
+        <Border Margin="3px" BorderBrush="Black" CornerRadius="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="photo"/>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick"
+                                      Command="commands:MyCommands.Edit"
+                                      CommandTarget="{Binding ElementName=CarListBox}"/>
+                </Grid.InputBindings>
+                <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter} }"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="Pojazd:"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=MakerAndModel}" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="Rok modelowy:"/>
+                <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=ManufacturedYear}" />
+            </Grid>
+        </Border>
+    </DataTemplate>
+    <DataTemplate x:Key="ClientDataTemplate">
+        <Border Margin="3px" BorderBrush="Black" CornerRadius="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="photo"/>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick"
+                                      Command="commands:MyCommands.Edit"
+                                      CommandTarget="{Binding ElementName=ClientListBox}"/>
+                </Grid.InputBindings>
+                <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter} }"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" Text="Dane:"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=NameSurname}" />
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="Pesel:"/>
+                <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=Pesel}" />
+            </Grid>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>
