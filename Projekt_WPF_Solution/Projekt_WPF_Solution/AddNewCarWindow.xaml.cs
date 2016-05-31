@@ -32,6 +32,14 @@ namespace Projekt_WPF_Solution
             InitializeComponent();
             MarkaComboBox.ItemsSource = SqlDataGetters.Brands;
             TypComboBox.ItemsSource = SqlDataGetters.BodyTypes;
+
+            List<string> carTypesToString = new List<string>();
+            for(int i=0;i<SqlDataGetters.CarTypes.Count;i++)
+            {
+                carTypesToString.Add(SqlDataGetters.CarTypes.ElementAt(i).CarType);
+            }
+            KlasaCombotBox.ItemsSource = carTypesToString;
+
             this.car = car;
             this.isEditable = isEditable;
             MainAddCarGrid.DataContext = this.car;

@@ -37,6 +37,7 @@ namespace Projekt_WPF_Solution
             GetRents();
             GetBrands();
             GetBodyTypes();
+            GetTypes();
         }
 
         private static void GetCars()
@@ -50,7 +51,7 @@ namespace Projekt_WPF_Solution
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetString(6), reader.GetString(7), reader.GetDouble(8), reader.GetString(9));
+                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), reader.GetInt32(6), reader.GetString(7), reader.GetDouble(8), reader.GetString(9));
                     Cars.Add(newCar);
                 }
                 db.CloseConnection();
@@ -58,8 +59,7 @@ namespace Projekt_WPF_Solution
         }
         private static void GetTypes()
         {
-            CarTypes = new List<DataBaseClasses.Type>();
-            cartypes.Clear();
+            cartypes = new List<DataBaseClasses.Type>();
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {

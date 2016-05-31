@@ -70,7 +70,7 @@
                     <Label Content="Typ nadwozia" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                     <ComboBox Name="TypComboBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=BodyType}" />
                     <Label Content="Klasa samochodu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                    <ComboBox Name="KlasaTextBox" Grid.Row="2" Grid.Column="1" Margin="3" SelectedValue="{Binding Path=Type}"/>
+                    <ComboBox Name="KlasaCombotBox" Grid.Row="2" Grid.Column="1" Margin="3" SelectedValue="{Binding Path=Type}"/>
 
                     <Label Content="Numer rejestracyjny" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                     <TextBox Name="NrRejTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=RegPlate}"/>

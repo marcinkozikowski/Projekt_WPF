@@ -17,7 +17,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private string model { get; set; }               // Model
         private int manufacturedYear { get; set; }       // Data produkcji auta
         private int engine { get; set; }            // Pojemność silnika
-        private string type { get; set; }               // Klasa/Rodzaj auta terenowe, miejskie, premium
+        private int type { get; set; }               // Klasa/Rodzaj auta terenowe, miejskie, premium
         private string bodyType { get; set; }           //Rodzaj nadwozia
         private double fuelConsumption { get; set; }     // Spalanie na 100/km
         private string image { get; set; }              // Zdjecie samochodu
@@ -31,7 +31,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string Model { get { return model; } set { model = value; } }
         public int ManufacturedYear { get { return manufacturedYear; } set { manufacturedYear = value; } }
         public int Engine { get { return engine; } set { engine = value; } }
-        public string Type { get { return type; } set { type = value; } }
+        public int Type { get { return type; } set { type = value; } }
         public string BodyType { get { return bodyType; } set { bodyType = value; } }
         public double FuelConsumption { get { return fuelConsumption; } set { fuelConsumption = value; } }
         public string Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }
@@ -45,11 +45,10 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.RegPlate = string.Empty;
             this.Maker = string.Empty;
             this.Model = string.Empty;
-            this.Type = string.Empty;
             this.BodyType = string.Empty;
             this.Image = "brakZdjecia.gif";
         }
-        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, string type, string bodyType, double fuelConsumption, string image)
+        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, int type, string bodyType, double fuelConsumption, string image)
         {
             this.id = id;
             this.regPlate = regPlate;
