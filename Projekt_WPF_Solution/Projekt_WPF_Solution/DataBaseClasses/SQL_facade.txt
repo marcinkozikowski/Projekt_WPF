@@ -21,8 +21,6 @@ CREATE TABLE CARS
 	Image varchar(64) not null
 );
 
-
-
 CREATE TABLE CLIENTS
 (
     ID int Primary Key NOT NULl AUTO_INCREMENT,
@@ -68,11 +66,31 @@ INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('4','Premium','450.00');
 INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('5','Sport','350.00');
 INSERT INTO `Car_Type` (`Id`,`Type`,`Price`) VALUES ('6','SUV','400.00');
 
+
 INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('BI7363G', 'FSO', 'POLONEZ', '1997', '1600', 1, 'Hatchback', '15', "brakZdjecia.gif");
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('BL1863G', 'AUDI', 'A3', '2006', '1972', 1, 'Hatchback', '5.5', "brakZdjecia.gif");
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('WB3456B', 'VOLVO', 'S40', '2008', '1834', 5, 'Sedan', '5.2', "brakZdjecia.gif");
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('BI73638', 'RENAULT', 'LAGUNA', '2007', '1595', 5, 'Kombi', '6.3', "brakZdjecia.gif");
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('BI7363M', 'OPEL', 'ZAFIRA', '2010', '1978', 1, 'Minivan', '6.4', "brakZdjecia.gif");
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('BBI3639', 'MERCEDES', 'SPRINTER', '2012', '2459', 2, 'Minivan', '8.7', "brakZdjecia.gif");
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('LU7363G', 'AUDI', 'A8', '4067', '2014', 4, 'Sedan', '12.3', "brakZdjecia.gif");
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('BL4463O', 'OPEL', 'ASTRA', '2012', '1610', 1, 'Kabriolet', '6.1', "brakZdjecia.gif");
+INSERT INTO `cars` (`RegPlate`, `Maker`, `Model`, `ManufacturedYear`, `Engine`, `Type`, `BodyType`, `FuelConsumption`, `Image`) VALUES ('BL5863O', 'TOYOTA', 'RAV4', '2011', '2234', 6, 'Hatchback', '8.1', "brakZdjecia.gif");
 
-INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('95000000000', 'JAN', 'KOWALSKI', '1989-01-01', '1', '123456789', "KWIATOWA", "Warszawa", 'Person', "brakZdjecia.gif");
+INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('95011657897', 'JAN', 'KOWALSKI', '1995-01-16', '1', '123456789', "KWIATOWA", "Bia³ystok", "Osoba prywatna", "brakZdjecia.gif");
+INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('89061598239', 'MARCIN', 'KOZIKOWSKI', '1989-06-15', '1', '505808707', "KRASZEWSKIEGO", "£om¿a", "Osoba prywatna", "brakZdjecia.gif");
+INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('92020587578', 'MARCIN', 'JANUSZEWSKI', '1992-02-05', '1', '515414313', "RUMIANKOWA", "Warszawa", "Osoba prywatna", "brakZdjecia.gif");
+INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('85071598239', 'JUSTYNA', 'KOWALCZYK', '1985-07-15', '2', '500808107', "LIPOWA", "Bia³ystok", "Osoba prywatna", "brakZdjecia.gif");
+INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('82100587578', 'ANNA', 'MAJSZAK', '1982-10-05', '2', '511414013', "WYSZYÑSKIEGO", "Warszawa", "Osoba prywatna", "brakZdjecia.gif");
+INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('80081598239', 'ANDRZEJ', 'DUCHNOWSKI', '1980-08-15', '1', '588812107', "KACZOROWSKIEGO", "Bia³ystok", 'Firma', "brakZdjecia.gif");
+INSERT INTO `clients` (`Pesel`, `Name`, `Surname`, `Born`, `IsMale`, `PhoneNumber`, `Address`, `City`, `Type`, `Image`) VALUES ('88111187578', 'OLGA', 'NIEJADEK', '1988-11-11', '2', '518814123', "GÓRCZEWSKA", "Warszawa", 'Firma', "brakZdjecia.gif");
 
-INSERT INTO `rents` (`CarID`, `ClientID`, `RentStart`, `RentEnd`, `isReturned`) VALUES ('1', '1', '2016-05-22', '2016-05-27', '0');
+INSERT INTO `rents` (`CarID`, `ClientID`, `RentStart`, `RentEnd`, `isReturned`) VALUES ('1', '6', '2016-05-22', '2016-06-27', '0');
+INSERT INTO `rents` (`CarID`, `ClientID`, `RentStart`, `RentEnd`, `isReturned`) VALUES ('2', '5', '2016-05-31', '2016-06-02', '0');
+INSERT INTO `rents` (`CarID`, `ClientID`, `RentStart`, `RentEnd`, `isReturned`) VALUES ('3', '4', '2016-06-01', '2016-06-10', '0');
+INSERT INTO `rents` (`CarID`, `ClientID`, `RentStart`, `RentEnd`, `isReturned`) VALUES ('4', '3', '2016-06-01', '2016-06-02', '1');
+INSERT INTO `rents` (`CarID`, `ClientID`, `RentStart`, `RentEnd`, `isReturned`) VALUES ('5', '2', '2016-06-10', '2016-06-20', '0');
+INSERT INTO `rents` (`CarID`, `ClientID`, `RentStart`, `RentEnd`, `isReturned`) VALUES ('6', '1', '2016-06-22', '2016-06-27', '0');
 
 
 
@@ -85,6 +103,7 @@ INSERT INTO `car_brand` (`brand`) VALUES ('RENAULT');
 INSERT INTO `car_brand` (`brand`) VALUES ('OPEL');
 INSERT INTO `car_brand` (`brand`) VALUES ('FSO');
 INSERT INTO `car_brand` (`brand`) VALUES ('FIAT');
+INSERT INTO `car_brand` (`brand`) VALUES ('TOYOTA');
 
 
 INSERT INTO `car_bodytype` (`bodytype`) VALUES ('Hatchback');
