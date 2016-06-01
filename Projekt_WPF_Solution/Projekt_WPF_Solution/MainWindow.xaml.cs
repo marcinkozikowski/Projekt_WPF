@@ -52,7 +52,7 @@ namespace Projekt_WPF_Solution
             contactWindow.ShowDialog();
         }
 
-        #region AddButtons
+        #region Buttons
         private void AddNewCar_Click(object sender, RoutedEventArgs e)
         {
             Car newCar = new Car();
@@ -102,7 +102,7 @@ namespace Projekt_WPF_Solution
             }
         }
 
-        #endregion
+        
 
 
 
@@ -111,6 +111,14 @@ namespace Projekt_WPF_Solution
             SearchClientWindow searchClientWindow = new SearchClientWindow();
             searchClientWindow.ShowDialog();
         }
+
+        private void SearchCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchCarWindow searchCarWindow = new SearchCarWindow();
+            searchCarWindow.ShowDialog();
+        }
+
+        #endregion
 
         #region Group
         private void GroupNone(object sender, RoutedEventArgs e)
@@ -208,7 +216,6 @@ namespace Projekt_WPF_Solution
             clientsView.Filter = null;
         }
 
-        
 
         private void ClientFilterBox_TextChanged(object sender, TextChangedEventArgs e)
         {

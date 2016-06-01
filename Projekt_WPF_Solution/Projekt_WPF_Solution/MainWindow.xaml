@@ -79,7 +79,7 @@
 
                             <Button Margin="4"  Grid.Row="0" Name="AddNewCarButton" Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
                             <Button Margin="4"  Grid.Row="1" Name="DeleteCarButton" Content="Usuń samochód" VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=CarListBox}"/>
-                            <Button Margin="4"  Grid.Row="2" Name="SearchCarButton" Content="Wyszukaj samochód" VerticalAlignment="Center"/>
+                            <Button Margin="4"  Grid.Row="2" Name="SearchCarButton" Content="Wyszukaj samochód" VerticalAlignment="Center" Click="SearchCarButton_Click"/>
                         </Grid>
                         <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}" Orientation="Vertical">
                             <Button Margin="4"  Name="AddNewCarButton" Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
@@ -93,7 +93,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <ToolBar Grid.ColumnSpan="3">
+                    <ToolBar Grid.ColumnSpan="3" Background="LightGray">
                         <ComboBox SelectedIndex="0" Margin="3px">
                             <ComboBoxItem Selected="GroupNone">Brak grupowania</ComboBoxItem>
                             <ComboBoxItem Selected="CarGroupBrand">Grupuj wg marki</ComboBoxItem>
@@ -155,7 +155,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <ToolBar Grid.ColumnSpan="3">
+                    <ToolBar Grid.ColumnSpan="3" Background="LightGray">
                         <ComboBox SelectedIndex="0" Margin="3px">
                             <ComboBoxItem Selected="GroupNone">Brak grupowania</ComboBoxItem>
                             <ComboBoxItem Selected="ClientGroupAge">Grupuj wg wieku</ComboBoxItem>
