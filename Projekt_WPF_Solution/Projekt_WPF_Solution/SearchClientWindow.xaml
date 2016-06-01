@@ -7,7 +7,7 @@
         xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
         xmlns:commands="clr-namespace:Projekt_WPF_Solution.Commands"
         mc:Ignorable="d"
-        Title="Wyszukaj klienta" MinHeight="550" MinWidth="400">
+        Title="Wyszukaj klienta" MinHeight="550" MinWidth="750" Height="750" Width="750">
     
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
@@ -59,7 +59,8 @@
         </GroupBox>
 
 
-        <ListBox Name="ClientListBox" Grid.Row="1" ItemTemplate="{StaticResource ClientDataTemplate}"/>
+        <ListBox Name="ClientListBox" Grid.Row="1" ItemTemplate="{StaticResource ClientDataTemplate}"
+                 HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"/>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
         xmlns:commands="clr-namespace:Projekt_WPF_Solution.Commands"
         mc:Ignorable="d"
-        Title="SearchRentalWindow" MinHeight="450" MinWidth="700">
+        Title="SearchRentalWindow" MinHeight="550" MinWidth="750" Height="750" Width="750">
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </Window.Resources>
@@ -66,7 +66,8 @@
         </GroupBox>
 
 
-        <ListBox Name="RentListBox" Grid.Row="1" ItemTemplate="{StaticResource RentDataTemplate}"/>
+        <ListBox Name="RentListBox" Grid.Row="1" ItemTemplate="{StaticResource RentDataTemplate}"
+                 HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"/>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

@@ -9,8 +9,9 @@
     <converter:StackPanelHeightConverter x:Key="StackPanelHeightConverter"/>
     <!--DataTemplates-->
     <DataTemplate x:Key="CarDataTemplate">
-        <Border Margin="3px" BorderBrush="Black" CornerRadius="3">
+        <Border Margin="3px" BorderBrush="DarkGray" CornerRadius="3" BorderThickness="1">
             <Grid>
+                
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -27,17 +28,17 @@
                                       Command="commands:MyCommands.Edit"
                                       CommandTarget="{Binding ElementName=CarListBox}"/>
                 </Grid.InputBindings>
-                <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                <Image Margin="0,1,5,1" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
                            Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter} }"/>
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="Pojazd: "/>
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=MakerAndModel}" />
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="Rok modelowy: "/>
-                <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=ManufacturedYear}" />
+                <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Text="Pojazd: " Margin="2" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Text="{Binding Path=MakerAndModel}" Margin="2" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"  Text="Rok modelowy: " Margin="2"/>
+                <TextBlock Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Text="{Binding Path=ManufacturedYear}" Margin="2"/>
             </Grid>
         </Border>
     </DataTemplate>
     <DataTemplate x:Key="ClientDataTemplate">
-        <Border Margin="3px" BorderBrush="Black" CornerRadius="3">
+        <Border Margin="3px" BorderBrush="DarkGray" CornerRadius="3" BorderThickness="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -57,16 +58,16 @@
                 </Grid.InputBindings>
                 <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
                            Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter} }"/>
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="Dane: "/>
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="{Binding Path=NameSurname}" />
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="Pesel: "/>
-                <TextBlock Grid.Column="2" Grid.Row="1" Text="{Binding Path=Pesel}" />
+                <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Text="Dane: " VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Text="{Binding Path=NameSurname}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"  Text="Pesel: "/>
+                <TextBlock Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Text="{Binding Path=Pesel}" />
             </Grid>
         </Border>
     </DataTemplate>
     
     <DataTemplate x:Key="RentDataTemplate">
-        <Border Margin="3px" BorderBrush="Black" CornerRadius="3">
+        <Border Margin="3px" BorderBrush="DarkGray" CornerRadius="3" BorderThickness="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -89,12 +90,12 @@
                            Source="{Binding Path=RentedCar.Image, Converter={StaticResource ImagePathConverter} }"/>
                 <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="1" MaxHeight="128" MaxWidth="128"
                            Source="{Binding Path=RentingPerson.Image, Converter={StaticResource ImagePathConverter} }"/>
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="Klient: "/>
-                <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding Path=RentingPerson.NameSurname}" />
-                <TextBlock Grid.Column="2" Grid.Row="1" Text="Id wypożyczenia: "/>
-                <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Path=ID}" />
-                <TextBlock Grid.Column="2" Grid.Row="2" Text="Samochód: "/>
-                <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Path=RentedCar.MakerAndModel}" />
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="Klient: " VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding Path=RentingPerson.NameSurname}" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Grid.Row="1" Text="Id wypożyczenia: " VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Path=ID}" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="2" Grid.Row="2" Text="Samochód: " VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Path=RentedCar.MakerAndModel}" VerticalAlignment="Center"/>
             </Grid>
         </Border>
     </DataTemplate>
