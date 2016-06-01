@@ -21,9 +21,10 @@ namespace Projekt_WPF_Solution
     /// </summary>
     public partial class SearchClientWindow : Window
     {
-        private ListCollectionView clientsView { get { return (ListCollectionView)CollectionViewSource.GetDefaultView(SqlDataGetters.Clients); } }
+        private ListCollectionView clientsView;
         public SearchClientWindow()
         {
+            clientsView = new ListCollectionView(SqlDataGetters.Clients);
             InitializeComponent();
             ClientListBox.ItemsSource = clientsView;
             Loaded += delegate

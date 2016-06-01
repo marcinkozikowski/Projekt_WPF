@@ -64,4 +64,9 @@
             </Grid>
         </Border>
     </DataTemplate>
+    <DataTemplate x:Key="GroupTemplate">
+        <TextBlock Text="{Binding Path=Name}"
+                   FontWeight="Bold" Foreground="Black"
+                   Margin="0,5,0,0" Padding="3"/>
+    </DataTemplate>
 </ResourceDictionary>

@@ -88,12 +88,40 @@
                         </StackPanel>-->
                     </Expander>
                 </TabItem.Header>
-                <ListBox Name="CarListBox" Padding="3px" Margin="3px"
-                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
-                         ItemTemplate="{StaticResource CarDataTemplate}">
-                </ListBox>
-
-                <!--MouseDoubleClick="CarListBox_MouseDoubleClick"-->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.ColumnSpan="3">
+                        <ComboBox SelectedIndex="0" Margin="3px">
+                            <ComboBoxItem Selected="GroupNone">Brak grupowania</ComboBoxItem>
+                            <ComboBoxItem Selected="CarGroupBrand">Grupuj wg marki</ComboBoxItem>
+                            <ComboBoxItem Selected="CarGroupYear">Grupuj wg rocznika</ComboBoxItem>
+                            <ComboBoxItem Selected="CarGroupType">Grupuj wg rodzaju</ComboBoxItem>
+                        </ComboBox>
+                        <Separator/>
+                        <!--<ComboBox SelectedIndex="0" Margin="3px">
+                            <ComboBoxItem Selected="SortNone">Bez sortowania</ComboBoxItem>
+                            <ComboBoxItem Selected="SortSurname">Sortuj wg nazwisk</ComboBoxItem>
+                            <ComboBoxItem Selected="SortAccess">Sortuj wg poziomu dostępu</ComboBoxItem>
+                        </ComboBox>-->
+                        <Separator/>
+                        <Label Margin="3px">Filtr:</Label>
+                        <ComboBox SelectedIndex="0" Name="CarFilterComboBox" Margin="3px">
+                            <ComboBoxItem Selected="CarFilterNone">Bez filtrowania</ComboBoxItem>
+                            <ComboBoxItem Selected="CarFilterFuelConsumption">Filtruj po spalaniu</ComboBoxItem>
+                        </ComboBox>
+                        <TextBox Name="CarFilterBox" TextChanged="CarFilterBox_TextChanged"  MinWidth="35px" Margin="3px"/>
+                    </ToolBar>
+                    <ListBox Name="CarListBox" Padding="3px" Margin="3px" Grid.Row="1"
+                             HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                             ItemTemplate="{StaticResource CarDataTemplate}">
+                        <ListBox.GroupStyle>
+                            <GroupStyle HeaderTemplate="{StaticResource GroupTemplate}"/>
+                        </ListBox.GroupStyle>
+                    </ListBox>
+                </Grid>
             </TabItem>
             <!-- Zakładka Klienci -->
             <TabItem Name="ClientTab" Height="auto">
@@ -122,9 +150,40 @@
                         </StackPanel>-->
                     </Expander>
                 </TabItem.Header>
-                <ListBox Name="ClientListBox" Padding="3px" Margin="3px"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ToolBar Grid.ColumnSpan="3">
+                        <ComboBox SelectedIndex="0" Margin="3px">
+                            <ComboBoxItem Selected="GroupNone">Brak grupowania</ComboBoxItem>
+                            <ComboBoxItem Selected="ClientGroupAge">Grupuj wg wieku</ComboBoxItem>
+                            <ComboBoxItem Selected="ClientGroupCity">Grupuj wg miejscowości</ComboBoxItem>
+                        </ComboBox>
+                        <Separator/>
+                        <!--<ComboBox SelectedIndex="0" Margin="3px">
+                            <ComboBoxItem Selected="SortNone">Bez sortowania</ComboBoxItem>
+                            <ComboBoxItem Selected="SortSurname">Sortuj wg nazwisk</ComboBoxItem>
+                            <ComboBoxItem Selected="SortAccess">Sortuj wg poziomu dostępu</ComboBoxItem>
+                        </ComboBox>-->
+                        <Separator/>
+                        <Label Margin="3px">Filtr:</Label>
+                        <ComboBox SelectedIndex="0" Name="ClientFilterComboBox" Margin="3px">
+                            <ComboBoxItem Selected="ClientFilterNone">Bez filtrowania</ComboBoxItem>
+                            <ComboBoxItem Selected="ClientFilterPesel">Filtruj po peselu</ComboBoxItem>
+                        </ComboBox>
+                        <TextBox Name="ClientFilterBox" TextChanged="ClientFilterBox_TextChanged"  MinWidth="35px" Margin="3px"/>
+                    </ToolBar>
+                    <ListBox Name="ClientListBox" Padding="3px" Margin="3px" Grid.Row="1"
                          HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
-                         ItemTemplate="{StaticResource ClientDataTemplate}"/>
+                         ItemTemplate="{StaticResource ClientDataTemplate}">
+                    <ListBox.GroupStyle>
+                            <GroupStyle HeaderTemplate="{StaticResource GroupTemplate}"/>
+                        </ListBox.GroupStyle>
+                    </ListBox>
+                </Grid>
+               
             </TabItem>
             <!-- Zakładka Wypożyczenia -->
             <TabItem Name="RentTab" Height="auto">

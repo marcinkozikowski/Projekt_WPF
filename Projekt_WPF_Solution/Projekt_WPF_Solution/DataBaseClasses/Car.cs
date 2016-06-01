@@ -33,7 +33,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public int ManufacturedYear { get { return manufacturedYear; } set { manufacturedYear = value; } }
         public int Engine { get { return engine; } set { engine = value; } }
         //public int Type { get { return type; } set { type = value; } }
-        public DataBaseClasses.Type Type { get { return type; } set { Type = value; } }
+        public DataBaseClasses.Type Type { get { return type; } set { type = value; } }
         public string BodyType { get { return bodyType; } set { bodyType = value; } }
         public double FuelConsumption { get { return fuelConsumption; } set { fuelConsumption = value; } }
         public string Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }
