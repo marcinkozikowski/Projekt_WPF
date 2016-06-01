@@ -130,6 +130,10 @@ namespace Projekt_WPF_Solution.Commands
                 {
                     MessageBox.Show("Błąd usuwania!");
                 }
+                else
+                {
+                    SqlDataGetters.GetAll();
+                }
             }
         }
 
