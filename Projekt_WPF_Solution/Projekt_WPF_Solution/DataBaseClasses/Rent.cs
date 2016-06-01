@@ -113,7 +113,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 try
                 {
                     MySqlCommand cmd = db.CreateCommand();
-                    cmd.CommandText = "DELETE FROM cars WHERE ID = @ID";
+                    cmd.CommandText = "DELETE FROM rents WHERE ID = @ID";
                     cmd.Parameters.AddWithValue("@ID", this.ID);
                     cmd.ExecuteNonQuery();
                     return true;
