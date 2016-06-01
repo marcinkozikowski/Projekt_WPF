@@ -59,7 +59,7 @@ namespace Projekt_WPF_Solution
                     {
                         if (NameSurnameRadioButton.IsChecked == true)
                         {
-                            return client.NameSurname.Equals(SearchClientTextBox.Text);
+                            return client.NameSurname.ToLower().Equals(SearchClientTextBox.Text.ToLower());
                         }
                         else if (PeselRadioButton.IsChecked == true)
                         {
@@ -68,7 +68,7 @@ namespace Projekt_WPF_Solution
                         }
                         else if (CityRadioButton.IsChecked == true)
                         {
-                            return client.City.Equals(SearchClientTextBox.Text);
+                            return client.City.ToLower().Equals(SearchClientTextBox.Text.ToLower());
                         }
 
                     }

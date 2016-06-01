@@ -90,6 +90,7 @@ namespace Projekt_WPF_Solution.Commands
             }
         }
         #endregion
+
         #region Delete
         public static void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {

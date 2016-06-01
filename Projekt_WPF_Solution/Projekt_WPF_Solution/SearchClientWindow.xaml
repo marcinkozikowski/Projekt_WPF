@@ -68,7 +68,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Content="Wybierz"  Margin="3" HorizontalContentAlignment="Center"/>
-            <Button Grid.Column="1" Content="Usuń"     Margin="3" HorizontalContentAlignment="Center" Name="DeleteClientButton" Click="DeleteClientButton_Click"/>
+            <Button Grid.Column="1" Content="Usuń"     Margin="3" HorizontalContentAlignment="Center" Name="DeleteClientButton" Click="DeleteClientButton_Click" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=ClientListBox}"/>
             <Button Grid.Column="2" Content="Zamknij"     Margin="3" HorizontalContentAlignment="Center" Name="CloseSearchClientWButton" Click="CloseSearchClientWButton_Click"/>
         </Grid>
     </Grid>
