@@ -64,6 +64,40 @@
             </Grid>
         </Border>
     </DataTemplate>
+    
+    <DataTemplate x:Key="RentDataTemplate">
+        <Border Margin="3px" BorderBrush="Black" CornerRadius="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="photo"/>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="photo"/>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.InputBindings>
+                    <MouseBinding Gesture="LeftDoubleClick"
+                                      Command="commands:MyCommands.Edit"
+                                      CommandTarget="{Binding ElementName=RentListBox}"/>
+                </Grid.InputBindings>
+                <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=RentedCar.Image, Converter={StaticResource ImagePathConverter} }"/>
+                <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="1" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=RentingPerson.Image, Converter={StaticResource ImagePathConverter} }"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" Text="Klient: "/>
+                <TextBlock Grid.Column="3" Grid.Row="0" Text="{Binding Path=RentingPerson.NameSurname}" />
+                <TextBlock Grid.Column="2" Grid.Row="1" Text="Id wypożyczenia: "/>
+                <TextBlock Grid.Column="3" Grid.Row="1" Text="{Binding Path=ID}" />
+                <TextBlock Grid.Column="2" Grid.Row="2" Text="Samochód: "/>
+                <TextBlock Grid.Column="3" Grid.Row="2" Text="{Binding Path=RentedCar.MakerAndModel}" />
+            </Grid>
+        </Border>
+    </DataTemplate>
     <DataTemplate x:Key="GroupTemplate">
         <TextBlock Text="{Binding Path=Name}"
                    FontWeight="Bold" Foreground="Black"

@@ -5,11 +5,77 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
         mc:Ignorable="d"
-        Title="SearchRentalWindow" Height="300" Width="300">
+        Title="SearchRentalWindow" MinHeight="450" MinWidth="700">
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Parametry wyszukiwania" Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <GroupBox Header="Sposób wyszukiwania" Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <RadioButton Name="NoneRadioButton" Content="Brak" Grid.Row="0" Margin="2" VerticalAlignment="Center" />
+                        <RadioButton Name="NameSurnameButton" Content="Imię i Nazwisko" Grid.Row="1" Margin="2" VerticalAlignment="Center" />
+                        <RadioButton Name="IdRadioButton" Content="Id wypożyczenia" Grid.Row="2"  Margin="2" VerticalAlignment="Center"/>
+                        <RadioButton Name="RentalTimeRadioButton" Grid.Row="3"  Margin="2" VerticalAlignment="Center" VerticalContentAlignment="Center">
+                            <RadioButton.Content>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Okres od: " Margin="2"/>
+                                    <DatePicker Name="OdDatePicker" Margin="2" />
+                                    <Label Content="Do: " Margin="2"/>
+                                    <DatePicker Name="DoDatePIcker" Margin="2"/>
+                                </StackPanel>
+                            </RadioButton.Content>
+                        </RadioButton>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Dane" Grid.Column="1">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBox Name="SearchCarTextBox" Grid.Row="0" Margin="3"/>
+                        <Button Grid.Row="1" Margin="3" VerticalAlignment="Center" Name="SearchClientButton">
+                            <StackPanel MaxHeight="40" Orientation="Horizontal">
+                                <Image Source="Icons/search.png"/>
+                                <Label Content="Wyszukaj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+
+
+        <ListBox Name="CarsListBox" Grid.Row="1" ItemTemplate="{StaticResource ClientDataTemplate}"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Wybierz"  Margin="3" HorizontalContentAlignment="Center"/>
+            <Button Grid.Column="1" Content="Usuń"     Margin="3" HorizontalContentAlignment="Center" Name="DeleteRentButton"/>
+            <Button Grid.Column="2" Content="Zamknij"     Margin="3" HorizontalContentAlignment="Center" Name="CloseSearchRentButton"/>
+        </Grid>
     </Grid>
 </Window>

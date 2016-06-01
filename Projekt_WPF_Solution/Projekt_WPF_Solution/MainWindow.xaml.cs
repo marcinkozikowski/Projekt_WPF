@@ -102,9 +102,11 @@ namespace Projekt_WPF_Solution
             }
         }
 
-        
-
-
+        private void SearchRentalButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchRentalWindow searchRentalWindow = new SearchRentalWindow();
+            searchRentalWindow.ShowDialog();
+        }
 
         private void SearchClientButton_Click(object sender, RoutedEventArgs e)
         {
@@ -171,8 +173,6 @@ namespace Projekt_WPF_Solution
         #endregion
         #endregion
 
-
-
         #region Filter
         #region FilterCar
         private void CarFilterNone(object sender, RoutedEventArgs e)
@@ -215,6 +215,7 @@ namespace Projekt_WPF_Solution
         {
             clientsView.Filter = null;
         }
+
 
 
         private void ClientFilterBox_TextChanged(object sender, TextChangedEventArgs e)
