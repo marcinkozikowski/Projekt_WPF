@@ -14,33 +14,32 @@ namespace Projekt_WPF_Solution.Converters
     {
         public static BitmapImage GetImage(string commandText, int ID)
         {
-            //IDBaccess db = new IDBaccess();
-            //if(db.OpenConnection() == true)
-            //{
-            //    MySqlCommand cmd = db.CreateCommand();
-            //    cmd.CommandText = commandText;
-            //    cmd.Parameters.AddWithValue(@"ID", ID);
-            //    byte[] buffer = (byte[])cmd.ExecuteScalar();
+            IDBaccess db = new IDBaccess();
+            if (db.OpenConnection() == true)
+            {
+                MySqlCommand cmd = db.CreateCommand();
+                cmd.CommandText = commandText;
+                cmd.Parameters.AddWithValue(@"ID", ID);
+                byte[] buffer = (byte[])cmd.ExecuteScalar();
 
-            //    var image = new BitmapImage();
-            //    using (var mem = new MemoryStream(buffer))
-            //    {
-            //        mem.Position = 0;
-            //        image.BeginInit();
-            //        image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-            //        image.CacheOption = BitmapCacheOption.OnLoad;
-            //        image.UriSource = null;
-            //        image.StreamSource = mem;
-            //        image.EndInit();
-            //    }
-            //    image.Freeze();
-            //    return image;
-            //}
-            //else
-            //{
-            //    return GetNoPhoto();
-            //}
-            return GetNoPhoto();
+                var image = new BitmapImage();
+                using (var mem = new MemoryStream(buffer))
+                {
+                    mem.Position = 0;
+                    image.BeginInit();
+                    image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.UriSource = null;
+                    image.StreamSource = mem;
+                    image.EndInit();
+                }
+                image.Freeze();
+                return image;
+            }
+            else
+            {
+                return GetNoPhoto();
+            }
         }
 
         public static byte[] ImageToBytes(BitmapImage image)
