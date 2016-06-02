@@ -108,11 +108,13 @@
                         </ComboBox>-->
                         <Separator/>
                         <Label Margin="3px">Filtr:</Label>
-                        <ComboBox SelectedIndex="0" Name="CarFilterComboBox" Margin="3px">
-                            <ComboBoxItem Selected="CarFilterNone">Bez filtrowania</ComboBoxItem>
-                            <ComboBoxItem Selected="CarFilterFuelConsumption">Filtruj po spalaniu</ComboBoxItem>
+                        <ComboBox SelectedIndex="0" Name="CarFilterComboBox" Margin="3px" SelectionChanged="CarFilterComboBox_SelectionChanged">
+                            <ComboBoxItem>Bez filtrowania</ComboBoxItem>
+                            <ComboBoxItem>Filtruj po spalaniu</ComboBoxItem>
                         </ComboBox>
                         <TextBox Name="CarFilterBox" TextChanged="CarFilterBox_TextChanged"  MinWidth="35px" Margin="3px"/>
+                        <Separator/>
+                        <CheckBox Name="AvailableOnlyCheckBox" Content="Tylko dostępne" Checked="AvailableOnlyCheckBox_CheckChanged" Unchecked="AvailableOnlyCheckBox_CheckChanged"/>
                     </ToolBar>
                     <ListBox Name="CarListBox" Padding="3px" Margin="3px" Grid.Row="1"
                              HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"

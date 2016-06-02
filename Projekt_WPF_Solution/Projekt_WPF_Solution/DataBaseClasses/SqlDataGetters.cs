@@ -39,6 +39,21 @@ namespace Projekt_WPF_Solution
             GetBrands();
             GetBodyTypes();
         }
+        public static List<Car> GetAvailableCars(DateTime? start, DateTime? end)
+        {
+            List<Car> cars = new List<Car>(Cars);
+            if(start.HasValue && end.HasValue)
+            {
+                foreach (Rent rental in Rents)
+                {
+                    if ((start.Value.Date <= rental.RentEnd.Date && end.Value.Date >= rental.RentStart.Date)) //Jeżeli oba "zbiory" dat pokrywają się (w dany termin pojazd jest wypożyczony)
+                    {
+                        cars.Remove(rental.RentedCar);
+                    }                
+                }
+            }
+            return cars;
+        }
 
         private static void GetTypes()
         {

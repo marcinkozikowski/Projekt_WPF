@@ -30,6 +30,7 @@ namespace Projekt_WPF_Solution
 
         public MainWindow()
         {
+
             SqlDataGetters.GetAll();
             carsView = new ListCollectionView(SqlDataGetters.Cars);
             clientsView = new ListCollectionView(SqlDataGetters.Clients);
@@ -38,7 +39,7 @@ namespace Projekt_WPF_Solution
             InitializeComponent();
             CarListBox.ItemsSource = carsView;
             ClientListBox.ItemsSource = clientsView;
-            RentListBox.ItemsSource = rentsView;           
+            RentListBox.ItemsSource = rentsView;
 
             Loaded += delegate
             {
@@ -89,9 +90,9 @@ namespace Projekt_WPF_Solution
         {
             Rent newRent = new Rent();
             RentalWindow newRenatlWindow = new RentalWindow(newRent);
-            if(newRenatlWindow.ShowDialog() == true)
+            if (newRenatlWindow.ShowDialog() == true)
             {
-                if(!newRent.SqlInsert())
+                if (!newRent.SqlInsert())
                 {
                     MessageBox.Show("Błąd dodawania");
                 }
@@ -107,21 +108,18 @@ namespace Projekt_WPF_Solution
             SearchRentalWindow searchRentalWindow = new SearchRentalWindow();
             searchRentalWindow.ShowDialog();
         }
-
         private void SearchClientButton_Click(object sender, RoutedEventArgs e)
         {
             SearchClientWindow searchClientWindow = new SearchClientWindow();
             searchClientWindow.ShowDialog();
         }
-
         private void SearchCarButton_Click(object sender, RoutedEventArgs e)
         {
             SearchCarWindow searchCarWindow = new SearchCarWindow();
             searchCarWindow.ShowDialog();
         }
-
+   
         #endregion
-
         #region Group
         private void GroupNone(object sender, RoutedEventArgs e)
         {
@@ -149,7 +147,7 @@ namespace Projekt_WPF_Solution
         {
             carsView.GroupDescriptions.Clear();
             carsView.GroupDescriptions.Add(new PropertyGroupDescription("Type"));
-            
+
         }
         #endregion
         #region GroupClient
@@ -172,42 +170,73 @@ namespace Projekt_WPF_Solution
         }
         #endregion
         #endregion
-
         #region Filter
         #region FilterCar
-        private void CarFilterNone(object sender, RoutedEventArgs e)
+        private void CarFilters()
         {
-            carsView.Filter = null;
-        }
-        private void CarFilterBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int index = CarFilterComboBox.SelectedIndex;
-            CarFilterComboBox.SelectedIndex = 0;
-            CarFilterComboBox.SelectedIndex = index;
-        }
-        private void CarFilterFuelConsumption(object sender, RoutedEventArgs e)
-        {
-            carsView.Filter = null;
-            string[] fuelConsumption = CarFilterBox.Text.Split('-');
-            int lowerLimit, upperLimit;
-
-            if (fuelConsumption.Count() >= 1 && int.TryParse(fuelConsumption[0], out lowerLimit))
+            List<Car> availableCars = SqlDataGetters.GetAvailableCars(DateTime.Today.Date, DateTime.Today.Date);
+            if (CarFilterComboBox.SelectedIndex == 0)
             {
-                if (!(fuelConsumption.Count() > 1 && int.TryParse(fuelConsumption[1], out upperLimit)))
-                {
-                    upperLimit = lowerLimit;
-                }
                 carsView.Filter = delegate (object item)
                 {
                     Car car = item as Car;
                     if (car != null)
                     {
-                        return (car.FuelConsumption >= lowerLimit && car.FuelConsumption <= upperLimit);
+                        if (AvailableOnlyCheckBox != null && AvailableOnlyCheckBox.IsChecked == true)
+                        {
+                            return availableCars.Contains(car);
+                        }
+                        else
+                        {
+                            return true;
+                        }
                     }
                     return false;
+
                 };
             }
+            else if (CarFilterComboBox.SelectedIndex == 1)
+            {
+                string[] fuelConsumption = CarFilterBox.Text.Split('-');
+                int lowerLimit, upperLimit;
+                if (fuelConsumption.Count() >= 1 && int.TryParse(fuelConsumption[0], out lowerLimit))
+                {
+                    if (!(fuelConsumption.Count() > 1 && int.TryParse(fuelConsumption[1], out upperLimit)))
+                    {
+                        upperLimit = lowerLimit;
+                    }
+                    carsView.Filter = delegate (object item)
+                    {
+                        Car car = item as Car;
+                        if (car != null)
+                        {
+                            if (AvailableOnlyCheckBox != null && AvailableOnlyCheckBox.IsChecked == true)
+                            {
+                                return (car.FuelConsumption >= lowerLimit && car.FuelConsumption <= upperLimit) && availableCars.Contains(car);
+                            }
+                            else
+                            {
+                                return (car.FuelConsumption >= lowerLimit && car.FuelConsumption <= upperLimit);
+                            }
+                        }
+                        return false;
+                    };
+                }
+            }
         }
+        private void CarFilterBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CarFilters();
+        }
+        private void AvailableOnlyCheckBox_CheckChanged(object sender, RoutedEventArgs e)
+        {
+            CarFilters();
+        }
+        private void CarFilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CarFilters();
+        }
+
         #endregion
 
         #region FilterClient
@@ -216,7 +245,7 @@ namespace Projekt_WPF_Solution
             clientsView.Filter = null;
         }
 
-
+       
 
         private void ClientFilterBox_TextChanged(object sender, TextChangedEventArgs e)
         {

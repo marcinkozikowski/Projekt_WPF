@@ -33,10 +33,22 @@ namespace Projekt_WPF_Solution
                 MyCommands.BindCommands(this);
             };
         }
-
         private void SearchCarButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (SearchCarTextBox.Text.Equals(string.Empty))
+        {   
+            if(FreeRadioButton.IsChecked == true)
+            {
+                List<Car> availableCars = SqlDataGetters.GetAvailableCars(OdDatePicker.SelectedDate, DoDatePIcker.SelectedDate);
+                carsView.Filter = delegate (object item)
+                {
+                    Car car = item as Car;
+                    if (car != null)
+                    {
+                        return availableCars.Contains(car);
+                    }
+                    return false;
+                };
+            }
+            else if (SearchCarTextBox.Text.Equals(string.Empty))
             {
                 carsView.Filter = null;
             }
@@ -54,13 +66,7 @@ namespace Projekt_WPF_Solution
                         else if (MarkaRadioButton.IsChecked == true)
                         {
                             return car.Maker.ToLower().Equals(SearchCarTextBox.Text.ToLower());
-
                         }
-                        else if (FreeRadioButton.IsChecked == true)
-                        {
-                            //return car..Equals(SearchCarTextBox.Text.ToLower());
-                        }
-
                     }
                     return false;
                 };
