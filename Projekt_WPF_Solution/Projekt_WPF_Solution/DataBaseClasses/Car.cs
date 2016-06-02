@@ -22,8 +22,6 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private string bodyType { get; set; }           //Rodzaj nadwozia
         private double fuelConsumption { get; set; }     // Spalanie na 100/km
         private BitmapImage image { get; set; }
-        private bool rented { get; set; }              // Czy samochod jest aktualnie wypozyczony
-        private bool booked { get; set; }               // Czy dany samochod został zarezerwowany
         #endregion
         #region Properties
         public int ID { get { return id; } set { id = value; } }
@@ -36,8 +34,6 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string BodyType { get { return bodyType; } set { bodyType = value; } }
         public double FuelConsumption { get { return fuelConsumption; } set { fuelConsumption = value; } }
         public BitmapImage Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }
-        public bool Rented { get { return rented; } set { rented = value; } }
-        public bool Booked { get { return booked; } set { booked = value; } }
         public string MakerAndModel { get { return maker + " " + model; } }
         #endregion
         #region Constructors
