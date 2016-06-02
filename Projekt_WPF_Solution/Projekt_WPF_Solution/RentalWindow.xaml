@@ -32,8 +32,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
-                        <!-- Tutaj wywalilem Image bo wypierdala ciagle jakis blad -->
-                    </GroupBox>
+                    <Image Margin="0,1,5,1" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=Image,UpdateSourceTrigger=PropertyChanged}"/>
+                </GroupBox>
                     <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
                         <Grid Name="LeftAddClientGrid">
                             <Grid.RowDefinitions>
@@ -96,8 +97,8 @@
             </GroupBox>
             <!-- Informacje o miejscu odbioru i zwrotu pojazdu -->
             <GroupBox Header="Okres wypożyczenia" Grid.Row="1">
-                <Grid>
-                    <Grid.RowDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
@@ -125,8 +126,9 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
-                        <!-- Tutaj wywalilem Image bo wypierdala ciagle jakis blad -->
-                    </GroupBox>
+                    <Image Margin="0,1,5,1" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=Image,UpdateSourceTrigger=PropertyChanged}"/>
+                </GroupBox>
                     <GroupBox Header="Samochód" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
                         <Grid >
                             <Grid.RowDefinitions>

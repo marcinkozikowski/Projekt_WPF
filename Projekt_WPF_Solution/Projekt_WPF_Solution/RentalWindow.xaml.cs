@@ -26,6 +26,7 @@ namespace Projekt_WPF_Solution
             InitializeComponent();
             this.rent = rent;
             ClientGrid.DataContext = rent.RentingPerson;
+            CarGrid.DataContext = rent.RentedCar;
             MainRentalGrid.DataContext = rent;
         }
 
