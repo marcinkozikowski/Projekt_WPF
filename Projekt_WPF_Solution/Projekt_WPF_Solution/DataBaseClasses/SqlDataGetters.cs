@@ -19,6 +19,7 @@ namespace Projekt_WPF_Solution
         private static List<string> brands = new List<string>();
         private static List<string> bodyTypes = new List<string>();
         private static List<DataBaseClasses.Type> cartypes = new List<DataBaseClasses.Type>();
+        private static BottomPanelData bottomPanel = new BottomPanelData();
 
         #endregion
         #region Properties
@@ -28,17 +29,9 @@ namespace Projekt_WPF_Solution
         public static List<string> Brands { get { return brands; } set { brands = value; } }
         public static List<string> BodyTypes { get { return bodyTypes; } set { bodyTypes = value; } }
         public static List<DataBaseClasses.Type> CarTypes { get { return cartypes; } set { cartypes = value; } }
+        public static BottomPanelData BottomPanel { get { return bottomPanel; } set { bottomPanel = value; } }
         #endregion
 
-        public static void GetAll()
-        {
-            GetTypes();
-            GetCars();
-            GetClients();
-            GetRents();
-            GetBrands();
-            GetBodyTypes();
-        }
         public static List<Car> GetAvailableCars(DateTime? start, DateTime? end)
         {
             List<Car> cars = new List<Car>(Cars);
@@ -53,6 +46,16 @@ namespace Projekt_WPF_Solution
                 }
             }
             return cars;
+        }
+        public static void GetAll()
+        {
+            GetTypes();
+            GetCars();
+            GetClients();
+            GetRents();
+            GetBrands();
+            GetBodyTypes();
+            GetBottomPanelInfo();
         }
 
         private static void GetTypes()
@@ -166,6 +169,26 @@ namespace Projekt_WPF_Solution
                 }
                 db.CloseConnection();
             }
+        }
+        private static void GetBottomPanelInfo()
+        {
+            bottomPanel.Booked = bottomPanel.NotReturned = bottomPanel.Rented = 0;
+            foreach(Rent rent in Rents)
+            {
+                if(DateTime.Today.Date < rent.RentStart)
+                {
+                    bottomPanel.Booked++;
+                }
+                else if(!rent.IsReturned && DateTime.Today.Date > rent.RentEnd)
+                {
+                    bottomPanel.NotReturned++;
+                }
+                else if (DateTime.Today.Date <= rent.RentEnd.Date && DateTime.Today.Date >= rent.RentStart.Date)
+                {
+                    bottomPanel.Rented++;
+                }                    
+            }
+
         }
 
     }

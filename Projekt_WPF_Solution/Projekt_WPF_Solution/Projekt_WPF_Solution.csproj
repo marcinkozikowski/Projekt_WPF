@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\AgeRangeGrouper.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="DataBaseClasses\BottomPanelData.cs" />
     <Compile Include="RentalWindow.xaml.cs">
       <DependentUpon>RentalWindow.xaml</DependentUpon>
     </Compile>

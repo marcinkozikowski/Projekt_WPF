@@ -40,6 +40,7 @@ namespace Projekt_WPF_Solution
             CarListBox.ItemsSource = carsView;
             ClientListBox.ItemsSource = clientsView;
             RentListBox.ItemsSource = rentsView;
+            BottomAlertPanel.DataContext = SqlDataGetters.BottomPanel;
 
             Loaded += delegate
             {
