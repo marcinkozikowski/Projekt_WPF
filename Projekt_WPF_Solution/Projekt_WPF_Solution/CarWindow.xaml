@@ -24,7 +24,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
-            <Image Source="{Binding Path=Image, Converter={StaticResource ImagePathConverter}, UpdateSourceTrigger=PropertyChanged}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+            <Image Source="{Binding Path=Image, UpdateSourceTrigger=PropertyChanged}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         </GroupBox>
         <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
             <Grid Name="LeftAddCarGrid">

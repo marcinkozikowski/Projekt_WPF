@@ -57,11 +57,7 @@ namespace Projekt_WPF_Solution
             op.Title = "Wybierz zdjęcie:";
             if (op.ShowDialog() == true)
             {
-                string[] split = op.FileName.Split('.').ToArray();
-                string filename = client.Pesel + "." + split[split.Count() - 1]; ;
-                string dir = GetDirectory() + "\\" + filename;
-                File.Copy(op.FileName, dir, true);
-                client.Image = "Clients\\" + filename;
+                client.Image = new BitmapImage(new Uri(op.FileName));
             }
 
         }

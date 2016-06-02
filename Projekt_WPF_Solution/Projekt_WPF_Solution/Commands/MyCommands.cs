@@ -88,6 +88,7 @@ namespace Projekt_WPF_Solution.Commands
                     (selectedItem as Rent).PropertyUpdate(rent);
                 }
             }
+            SqlDataGetters.GetAll();
         }
         #endregion
 

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Windows.Media.Imaging;
 
 namespace Projekt_WPF_Solution.DataBaseClasses
 {
@@ -17,11 +18,10 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private string model { get; set; }               // Model
         private int manufacturedYear { get; set; }       // Data produkcji auta
         private int engine { get; set; }            // Pojemność silnika
-        //private int type { get; set; }               // Klasa/Rodzaj auta terenowe, miejskie, premium
         private DataBaseClasses.Type type { get; set; } // Klasa/Rodzaj auta terenowe, miejskie, premium
         private string bodyType { get; set; }           //Rodzaj nadwozia
         private double fuelConsumption { get; set; }     // Spalanie na 100/km
-        private string image { get; set; }              // Zdjecie samochodu
+        private BitmapImage image { get; set; }
         private bool rented { get; set; }              // Czy samochod jest aktualnie wypozyczony
         private bool booked { get; set; }               // Czy dany samochod został zarezerwowany
         #endregion
@@ -32,11 +32,10 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string Model { get { return model; } set { model = value; } }
         public int ManufacturedYear { get { return manufacturedYear; } set { manufacturedYear = value; } }
         public int Engine { get { return engine; } set { engine = value; } }
-        //public int Type { get { return type; } set { type = value; } }
         public DataBaseClasses.Type Type { get { return type; } set { type = value; } }
         public string BodyType { get { return bodyType; } set { bodyType = value; } }
         public double FuelConsumption { get { return fuelConsumption; } set { fuelConsumption = value; } }
-        public string Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }
+        public BitmapImage Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }
         public bool Rented { get { return rented; } set { rented = value; } }
         public bool Booked { get { return booked; } set { booked = value; } }
         public string MakerAndModel { get { return maker + " " + model; } }
@@ -48,9 +47,9 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.Maker = string.Empty;
             this.Model = string.Empty;
             this.BodyType = string.Empty;
-            this.Image = "brakZdjecia.gif";
+            this.Image = Converters.ImageConverter.GetNoPhoto();
         }
-        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, DataBaseClasses.Type type, string bodyType, double fuelConsumption, string image)
+        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, DataBaseClasses.Type type, string bodyType, double fuelConsumption, BitmapImage image)
         {
             this.id = id;
             this.regPlate = regPlate;
@@ -95,7 +94,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@Type", this.Type.Id);
                     cmd.Parameters.AddWithValue("@BodyType", this.BodyType);
                     cmd.Parameters.AddWithValue("@FuelConsumption", this.FuelConsumption);
-                    cmd.Parameters.AddWithValue("@Image", this.Image);
+                    cmd.Parameters.AddWithValue("@Image", Converters.ImageConverter.ImageToBytes(this.Image));
                     cmd.ExecuteNonQuery();
                     return true;
                 }
@@ -126,7 +125,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@Type", this.Type.Id);
                     cmd.Parameters.AddWithValue("@BodyType", this.BodyType);
                     cmd.Parameters.AddWithValue("@FuelConsumption", this.FuelConsumption);
-                    cmd.Parameters.AddWithValue("@Image", this.Image);
+                    cmd.Parameters.AddWithValue("@Image", Converters.ImageConverter.ImageToBytes(this.Image));
                     cmd.Parameters.AddWithValue("@ID", this.ID);
                     cmd.ExecuteNonQuery();
                     return true;

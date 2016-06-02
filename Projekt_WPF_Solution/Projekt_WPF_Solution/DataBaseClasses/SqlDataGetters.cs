@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Projekt_WPF_Solution.DataBaseClasses;
+using System.Windows.Media.Imaging;
 
 namespace Projekt_WPF_Solution
 {
@@ -63,12 +64,14 @@ namespace Projekt_WPF_Solution
             if (db.OpenConnection() == true)
             {
                 MySqlCommand cmd = db.CreateCommand();
-                cmd.CommandText = "SELECT ID, RegPlate, Maker, Model, ManufacturedYear, Engine, Type, BodyType, FuelConsumption, Image FROM cars";
+                cmd.CommandText = "SELECT ID, RegPlate, Maker, Model, ManufacturedYear, Engine, Type, BodyType, FuelConsumption FROM cars";
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    int id = reader.GetInt32(0);
                     DataBaseClasses.Type type = SqlDataGetters.CarTypes.Single(i => i.Id == reader.GetInt32(6));
-                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), type, reader.GetString(7), reader.GetDouble(8), reader.GetString(9));
+                    BitmapImage image = Converters.ImageConverter.GetImage("SELECT Image FROM cars WHERE ID = @ID", id);
+                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), type, reader.GetString(7), reader.GetDouble(8), image);
                     Cars.Add(newCar);
                 }
                 db.CloseConnection();
@@ -85,7 +88,9 @@ namespace Projekt_WPF_Solution
                 MySqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    Client newClient = new Client(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4), reader.GetBoolean(5), reader.GetInt32(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), reader.GetString(10));
+                    int id = reader.GetInt32(0);
+                    BitmapImage image = Converters.ImageConverter.GetImage("Select Image FROM clients Where ID = @ID", id);
+                    Client newClient = new Client(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetDateTime(4), reader.GetBoolean(5), reader.GetInt32(6), reader.GetString(7), reader.GetString(8), reader.GetString(9), image);
                     Clients.Add(newClient);
                 }
                 db.CloseConnection();

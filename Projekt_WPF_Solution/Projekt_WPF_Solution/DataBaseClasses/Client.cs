@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Windows.Media.Imaging;
 
 namespace Projekt_WPF_Solution.DataBaseClasses
 {
@@ -21,7 +22,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private string address;
         private string city;
         private string type;
-        private string image;
+        private BitmapImage image;
         #endregion
 
         #region Properties
@@ -35,12 +36,12 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string Address { get { return address; } set { address = value; } }              //Adres
         public string City { get { return city; } set { city = value; } }                       //Miasto
         public string Type { get { return type; } set { type = value; } }                       //Typ klienta
-        public string Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }                    //Ścieżka do pliku jpg
+        public BitmapImage Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }                    //zDjęcie
         public string NameSurname {  get { return name + " " + surname; } }                     //Imię i nazwisko
         #endregion
         #region Constructors
         //Pesel, Name, Surname, Born, IsMale, PhoneNumber, Address, City, Type, Image
-        public Client(int id, string pesel, string name, string surname, DateTime born, bool isMale, int phoneNumber, string address, string city, string type, string image)
+        public Client(int id, string pesel, string name, string surname, DateTime born, bool isMale, int phoneNumber, string address, string city, string type, BitmapImage image)
         {
             this.id = id;
             this.pesel = pesel;
@@ -63,7 +64,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.Address = string.Empty;
             this.City = string.Empty;
             this.Type = string.Empty;
-            this.Image = "brakZdjecia.gif";
+            this.Image = Converters.ImageConverter.GetNoPhoto();
         }
 
         public Client(Client c)
@@ -100,7 +101,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@Address", this.Address);
                     cmd.Parameters.AddWithValue("@City", this.City);
                     cmd.Parameters.AddWithValue("@Type", this.Type);
-                    cmd.Parameters.AddWithValue("@Image", this.Image);
+                    cmd.Parameters.AddWithValue("@Image", Converters.ImageConverter.ImageToBytes(this.Image));
                     cmd.ExecuteNonQuery();
                     return true;
                 }
@@ -132,7 +133,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@Address", this.Address);
                     cmd.Parameters.AddWithValue("@City", this.City);
                     cmd.Parameters.AddWithValue("@Type", this.Type);
-                    cmd.Parameters.AddWithValue("@Image", this.Image);
+                    cmd.Parameters.AddWithValue("@Image", Converters.ImageConverter.ImageToBytes(this.Image));
                     cmd.Parameters.AddWithValue("@ID", this.ID);
                     cmd.ExecuteNonQuery();
                     return true;

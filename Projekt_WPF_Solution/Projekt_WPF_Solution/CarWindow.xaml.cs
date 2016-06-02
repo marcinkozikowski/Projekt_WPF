@@ -59,29 +59,10 @@ namespace Projekt_WPF_Solution
             OpenFileDialog op = new OpenFileDialog();
             op.Filter = "Image File(*.jpg; *.bmp; *.gif)| *.jpg; *.bmp; *.gif";
             op.Title = "Wybierz zdjęcie:";
-            if(op.ShowDialog() == true)
+            if (op.ShowDialog() == true)
             {
-                string[] split = op.FileName.Split('.').ToArray();
-                string filename = car.RegPlate + "." + split[split.Count() - 1]; ;
-                string dir = GetDirectory() + "\\" + filename;
-                File.Copy(op.FileName, dir, true);
-                car.Image = "Cars\\" + filename;
-            }            
-        }
-
-        private string GetDirectory()
-        {
-            string dir = null, imgdir;
-            do
-            {
-                if (dir == null)
-                    dir = Directory.GetCurrentDirectory();
-                else
-                    dir = Directory.GetParent(dir).ToString();
-                imgdir = System.IO.Path.Combine(dir, "Images");
-                imgdir = System.IO.Path.Combine(imgdir, "Cars");
-            } while (!Directory.Exists(imgdir));
-            return imgdir;
+                car.Image = new BitmapImage(new Uri(op.FileName));
+            }
         }
     }
 }
