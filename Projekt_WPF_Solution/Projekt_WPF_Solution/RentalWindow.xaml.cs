@@ -33,12 +33,26 @@ namespace Projekt_WPF_Solution
         private void SearchClientButton_Click(object sender, RoutedEventArgs e)
         {
             SearchClientWindow searchClientWindow = new SearchClientWindow();
-            searchClientWindow.ShowDialog();
+            if(searchClientWindow.ShowDialog() == true)
+            {
+                this.rent.RentingPerson = searchClientWindow.SearchedClient;
+                ClientGrid.DataContext = rent.RentingPerson;
+            }
         }
 
         private void CancelRenatlButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void SearchCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchCarWindow searchCarWindow = new SearchCarWindow();
+            if(searchCarWindow.ShowDialog() == true)
+            {
+                this.rent.RentedCar = searchCarWindow.SearchedCar;
+                CarGrid.DataContext = rent.RentedCar;
+            }
         }
     }
 }

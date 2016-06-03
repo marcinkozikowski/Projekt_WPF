@@ -75,7 +75,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Wybierz"  Margin="3" HorizontalContentAlignment="Center"/>
+            <Button Grid.Column="0" Content="Wybierz"  Margin="3" HorizontalContentAlignment="Center" Name="ChooseCarButton" Click="ChooseCarButton_Click"/>
             <Button Grid.Column="1" Content="Usuń"     Margin="3" HorizontalContentAlignment="Center" Name="DeleteCartButton" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=CarsListBox}"/>
             <Button Grid.Column="2" Content="Zamknij"     Margin="3" HorizontalContentAlignment="Center" Name="CloseSearchCarButton" Click="CloseSearchCarButton_Click"/>
         </Grid>

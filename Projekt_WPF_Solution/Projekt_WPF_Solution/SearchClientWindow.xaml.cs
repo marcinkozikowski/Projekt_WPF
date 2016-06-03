@@ -22,6 +22,8 @@ namespace Projekt_WPF_Solution
     public partial class SearchClientWindow : Window
     {
         private ListCollectionView clientsView;
+
+        public Client SearchedClient { get { return ClientListBox.SelectedItem as Client; } }
         public SearchClientWindow()
         {
             clientsView = new ListCollectionView(SqlDataGetters.Clients);
@@ -40,7 +42,7 @@ namespace Projekt_WPF_Solution
 
         private void CloseSearchClientWButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            DialogResult = false;
         }
 
         #region Filter
@@ -89,6 +91,9 @@ namespace Projekt_WPF_Solution
             client.ShowDialog();
         }
 
-        
+        private void ChooseClientButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+        }
     }
 }

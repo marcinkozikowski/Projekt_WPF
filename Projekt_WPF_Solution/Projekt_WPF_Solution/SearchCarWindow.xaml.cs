@@ -23,6 +23,7 @@ namespace Projekt_WPF_Solution
     {
         private ListCollectionView carsView;
 
+        public Car SearchedCar { get { return CarsListBox.SelectedItem as Car; ; } }
         public SearchCarWindow()
         {
             carsView = new ListCollectionView(SqlDataGetters.Cars);
@@ -81,7 +82,11 @@ namespace Projekt_WPF_Solution
         private void CloseSearchCarButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
-            this.Close();
+        }
+
+        private void ChooseCarButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
     }
 }
