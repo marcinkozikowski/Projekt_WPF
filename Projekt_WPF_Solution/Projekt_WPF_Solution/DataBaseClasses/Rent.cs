@@ -27,7 +27,9 @@ namespace Projekt_WPF_Solution.DataBaseClasses
 
         public Rent()
         {
-
+            RentStart = RentEnd = DateTime.Today.Date;
+            RentedCar = new Car();
+            RentingPerson = new Client();
         } 
         public Rent(int id, DateTime start, DateTime end, Car car, Client client, bool isReturned)
         {
