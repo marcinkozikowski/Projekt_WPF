@@ -22,7 +22,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         #region Constructors
         public Type()
         {
-            this.cartype = string.Empty;
+            this.cartype = "Brak";
         }
 
         public Type(int idu,string typeu,double priceu)

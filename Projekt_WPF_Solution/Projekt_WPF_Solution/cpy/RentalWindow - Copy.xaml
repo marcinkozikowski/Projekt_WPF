@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
         xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
-        xmlns:control="clr-namespace:Projekt_WPF_Solution.Control"
         mc:Ignorable="d"
         Title="Nowe wypożyczenie" MinHeight="700" MinWidth="750">
     <Window.Resources>
@@ -17,26 +16,26 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="0.5*"/>
+
         </Grid.RowDefinitions>
+
         <GroupBox Header="Informacje o kliencie" Margin="3" Grid.Row="0">
-            <Grid Name="ClientGrid" ShowGridLines="false" DataContext="{Binding ElementName=ClientAutoCompleteTextBox, Path=ClientComboBox.SelectedItem}">
+            <Grid Name="ClientGrid" ShowGridLines="false">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0">Wyszukaj klienta:</Label>
-                <control:AutoCompleteTextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"  x:Name="ClientAutoCompleteTextBox" DelayTime="500"  Threshold="2"/>
-                <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="1" Margin="3">
+                <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
                     <Image Margin="0,1,5,1" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
                            Source="{Binding Path=Image,UpdateSourceTrigger=PropertyChanged}"/>
                 </GroupBox>
-                <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="1" Margin="3" Grid.ColumnSpan="2">
+                <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
                     <Grid Name="LeftAddClientGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -47,16 +46,16 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Content="Nazwisko" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                        <TextBox Name="NazwiskoTextBox" Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Surname}"/>
-                        <Label Content="Imię" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                        <TextBox Name="ImieTextBox"  Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="Imię" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                        <TextBox Name="ImieTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name}"/>
+                        <Label Content="Nazwisko" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                        <TextBox Name="NazwiskoTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Surname}"/>
                         <Label Content="Data urodzenia" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                         <DatePicker Name="DataUrodzeniaDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedDate="{Binding Path=Born}"/>
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Header="Informacje szczegółowe" Grid.Column="0" Grid.Row="2" Margin="3" Grid.ColumnSpan="3">
+                <GroupBox Header="Informacje szczegółowe" Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="3">
                     <Grid Name="BottomAddClientGrid">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -88,12 +87,12 @@
                         <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
                     </Grid>
                 </GroupBox>
-                <!--<Button Name="SearchClientButton" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Margin="1" MinHeight="35" Click="SearchClientButton_Click">
+                <Button Name="SearchClientButton" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="1" MinHeight="35" Click="SearchClientButton_Click">
                     <StackPanel Orientation="Horizontal" MaxHeight="40">
                         <Image Source="Icons\search.png"/>
                         <Label Content="Wyszukaj klienta" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                     </StackPanel>
-                </Button>-->
+                </Button>
             </Grid>
         </GroupBox>
         <!-- Informacje o miejscu odbioru i zwrotu pojazdu -->
@@ -109,15 +108,15 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Label Name="OdLabel" Grid.Column="0" Content="Od: " Margin="3"/>
-                <DatePicker Name="OdDataPicker" Grid.Column="1" Margin="3" SelectedDate="{Binding Path=RentStart}" SelectedDateChanged="DataPicker_SelectedDateChanged"/>
+                <DatePicker Name="OdDataPicker" Grid.Column="1" Margin="3" SelectedDate="{Binding Path=RentStart}"/>
                 <Label Name="DoLabel" Grid.Column="2" Content="Do: " Margin="3"/>
-                <DatePicker Name="DoDataPicker" Grid.Column="3" Margin="3" SelectedDate="{Binding Path=RentEnd}" SelectedDateChanged="DataPicker_SelectedDateChanged"/>
+                <DatePicker Name="DoDataPicker" Grid.Column="3" Margin="3" SelectedDate="{Binding Path=RentEnd}"/>
             </Grid>
         </GroupBox>
 
         <!-- Wybor samochodu -->
         <GroupBox Header="Wybór samochodu" Grid.Row="2" Margin="3">
-            <Grid  ShowGridLines="false">
+            <Grid  ShowGridLines="false" Name="CarGrid">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
@@ -126,39 +125,29 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <GroupBox Header="Filtrowanie" Grid.Column="0" Grid.Row="0" Margin="3" Padding="5">
-                    <Grid>
+                <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
+                    <Image Margin="0,1,5,1" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=Image,UpdateSourceTrigger=PropertyChanged}"/>
+                </GroupBox>
+                <GroupBox Header="Samochód" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
+                    <Grid >
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
-                            <RowDefinition Height="auto"/>
+                            <RowDefinition/>
+                            <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0">Typ auta:</Label>
-                        <Label Grid.Row="1">Typ nadwozia:</Label>
-                        <Label Grid.Row="2">Spalanie:</Label>
-                        <ComboBox Grid.Row="0" Grid.Column="1" Name="CarTypeComboBox" VerticalContentAlignment="Center" SelectionChanged="CarTypeComboBox_SelectionChanged" SelectedIndex="0">
-                        </ComboBox>
-                        <!--SelectedItem="{Binding Path=Type}"-->
-                        <ComboBox Grid.Row="1" Grid.Column="1" Name="CarBodyTypeComboBox" VerticalContentAlignment="Center" SelectionChanged="CarBodyTypeComboBox_SelectionChanged" SelectedIndex="0">
-                        </ComboBox>
-                        <!--SelectedItem="{Binding Path=BodyType}"-->
-                        <TextBox Grid.Row="2" Grid.Column="1" Name="CarFuelConsumptionTextBox" VerticalContentAlignment="Center" TextChanged="FuelConsumptionTextBox_TextChanged"
-                                 />
-                        <!--Text="{Binding Path=FuelConsumption}"-->
-                    </Grid>
-                </GroupBox>
-
-
-                <GroupBox Header="Lista pojazdów" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
-                    <Grid >
-                        <ListBox Name="CarsListBox"  ItemTemplate="{StaticResource CarDataTemplate}"
-                                 HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
-                                 SelectedItem="{Binding Path=RentedCar, Mode=TwoWay}"
-                                 SelectionChanged="CarsListBox_SelectionChanged"/>
+                        <Label Content="Numer rejestracyjny: " Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                        <TextBox Name="NrRejTextBox"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=RegPlate, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Grid.Row="1" Grid.Column="2" Margin="1" HorizontalAlignment="Right" Name="SearchCarButton" Click="SearchCarButton_Click">
+                            <StackPanel Orientation="Horizontal" MaxHeight="40">
+                                <Image Source="Icons\search.png"/>
+                                <Label Content="Wyszukaj samochód" Margin="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
                     </Grid>
                 </GroupBox>
             </Grid>
@@ -166,7 +155,7 @@
 
         <!--Przyciski dodaj i anuluj -->
         <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="3" HorizontalAlignment="Right" >
-            <Button Name="AddRentalButton" Margin="0,1,5,1" HorizontalAlignment="Right" Click="AddRentalButton_Click">
+            <Button Name="AddRentalButton" Margin="0,1,5,1" HorizontalAlignment="Right" >
                 <StackPanel Orientation="Horizontal">
                     <Image Source="Icons/CheckSign.png"/>
                     <Label Content="OK" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>

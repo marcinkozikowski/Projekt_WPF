@@ -61,6 +61,7 @@ namespace Projekt_WPF_Solution
         private static void GetTypes()
         {
             cartypes.Clear();
+            cartypes.Add(new DataBaseClasses.Type());
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {
@@ -157,6 +158,7 @@ namespace Projekt_WPF_Solution
         private static void GetBodyTypes()
         {
             BodyTypes.Clear();
+            BodyTypes.Add("Brak");
             IDBaccess db = new IDBaccess();
             if (db.OpenConnection() == true)
             {

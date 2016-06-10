@@ -218,5 +218,9 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.type = c.type;
             this.image = c.image;
         }
+        public override string ToString()
+        {
+            return name + " " + surname + "; PESEL: " + pesel;
+        }
     }
 }
