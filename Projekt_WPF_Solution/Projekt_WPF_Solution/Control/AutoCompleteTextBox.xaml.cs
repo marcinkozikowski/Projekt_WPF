@@ -57,10 +57,9 @@ namespace Projekt_WPF_Solution.Control
         public AutoCompleteTextBox()
         {
             InitializeComponent();
-            clients = SqlDataGetters.Clients;
-            clients.Add(new Client());
+            clients = new ObservableCollection<Client>(SqlDataGetters.Clients);
+            clients.Insert(0, new Client());
             ComboBox.ItemsSource = clients;
-            ComboBox.SelectedIndex = -1;
 
             searchTreshold = 2;
             keypressTimer = new System.Timers.Timer();
@@ -83,9 +82,11 @@ namespace Projekt_WPF_Solution.Control
             else
             {
                 insertText = true;
-                TextBox.Text = string.Empty;
+                if(string.IsNullOrEmpty(TextBox.Text))
+                {
+                    ComboBox.SelectedIndex = clients.Count - 1;
+                }
             }
-
         }
         private void TextChanged()
         {
@@ -103,12 +104,15 @@ namespace Projekt_WPF_Solution.Control
                         }
                     }
                     ComboBox.IsDropDownOpen = true;
+
                 }
                 else
                 {
+                    ComboBox.Items.Add(new Client());
                     ComboBox.IsDropDownOpen = false;
+                    ComboBox.SelectedIndex = ComboBox.Items.Count - 1;
+
                 }
-                ComboBox.Items.Add(new Client());
             }
             catch
             {

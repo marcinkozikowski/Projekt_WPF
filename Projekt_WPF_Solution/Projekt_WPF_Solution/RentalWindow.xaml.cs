@@ -38,7 +38,7 @@ namespace Projekt_WPF_Solution
             }
             else
             {
-                ClientAutoCompleteTextBox.ComboBox.SelectedIndex = -1;
+                this.rent.RentingPerson = ClientAutoCompleteTextBox.ComboBox.SelectedItem as Client;
             }
             //load car
             CarTypeComboBox.ItemsSource = SqlDataGetters.CarTypes;
@@ -131,6 +131,8 @@ namespace Projekt_WPF_Solution
             else
             {
                 rent.RentingPerson.SqlInsert();
+                rent.RentingPerson.ID = SqlDataGetters.GetUserIdByPesel(rent.RentingPerson.Pesel);
+
             }
             if (SqlDataGetters.Rents.Contains(rent))
             {

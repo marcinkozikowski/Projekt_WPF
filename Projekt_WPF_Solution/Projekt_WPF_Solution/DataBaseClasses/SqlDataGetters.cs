@@ -194,5 +194,24 @@ namespace Projekt_WPF_Solution
 
         }
 
+        public static int GetUserIdByPesel(string pesel)
+        {
+            int Id = clients.Max(m => m.ID)+1;
+            IDBaccess db = new IDBaccess();
+            if (db.OpenConnection() == true)
+            {
+                MySqlCommand cmd = db.CreateCommand();
+                cmd.CommandText = "SELECT ID from clients WHERE Pesel = @Pesel";
+                cmd.Parameters.AddWithValue("@Pesel", pesel);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    Id = reader.GetInt32(0);
+                }
+                db.CloseConnection();
+            }
+            return Id;
+        }
+
     }
 }
