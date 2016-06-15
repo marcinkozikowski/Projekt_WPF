@@ -61,7 +61,11 @@ namespace Projekt_WPF_Solution
             op.Title = "Wybierz zdjęcie:";
             if (op.ShowDialog() == true)
             {
-                car.Image = new BitmapImage(new Uri(op.FileName));
+                /*if(op.FileNames.Count() == 2)
+                {
+
+                }*/
+                //car.Image2 = new BitmapImage(new Uri(op.FileName));
             }
         }
     }

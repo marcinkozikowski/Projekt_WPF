@@ -64,6 +64,9 @@
     <Compile Include="Control\AutoCompleteTextBox.xaml.cs">
       <DependentUpon>AutoCompleteTextBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Control\ImageSlideShow.xaml.cs">
+      <DependentUpon>ImageSlideShow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\AgeRangeGrouper.cs" />
     <Compile Include="Converters\ImageConverter.cs" />
     <Compile Include="DataBaseClasses\BottomPanelData.cs" />
@@ -94,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Control\AutoCompleteTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ImageSlideShow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

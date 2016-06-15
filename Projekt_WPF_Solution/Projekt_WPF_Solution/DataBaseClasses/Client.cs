@@ -220,7 +220,21 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         }
         public override string ToString()
         {
-            return name + " " + surname + "; PESEL: " + pesel;
+            string toString = string.Empty;
+            if(!string.IsNullOrEmpty(name))
+            {
+                toString += name;
+            }
+            if(!string.IsNullOrEmpty(surname))
+            {
+                toString += " " + surname;
+            }
+            if(!string.IsNullOrEmpty(pesel))
+            {
+                toString += "; " + pesel;
+            }
+            return toString;
+            //return name + " " + surname + "; PESEL: " + pesel;
         }
     }
 }

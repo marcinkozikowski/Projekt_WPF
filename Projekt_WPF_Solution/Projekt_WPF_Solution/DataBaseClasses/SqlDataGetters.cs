@@ -89,8 +89,9 @@ namespace Projekt_WPF_Solution
                 {
                     int id = reader.GetInt32(0);
                     DataBaseClasses.Type type = SqlDataGetters.CarTypes.Single(i => i.Id == reader.GetInt32(6));
-                    BitmapImage image = Converters.ImageConverter.GetImage("SELECT Image FROM cars WHERE ID = @ID", id);
-                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), type, reader.GetString(7), reader.GetDouble(8), image);
+                    BitmapImage image1 = Converters.ImageConverter.GetImage("SELECT Image1 FROM cars WHERE ID = @ID", id);
+                    BitmapImage image2 = Converters.ImageConverter.GetImage("SELECT Image2 FROM cars WHERE ID = @ID", id);
+                    Car newCar = new Car(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3), reader.GetInt32(4), reader.GetInt32(5), type, reader.GetString(7), reader.GetDouble(8), image1, image2);
                     Cars.Add(newCar);
                 }
                 db.CloseConnection();

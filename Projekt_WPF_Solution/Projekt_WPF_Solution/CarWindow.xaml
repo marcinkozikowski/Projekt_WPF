@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt_WPF_Solution"
         xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
+        xmlns:control="clr-namespace:Projekt_WPF_Solution.Control"
         mc:Ignorable="d"
         FontSize="16"
         Icon="Icons\car.png"
@@ -24,7 +25,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
-            <Image Source="{Binding Path=Image, UpdateSourceTrigger=PropertyChanged}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+            <!--<Image Source="{Binding Path=Image, UpdateSourceTrigger=PropertyChanged}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>-->
+            <control:ImageSlideShow DataContext="{Binding Path=.}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
         </GroupBox>
         <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
             <Grid Name="LeftAddCarGrid">

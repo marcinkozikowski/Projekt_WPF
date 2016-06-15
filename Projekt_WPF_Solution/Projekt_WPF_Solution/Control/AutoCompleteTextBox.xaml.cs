@@ -58,6 +58,7 @@ namespace Projekt_WPF_Solution.Control
         {
             InitializeComponent();
             clients = SqlDataGetters.Clients;
+            clients.Add(new Client());
             ComboBox.ItemsSource = clients;
             ComboBox.SelectedIndex = -1;
 
@@ -79,6 +80,11 @@ namespace Projekt_WPF_Solution.Control
                 TextBox.Text = ComboBox.SelectedItem.ToString();
                 this.ChangedSelection?.Invoke(this, e);
             }
+            else
+            {
+                insertText = true;
+                TextBox.Text = string.Empty;
+            }
 
         }
         private void TextChanged()
@@ -87,7 +93,6 @@ namespace Projekt_WPF_Solution.Control
             {
                 ComboBox.ItemsSource = null;
                 ComboBox.Items.Clear();
-                ComboBox.Items.Add(new Client());
                 if (TextBox.Text.Length >= searchTreshold)
                 {
                     foreach (Client client in Clients)
@@ -103,6 +108,7 @@ namespace Projekt_WPF_Solution.Control
                 {
                     ComboBox.IsDropDownOpen = false;
                 }
+                ComboBox.Items.Add(new Client());
             }
             catch
             {

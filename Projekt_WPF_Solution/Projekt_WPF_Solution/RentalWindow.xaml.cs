@@ -38,7 +38,7 @@ namespace Projekt_WPF_Solution
             }
             else
             {
-                ClientAutoCompleteTextBox.ComboBox.SelectedIndex = 0;
+                ClientAutoCompleteTextBox.ComboBox.SelectedIndex = -1;
             }
             //load car
             CarTypeComboBox.ItemsSource = SqlDataGetters.CarTypes;

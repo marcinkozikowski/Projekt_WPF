@@ -21,7 +21,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         private DataBaseClasses.Type type { get; set; } // Klasa/Rodzaj auta terenowe, miejskie, premium
         private string bodyType { get; set; }           //Rodzaj nadwozia
         private double fuelConsumption { get; set; }     // Spalanie na 100/km
-        private BitmapImage image { get; set; }
+        private BitmapImage image1 { get; set; }
+        private BitmapImage image2 { get; set; }
         #endregion
         #region Properties
         public int ID { get { return id; } set { id = value; } }
@@ -33,7 +34,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public DataBaseClasses.Type Type { get { return type; } set { type = value; } }
         public string BodyType { get { return bodyType; } set { bodyType = value; } }
         public double FuelConsumption { get { return fuelConsumption; } set { fuelConsumption = value; } }
-        public BitmapImage Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }
+        public BitmapImage Image1 { get { return image1; } set { image1 = value; OnPropertyChanged("Image1"); } }
+        public BitmapImage Image2 { get { return image2; } set { image2 = value; OnPropertyChanged("Image2"); } }
         public string MakerAndModel { get { return maker + " " + model; } }
         #endregion
         #region Constructors
@@ -43,9 +45,10 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.Maker = string.Empty;
             this.Model = string.Empty;
             this.BodyType = string.Empty;
-            this.Image = Converters.ImageConverter.GetNoPhoto();
+            this.Image1 = Converters.ImageConverter.GetNoPhoto();
+            this.Image2 = Converters.ImageConverter.GetNoPhoto();
         }
-        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, DataBaseClasses.Type type, string bodyType, double fuelConsumption, BitmapImage image)
+        public Car(int id, string regPlate, string maker, string model, int manufacturedYear, int engine, DataBaseClasses.Type type, string bodyType, double fuelConsumption, BitmapImage image1, BitmapImage image2)
         {
             this.id = id;
             this.regPlate = regPlate;
@@ -56,7 +59,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.type = type;
             this.bodyType = bodyType;
             this.fuelConsumption = fuelConsumption;
-            this.image = image;
+            this.image1 = image1;
+            this.image2 = image2;
         }
         public Car(Car car)
         {
@@ -69,7 +73,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.type = car.type;
             this.bodyType = car.bodyType;
             this.fuelConsumption = car.fuelConsumption;
-            this.image = car.image;
+            this.image1 = car.image1;
+            this.image2 = car.image2;
         }
         #endregion
         #region SQL
@@ -81,7 +86,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 try
                 {
                     MySqlCommand cmd = db.CreateCommand();
-                    cmd.CommandText = "INSERT INTO cars (RegPlate, Maker, Model, ManufacturedYear, Engine, Type, BodyType, FuelConsumption, Image) VALUES (@RegPlate, @Maker, @Model, @ManufacturedYear, @Engine, @Type, @BodyType, @FuelConsumption, @Image)";
+                    cmd.CommandText = "INSERT INTO cars (RegPlate, Maker, Model, ManufacturedYear, Engine, Type, BodyType, FuelConsumption, Image1, Image2) VALUES (@RegPlate, @Maker, @Model, @ManufacturedYear, @Engine, @Type, @BodyType, @FuelConsumption, @Image1, @Image2)";
                     cmd.Parameters.AddWithValue("@RegPlate", this.RegPlate);
                     cmd.Parameters.AddWithValue("@Maker", this.Maker);
                     cmd.Parameters.AddWithValue("@Model", this.Model);
@@ -90,7 +95,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@Type", this.Type.Id);
                     cmd.Parameters.AddWithValue("@BodyType", this.BodyType);
                     cmd.Parameters.AddWithValue("@FuelConsumption", this.FuelConsumption);
-                    cmd.Parameters.AddWithValue("@Image", Converters.ImageConverter.ImageToBytes(this.Image));
+                    cmd.Parameters.AddWithValue("@Image1", Converters.ImageConverter.ImageToBytes(this.Image1));
+                    cmd.Parameters.AddWithValue("@Image2", Converters.ImageConverter.ImageToBytes(this.Image2));
                     cmd.ExecuteNonQuery();
                     return true;
                 }
@@ -112,7 +118,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 try
                 {
                     MySqlCommand cmd = db.CreateCommand();
-                    cmd.CommandText = "UPDATE cars SET RegPlate = @RegPlate, Maker = @Maker, Model = @Model, ManufacturedYear = @ManufacturedYear, Engine = @Engine, Type = @Type, BodyType = @BodyType, FuelConsumption = @FuelConsumption, Image = @Image WHERE ID = @ID";
+                    cmd.CommandText = "UPDATE cars SET RegPlate = @RegPlate, Maker = @Maker, Model = @Model, ManufacturedYear = @ManufacturedYear, Engine = @Engine, Type = @Type, BodyType = @BodyType, FuelConsumption = @FuelConsumption, Image1 = @Image1, Image2 = @Image2 WHERE ID = @ID";
                     cmd.Parameters.AddWithValue("@RegPlate", this.RegPlate);
                     cmd.Parameters.AddWithValue("@Maker", this.Maker);
                     cmd.Parameters.AddWithValue("@Model", this.Model);
@@ -121,7 +127,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     cmd.Parameters.AddWithValue("@Type", this.Type.Id);
                     cmd.Parameters.AddWithValue("@BodyType", this.BodyType);
                     cmd.Parameters.AddWithValue("@FuelConsumption", this.FuelConsumption);
-                    cmd.Parameters.AddWithValue("@Image", Converters.ImageConverter.ImageToBytes(this.Image));
+                    cmd.Parameters.AddWithValue("@Image1", Converters.ImageConverter.ImageToBytes(this.Image1));
+                    cmd.Parameters.AddWithValue("@Image2", Converters.ImageConverter.ImageToBytes(this.Image2));
                     cmd.Parameters.AddWithValue("@ID", this.ID);
                     cmd.ExecuteNonQuery();
                     return true;
@@ -211,7 +218,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.type = car.type;
             this.bodyType = car.bodyType;
             this.fuelConsumption = car.fuelConsumption;
-            this.image = car.image;
+            this.Image1 = car.Image1;
+            this.Image2 = car.Image2;
         }
     }
 }

@@ -7,17 +7,20 @@
         xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
         xmlns:control="clr-namespace:Projekt_WPF_Solution.Control"
         mc:Ignorable="d"
-        Title="Nowe wypożyczenie" MinHeight="700" MinWidth="750">
+        Title="Nowe wypożyczenie"
+        MinWidth="600"
+        Width="700">
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </Window.Resources>
     <Grid Name="MainRentalGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="0.25*"/>
         </Grid.RowDefinitions>
+
         <GroupBox Header="Informacje o kliencie" Margin="3" Grid.Row="0">
             <Grid Name="ClientGrid" ShowGridLines="false" DataContext="{Binding ElementName=ClientAutoCompleteTextBox, Path=ClientComboBox.SelectedItem}">
                 <Grid.RowDefinitions>
@@ -88,12 +91,6 @@
                         <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
                     </Grid>
                 </GroupBox>
-                <!--<Button Name="SearchClientButton" Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right" Margin="1" MinHeight="35" Click="SearchClientButton_Click">
-                    <StackPanel Orientation="Horizontal" MaxHeight="40">
-                        <Image Source="Icons\search.png"/>
-                        <Label Content="Wyszukaj klienta" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                    </StackPanel>
-                </Button>-->
             </Grid>
         </GroupBox>
         <!-- Informacje o miejscu odbioru i zwrotu pojazdu -->
@@ -119,7 +116,7 @@
         <GroupBox Header="Wybór samochodu" Grid.Row="2" Margin="3">
             <Grid  ShowGridLines="false">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -156,6 +153,7 @@
                 <GroupBox Header="Lista pojazdów" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
                     <Grid >
                         <ListBox Name="CarsListBox"  ItemTemplate="{StaticResource CarDataTemplate}"
+                                 ScrollViewer.VerticalScrollBarVisibility="Visible"
                                  HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
                                  SelectedItem="{Binding Path=RentedCar, Mode=TwoWay}"
                                  SelectionChanged="CarsListBox_SelectionChanged"/>

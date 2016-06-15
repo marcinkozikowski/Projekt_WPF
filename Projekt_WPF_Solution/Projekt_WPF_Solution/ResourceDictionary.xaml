@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Projekt_WPF_Solution"
                     xmlns:converter="clr-namespace:Projekt_WPF_Solution.Converters"
-                    xmlns:commands="clr-namespace:Projekt_WPF_Solution.Commands">
+                    xmlns:commands="clr-namespace:Projekt_WPF_Solution.Commands"
+                    xmlns:control="clr-namespace:Projekt_WPF_Solution.Control">
     <!--Converters-->
     <converter:IntToBoolConverter x:Key="IntToBoolConverter"/>
     <converter:StackPanelHeightConverter x:Key="StackPanelHeightConverter"/>
@@ -12,13 +13,13 @@
             <Grid>
                 
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" SharedSizeGroup="CarPhoto"/>
+                    <ColumnDefinition SharedSizeGroup="CarPhoto"/>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -27,8 +28,14 @@
                                       Command="commands:MyCommands.Edit"
                                       CommandTarget="{Binding ElementName=CarListBox}"/>
                 </Grid.InputBindings>
-                <Image Margin="0,1,5,1" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
-                           Source="{Binding Path=Image,UpdateSourceTrigger=PropertyChanged}"/>
+                <!--<Image Margin="0,1,5,1" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=Image1,UpdateSourceTrigger=PropertyChanged}"/>-->
+                <!--<control:ImageSlideShow x:Name="test" DataContext="{Binding RelativeSource={RelativeSource Self}}"/>-->
+                <control:ImageSlideShow x:Name="test" DataContext="{Binding Path=.}"
+                                         Width="128"
+                                        Grid.Column="0" Grid.RowSpan="3"
+                                        Margin="0,1,5,1"/>
+                
                 <TextBlock Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Text="Pojazd: " Margin="2" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="2" Grid.Row="0" Grid.RowSpan="2" Text="{Binding Path=MakerAndModel}" Margin="2" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Grid.Row="2" Grid.RowSpan="2"  Text="Rok modelowy: " Margin="2"/>
@@ -75,8 +82,8 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" SharedSizeGroup="photo"/>
-                    <ColumnDefinition Width="auto" SharedSizeGroup="photo"/>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="carphoto"/>
+                    <ColumnDefinition Width="auto" SharedSizeGroup="userphoto"/>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
@@ -85,8 +92,12 @@
                                       Command="commands:MyCommands.Edit"
                                       CommandTarget="{Binding ElementName=RentListBox}"/>
                 </Grid.InputBindings>
-                <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
-                           Source="{Binding Path=RentedCar.Image, UpdateSourceTrigger=PropertyChanged}"/>
+                <!--<Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
+                           Source="{Binding Path=RentedCar.Image, UpdateSourceTrigger=PropertyChanged}"/>-->
+                <control:ImageSlideShow x:Name="test" DataContext="{Binding Path=RentedCar}"
+                                         Width="128"
+                                        Grid.Column="0" Grid.RowSpan="3"
+                                        Margin="0,1,5,1"/>
                 <Image Margin="0,0,5,0" Grid.RowSpan="3" Grid.Column="1" MaxHeight="128" MaxWidth="128"
                            Source="{Binding Path=RentingPerson.Image, UpdateSourceTrigger=PropertyChanged}"/>
                 <TextBlock Grid.Column="2" Grid.Row="0" Text="Klient: " VerticalAlignment="Center"/>
