@@ -59,13 +59,21 @@ namespace Projekt_WPF_Solution
             OpenFileDialog op = new OpenFileDialog();
             op.Filter = "Image File(*.jpg; *.bmp; *.gif)| *.jpg; *.bmp; *.gif";
             op.Title = "Wybierz zdjęcie:";
+            op.Multiselect = true;
             if (op.ShowDialog() == true)
             {
-                /*if(op.FileNames.Count() == 2)
+                if(op.FileNames.Count () >= 1)
                 {
-
-                }*/
-                //car.Image2 = new BitmapImage(new Uri(op.FileName));
+                    this.car.Image1 = new BitmapImage(new Uri(op.FileNames[0]));
+                    if(op.FileNames.Count() >= 2)
+                    {
+                        this.car.Image2 = new BitmapImage(new Uri(op.FileNames[1]));
+                    }
+                    else
+                    {
+                        this.car.Image2 = new BitmapImage(new Uri(op.FileNames[0]));
+                    }
+                }
             }
         }
     }

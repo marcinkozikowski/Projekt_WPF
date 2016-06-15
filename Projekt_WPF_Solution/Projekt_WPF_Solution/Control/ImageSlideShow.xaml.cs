@@ -72,6 +72,17 @@ namespace Projekt_WPF_Solution.Control
             { }
         }
 
+        private void ImageSourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            imageSlideTimer.Stop();
+            imageSources.Clear();
+            imageSources.Add(image1.Source as BitmapImage);
+            imageSources.Add(image2.Source as BitmapImage);
+            PlaySlideShow();
+            imageSlideTimer.Start();
+
+        }
+
         private void imageSlideTimerTick(object sender, EventArgs e)
         {
             PlaySlideShow();
