@@ -9,6 +9,7 @@ using Projekt_WPF_Solution.DataBaseClasses;
 using System.Windows;
 using System.Windows.Media;
 using System.Globalization;
+using System.Windows.Documents;
 
 namespace Projekt_WPF_Solution.Commands
 {
@@ -183,51 +184,30 @@ namespace Projekt_WPF_Solution.Commands
 
                 if (selectedItem is Rent)
                 {
-
+                    Rent rent = selectedItem as Rent;
+                    
                     PrintDialog printDialog = new PrintDialog();
 
-                // Stwórz nagłówek
-                DrawingVisual header = new DrawingVisual();
-                ContainerVisual newVisual = new ContainerVisual();
-                using (DrawingContext dc = header.RenderOpen())
-                {
-                    Typeface typeface = new Typeface("Times New Roman");
-                    FormattedText text = new FormattedText("Wypożyczalnia samochodów M&M_auto", CultureInfo.CurrentCulture,
-                    FlowDirection.LeftToRight, typeface, 14, Brushes.Black);
-                    dc.DrawText(text, new Point(96 * 0.25, 96 * 0.25));
-                }
-                // Dodaj nagłówek do Visual
-                newVisual.Children.Add(header);
+                    PrintRent grid = new PrintRent();
 
-                if (printDialog.ShowDialog() == true)
-                    {
-                        // rysujemy na kontekście utworzonego DrawinVisual
-                        DrawingVisual visual = new DrawingVisual();
-                        using (DrawingContext dc = visual.RenderOpen())
-                        {
-                            // tworzymy tekst
-                            FormattedText text = new FormattedText("Pierwszy wydruk",
-                            CultureInfo.CurrentCulture, FlowDirection.LeftToRight,
-                            new Typeface("Calibri"), 20, Brushes.Black);
-                            // potrzebne do zawijania wierszy
-                            text.MaxTextWidth = printDialog.PrintableAreaWidth / 2;
-                            // pobranie rozmiaru tekstu
-                            Size textSize = new Size(text.Width, text.Height);
-                            // położenie
-                            double margin = 96 * 0.25;
-                            Point point = new Point(
-                            (printDialog.PrintableAreaWidth - textSize.Width) / 2 - margin,
-                            (printDialog.PrintableAreaHeight - textSize.Height) / 2 - margin);
-                            // rysujemy
-                            dc.DrawText(text, point);
-                        // i ramka
-                        dc.DrawRectangle(null, new Pen(Brushes.Black, 1),
-                        new Rect(margin, margin, printDialog.PrintableAreaWidth - margin * 2,
-                        printDialog.PrintableAreaHeight - margin * 2));
-                        }
-                        // drukujemy
-                        printDialog.PrintVisual(visual, "Moja strona tekstu");
-                    }
+                    /* Dane najemcy */
+
+                    grid.ImieRentPrint.Content = rent.RentingPerson.Name;
+                    grid.NazwiskoRentPrint.Content = rent.RentingPerson.Surname;
+                    grid.PeselRentPrint.Content = rent.RentingPerson.Pesel.ToString();
+                    grid.AdresRentPrint.Content = rent.RentingPerson.Address;
+                    grid.TelefonRentPrint.Content = rent.RentingPerson.PhoneNumber.ToString();
+                    grid.RentDurationRentPrint.Content = rent.RentStart.ToString().Substring(0,10) + " - " + rent.RentEnd.ToString().Substring(0,10);
+
+                    /* Dane Samochodu */
+
+                    grid.MarkaRentPrint.Content = rent.RentedCar.Maker;
+                    grid.ModelRentPrint.Content = rent.RentedCar.Model;
+                    grid.NrRejRentPrint.Content = rent.RentedCar.RegPlate;
+                    grid.TypRentPrint.Content = rent.RentedCar.Type;
+                    grid.ImageRentPrint.Source = rent.RentedCar.Image1;
+
+                    printDialog.PrintVisual(grid, "Moja strona tekstu");
              }
         }
 
