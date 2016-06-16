@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataBaseClasses\carrent.sql" />
+    <Resource Include="Icons\print.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Projekt_WPF_Solution.DataBaseClasses;
 using System.Windows;
+using System.Windows.Media;
+using System.Globalization;
 
 namespace Projekt_WPF_Solution.Commands
 {
@@ -14,11 +16,13 @@ namespace Projekt_WPF_Solution.Commands
     {
         private static RoutedUICommand delete;
         private static RoutedUICommand edit;
+        private static RoutedUICommand print;
 
         static MyCommands()
         {
             delete = new RoutedUICommand("Delete", "del", typeof(MyCommands));
             edit = new RoutedUICommand("Edit", "edit", typeof(MyCommands));
+            print = new RoutedUICommand("Print", "print", typeof(MyCommands));
         }
 
         public static RoutedUICommand Delete
@@ -33,10 +37,17 @@ namespace Projekt_WPF_Solution.Commands
             set { edit = value; }
         }
 
+        public static RoutedUICommand Print
+        {
+            get { return print; }
+            set { print = value; }
+        }
+
         public static void BindCommands(Window window)
         {
             window.CommandBindings.Add(new CommandBinding(edit, Edit_Executed, Edit_CanExecute));
             window.CommandBindings.Add(new CommandBinding(delete, Delete_Executed, Delete_CanExecute));
+            window.CommandBindings.Add(new CommandBinding(print, Print_Executed, Print_CanExecute));
         }
 
 
@@ -146,6 +157,63 @@ namespace Projekt_WPF_Solution.Commands
                     SqlDataGetters.GetAll();
                 }
             }
+        }
+
+        #endregion
+
+        #region Print
+        public static void Print_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            ListBox lw = e.Source as ListBox;
+            if (lw != null && lw.SelectedItems.Count > 0)
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
+        }
+
+        public static void Print_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+
+                ListBox lw = e.Source as ListBox;
+                var selectedItem = lw.SelectedItem;
+
+                if (selectedItem is Rent)
+                {
+                    PrintDialog printDialog = new PrintDialog();
+                    if (printDialog.ShowDialog() == true)
+                    {
+                        // rysujemy na kontekście utworzonego DrawinVisual
+                        DrawingVisual visual = new DrawingVisual();
+                        using (DrawingContext dc = visual.RenderOpen())
+                        {
+                            // tworzymy tekst
+                            FormattedText text = new FormattedText("Pierwszy wydruk",
+                            CultureInfo.CurrentCulture, FlowDirection.LeftToRight,
+                            new Typeface("Calibri"), 20, Brushes.Black);
+                            // potrzebne do zawijania wierszy
+                            text.MaxTextWidth = printDialog.PrintableAreaWidth / 2;
+                            // pobranie rozmiaru tekstu
+                            Size textSize = new Size(text.Width, text.Height);
+                            // położenie
+                            double margin = 96 * 0.25;
+                            Point point = new Point(
+                            (printDialog.PrintableAreaWidth - textSize.Width) / 2 - margin,
+                            (printDialog.PrintableAreaHeight - textSize.Height) / 2 - margin);
+                            // rysujemy
+                            dc.DrawText(text, point);
+                        // i ramka
+                        dc.DrawRectangle(null, new Pen(Brushes.Black, 1),
+                        new Rect(margin, margin, printDialog.PrintableAreaWidth - margin * 2,
+                        printDialog.PrintableAreaHeight - margin * 2));
+                        }
+                        // drukujemy
+                        printDialog.PrintVisual(visual, "Moja strona tekstu");
+                    }
+             }
         }
 
         #endregion
