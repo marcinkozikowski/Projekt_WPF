@@ -123,8 +123,6 @@ namespace Projekt_WPF_Solution
         private void AddRentalButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
-            SqlDataGetters.GetAll();
-            SqlDataGetters.GetBottomPanelInfo();
             this.Close();
         }
 
