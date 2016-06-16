@@ -188,6 +188,7 @@ namespace Projekt_WPF_Solution.Commands
                     Rent rent = selectedItem as Rent;
                     
                     PrintDialog printDialog = new PrintDialog();
+                printDialog.ShowDialog();
 
                     PrintRent grid = new PrintRent();
 
