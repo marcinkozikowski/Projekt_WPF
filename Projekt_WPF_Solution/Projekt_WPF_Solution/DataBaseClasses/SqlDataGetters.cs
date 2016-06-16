@@ -20,6 +20,7 @@ namespace Projekt_WPF_Solution
         private static List<string> bodyTypes = new List<string>();
         private static List<DataBaseClasses.Type> cartypes = new List<DataBaseClasses.Type>();
         private static BottomPanelData bottomPanel = new BottomPanelData();
+        private static List<string> clientTypes = new List<string>();
 
         #endregion
         #region Properties
@@ -30,6 +31,7 @@ namespace Projekt_WPF_Solution
         public static List<string> BodyTypes { get { return bodyTypes; } set { bodyTypes = value; } }
         public static List<DataBaseClasses.Type> CarTypes { get { return cartypes; } set { cartypes = value; } }
         public static BottomPanelData BottomPanel { get { return bottomPanel; } set { bottomPanel = value; } }
+        public static List<string> ClientTypes { get { return clientTypes; } set { clientTypes = value; } }
         #endregion
 
         public static List<Car> GetAvailableCars(DateTime? start, DateTime? end)
@@ -56,6 +58,7 @@ namespace Projekt_WPF_Solution
             GetBrands();
             GetBodyTypes();
             GetBottomPanelInfo();
+            GetClientTypes();
         }
 
         private static void GetTypes()
@@ -193,7 +196,13 @@ namespace Projekt_WPF_Solution
             }
 
         }
+        private static void GetClientTypes()
+        {
+            ClientTypes.Clear();
+            ClientTypes.Add("Osoba prywatna");
+            ClientTypes.Add("Firma");
 
+        }
         public static int GetUserIdByPesel(string pesel)
         {
             int Id = clients.Max(m => m.ID)+1;

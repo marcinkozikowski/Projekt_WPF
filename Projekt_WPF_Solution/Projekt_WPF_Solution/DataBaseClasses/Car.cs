@@ -43,8 +43,10 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         {
             this.RegPlate = string.Empty;
             this.Maker = string.Empty;
+            this.ManufacturedYear = 2016;
             this.Model = string.Empty;
-            this.BodyType = string.Empty;
+            this.BodyType = "Brak";
+            this.Type = SqlDataGetters.CarTypes.ElementAt(0);
             this.Image1 = Converters.ImageConverter.GetNoPhoto();
             this.Image2 = Converters.ImageConverter.GetNoPhoto();
         }
@@ -180,11 +182,18 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         {
             get
             {
-                if (columnName.Equals("FuelConsumption"))
+                if(columnName.Equals("Maker"))
                 {
-                    if (FuelConsumption <= 0)
+                    if(string.IsNullOrWhiteSpace("Maker"))
                     {
-                        return "Nie może być zerem";
+                        return "Wybierz markę";
+                    }
+                }
+                if (columnName.Equals("Model"))
+                {
+                    if (string.IsNullOrWhiteSpace("Model"))
+                    {
+                        return "Wybierz model";
                     }
                 }
                 if (columnName.Equals("Engine"))
@@ -194,6 +203,21 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                         return "Nie może być zerem";
                     }
                 }
+                if (columnName.Equals("RegPlate"))
+                {
+                    if (RegPlate.Count() <= 0)
+                    {
+                        return "Podaj tablicę";
+                    }
+                }
+                if (columnName.Equals("FuelConsumption"))
+                {
+                    if (FuelConsumption <= 0)
+                    {
+                        return "Nie może być zerem";
+                    }
+                }
+               
                 return null;
             }
         }
@@ -220,6 +244,11 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.fuelConsumption = car.fuelConsumption;
             this.Image1 = car.Image1;
             this.Image2 = car.Image2;
+        }
+
+        public override string ToString()
+        {
+            return MakerAndModel;
         }
     }
 }

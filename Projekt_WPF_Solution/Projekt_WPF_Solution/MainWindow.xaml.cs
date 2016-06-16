@@ -89,35 +89,22 @@ namespace Projekt_WPF_Solution
         }
         private void AddNewRentalButton_Click(object sender, RoutedEventArgs e)
         {
-            Rent newRent = new Rent();
-            RentalWindow newRenatlWindow = new RentalWindow(newRent);
-            if (newRenatlWindow.ShowDialog() == true)
+            Rent rent = new Rent();
+            RentalWindow newRentalWindow = new RentalWindow(rent);
+            if (newRentalWindow.ShowDialog() == true)
             {
-                if (!newRent.SqlInsert())
+                if (SqlDataGetters.Clients.Contains(rent.RentingPerson))
                 {
-                    MessageBox.Show("Błąd dodawania");
+                    rent.RentingPerson.SqlUpdate();
                 }
                 else
                 {
-                    SqlDataGetters.GetAll();
+                    rent.RentingPerson.SqlInsert();
+                    rent.RentingPerson.ID = SqlDataGetters.GetUserIdByPesel(rent.RentingPerson.Pesel);
                 }
+                rent.SqlInsert();
+                SqlDataGetters.GetAll();
             }
-        }
-
-        private void SearchRentalButton_Click(object sender, RoutedEventArgs e)
-        {
-            SearchRentalWindow searchRentalWindow = new SearchRentalWindow();
-            searchRentalWindow.ShowDialog();
-        }
-        private void SearchClientButton_Click(object sender, RoutedEventArgs e)
-        {
-            SearchClientWindow searchClientWindow = new SearchClientWindow();
-            searchClientWindow.ShowDialog();
-        }
-        private void SearchCarButton_Click(object sender, RoutedEventArgs e)
-        {
-            SearchCarWindow searchCarWindow = new SearchCarWindow();
-            searchCarWindow.ShowDialog();
         }
    
         #endregion
@@ -176,54 +163,44 @@ namespace Projekt_WPF_Solution
         private void CarFilters()
         {
             List<Car> availableCars = SqlDataGetters.GetAvailableCars(DateTime.Today.Date, DateTime.Today.Date);
-            if (CarFilterComboBox.SelectedIndex == 0)
+            carsView.Filter = delegate (object item)
             {
-                carsView.Filter = delegate (object item)
+                Car car = item as Car;
+                bool filterValue = true;
+                if(CarFilterBox == null)
                 {
-                    Car car = item as Car;
-                    if (car != null)
-                    {
-                        if (AvailableOnlyCheckBox != null && AvailableOnlyCheckBox.IsChecked == true)
-                        {
-                            return availableCars.Contains(car);
-                        }
-                        else
-                        {
-                            return true;
-                        }
-                    }
-                    return false;
-
-                };
-            }
-            else if (CarFilterComboBox.SelectedIndex == 1)
-            {
-                string[] fuelConsumption = CarFilterBox.Text.Split('-');
-                int lowerLimit, upperLimit;
-                if (fuelConsumption.Count() >= 1 && int.TryParse(fuelConsumption[0], out lowerLimit))
-                {
-                    if (!(fuelConsumption.Count() > 1 && int.TryParse(fuelConsumption[1], out upperLimit)))
-                    {
-                        upperLimit = lowerLimit;
-                    }
-                    carsView.Filter = delegate (object item)
-                    {
-                        Car car = item as Car;
-                        if (car != null)
-                        {
-                            if (AvailableOnlyCheckBox != null && AvailableOnlyCheckBox.IsChecked == true)
-                            {
-                                return (car.FuelConsumption >= lowerLimit && car.FuelConsumption <= upperLimit) && availableCars.Contains(car);
-                            }
-                            else
-                            {
-                                return (car.FuelConsumption >= lowerLimit && car.FuelConsumption <= upperLimit);
-                            }
-                        }
-                        return false;
-                    };
+                    return true;
                 }
-            }
+                if (AvailableOnlyCheckBox != null && AvailableOnlyCheckBox.IsChecked == true)
+                {
+                    filterValue = filterValue & availableCars.Contains(car);
+                }
+                if(string.IsNullOrWhiteSpace(CarFilterBox.Text))
+                {
+                    filterValue = filterValue & true;
+                }
+                else
+                {
+                    if(CarFilterComboBox.SelectedIndex == 0)
+                    {
+                        filterValue = filterValue & car.ToString().ToLower().Contains(CarFilterBox.Text.ToLower());
+                    }
+                    else if(CarFilterComboBox.SelectedIndex == 1)
+                    {
+                        string[] fuelConsumption = CarFilterBox.Text.Split('-');
+                        int lowerLimit, upperLimit;
+                        if (fuelConsumption.Count() >= 1 && int.TryParse(fuelConsumption[0], out lowerLimit))
+                        {
+                            if (!(fuelConsumption.Count() > 1 && int.TryParse(fuelConsumption[1], out upperLimit)))
+                            {
+                                upperLimit = lowerLimit;
+                            }
+                            filterValue = filterValue && car.FuelConsumption >= lowerLimit && car.FuelConsumption <= upperLimit;
+                        }
+                    }
+                }
+                return filterValue;
+            };
         }
         private void CarFilterBox_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -238,33 +215,48 @@ namespace Projekt_WPF_Solution
             CarFilters();
         }
 
+
+
         #endregion
 
         #region FilterClient
-        private void ClientFilterNone(object sender, RoutedEventArgs e)
-        {
-            clientsView.Filter = null;
-        }
-
-       
-
-        private void ClientFilterBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            int index = ClientFilterComboBox.SelectedIndex;
-            ClientFilterComboBox.SelectedIndex = 0;
-            ClientFilterComboBox.SelectedIndex = index;
-        }
-        private void ClientFilterPesel(object sender, RoutedEventArgs e)
+        private void ClientFilter()
         {
             clientsView.Filter = delegate (object item)
             {
                 Client client = item as Client;
-                if (client != null)
+                bool filterValue = true;
+                if(!string.IsNullOrWhiteSpace(ClientNameTextBox.Text))
                 {
-                    return client.Pesel.Equals(ClientFilterBox.Text);
+                    filterValue = client.ToString().ToLower().Contains(ClientNameTextBox.Text.ToLower()); 
                 }
-                return false;
+                return filterValue;                
             };
+        }
+        private void ClientNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ClientFilter();
+        }
+
+        #endregion
+
+        #region FilterRent
+        private void RentFilter()
+        {
+            rentsView.Filter = delegate (object item)
+            {
+                Rent rent = item as Rent;
+                bool filterValue = true;
+                if (!string.IsNullOrWhiteSpace(RentFilterTextBox.Text))
+                {
+                    filterValue = rent.ToString().ToLower().Contains(RentFilterTextBox.Text.ToLower());
+                }
+                return filterValue;
+            };
+        }
+        private void RentFilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RentFilter();
         }
         #endregion
         #endregion

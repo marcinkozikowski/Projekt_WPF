@@ -29,6 +29,7 @@ namespace Projekt_WPF_Solution
             InitializeComponent();
             this.client = client;
             MainAddClientGrid.DataContext = client;
+            TypKlientaComboBox.ItemsSource = SqlDataGetters.ClientTypes;
         }
 
         private void AddClientButton_Click(object sender, RoutedEventArgs e)

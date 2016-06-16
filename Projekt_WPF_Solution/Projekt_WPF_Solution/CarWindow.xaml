@@ -9,15 +9,15 @@
         mc:Ignorable="d"
         FontSize="16"
         Icon="Icons\car.png"
-        Title="Dodaj nowy samochód" Height="450" Width="750">
+        Title="Dodaj nowy samochód" SizeToContent="Height" Width="750">
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </Window.Resources>
     <Grid Name="MainAddCarGrid" ShowGridLines="false">
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="2*"/>
+            <RowDefinition />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -40,11 +40,11 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Marka" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <ComboBox Name="MarkaComboBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Maker}"/>
+                <ComboBox Name="MarkaComboBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Maker, ValidatesOnDataErrors=True}"/>
                 <Label Content="Model" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="ModelTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Model}"/>
+                <TextBox Name="ModelTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Model, ValidatesOnDataErrors=True}"/>
                 <Label Content="Data produkcji" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="DataProdukcjiDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=ManufacturedYear}"/>
+                <TextBox Name="DataProdukcjiDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=ManufacturedYear, ValidatesOnDataErrors=True}"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Informacje szczegółowe" Grid.Column="0" Grid.Row="1" Margin="3" Grid.ColumnSpan="3">
@@ -69,7 +69,7 @@
                 <ComboBox Name="KlasaComboBox" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
 
                 <Label Content="Numer rejestracyjny" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                <TextBox Name="NrRejTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=RegPlate}"/>
+                <TextBox Name="NrRejTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=RegPlate, ValidatesOnDataErrors=True}"/>
                 <Label Content="Spalanie na 100/km" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                 <TextBox Name="SpalanieTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=FuelConsumption, ValidatesOnDataErrors=True}"/>
             </Grid>

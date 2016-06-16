@@ -78,15 +78,6 @@
     <Compile Include="DataBaseClasses\IDBAccess.cs" />
     <Compile Include="DataBaseClasses\SqlDataGetters.cs" />
     <Compile Include="DataBaseClasses\Type.cs" />
-    <Compile Include="SearchCarWindow.xaml.cs">
-      <DependentUpon>SearchCarWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SearchClientWindow.xaml.cs">
-      <DependentUpon>SearchClientWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SearchRentalWindow.xaml.cs">
-      <DependentUpon>SearchRentalWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Validators\Validator.cs" />
     <Page Include="CarWindow.xaml">
       <SubType>Designer</SubType>
@@ -138,18 +129,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ResourceDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SearchCarWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SearchClientWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SearchRentalWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

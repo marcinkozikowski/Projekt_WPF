@@ -84,8 +84,17 @@ namespace Projekt_WPF_Solution.Commands
                 RentalWindow newRentalWindow = new RentalWindow(rent);
                 if (newRentalWindow.ShowDialog() == true)
                 {
-                    rent.SqlUpdate();
                     (selectedItem as Rent).PropertyUpdate(rent);
+                    if (SqlDataGetters.Clients.Contains(rent.RentingPerson))
+                    {
+                        rent.RentingPerson.SqlUpdate();
+                    }
+                    else
+                    {
+                        rent.RentingPerson.SqlInsert();
+                        rent.RentingPerson.ID = SqlDataGetters.GetUserIdByPesel(rent.RentingPerson.Pesel);
+                    }
+                    rent.SqlUpdate();
                 }
             }
             SqlDataGetters.GetAll();

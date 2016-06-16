@@ -74,18 +74,11 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
 
                             <Button Margin="4"  Grid.Row="0" Name="AddNewCarButton" Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
                             <Button Margin="4"  Grid.Row="1" Name="DeleteCarButton" Content="Usuń samochód" VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=CarListBox}"/>
-                            <Button Margin="4"  Grid.Row="2" Name="SearchCarButton" Content="Wyszukaj samochód" VerticalAlignment="Center" Click="SearchCarButton_Click"/>
                         </Grid>
-                        <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}" Orientation="Vertical">
-                            <Button Margin="4"  Name="AddNewCarButton" Content="Dodaj nowy" Click="AddNewCar_Click"  VerticalAlignment="Center"/>
-                            <Button Margin="4"  Name="DeleteCarButton" Content="Usuń samochód" VerticalAlignment="Center"/>
-                            <Button Margin="4"  Name="SearchCarButton" Content="Wyszukaj samochód" VerticalAlignment="Center"/>
-                        </StackPanel>-->
                     </Expander>
                 </TabItem.Header>
                 <Grid>
@@ -94,27 +87,23 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <ToolBar Grid.ColumnSpan="3" Background="LightGray">
+                        
+                        <Label Margin="3px">Wyszukaj:</Label>
+                        <ComboBox SelectedIndex="0" Name="CarFilterComboBox" Margin="3px" SelectionChanged="CarFilterComboBox_SelectionChanged">
+                            <ComboBoxItem>po nazwie</ComboBoxItem>
+                            <ComboBoxItem>po spalaniu</ComboBoxItem>
+                        </ComboBox>
+                        <TextBox Name="CarFilterBox" TextChanged="CarFilterBox_TextChanged"   Width="90px" Margin="3px" TextWrapping="WrapWithOverflow"/>
+                        <Separator/>
+                        <CheckBox Name="AvailableOnlyCheckBox" Content="Tylko dostępne" Checked="AvailableOnlyCheckBox_CheckChanged" Unchecked="AvailableOnlyCheckBox_CheckChanged"/>
+                        <Separator/>
                         <ComboBox SelectedIndex="0" Margin="3px">
                             <ComboBoxItem Selected="GroupNone">Brak grupowania</ComboBoxItem>
                             <ComboBoxItem Selected="CarGroupBrand">Grupuj wg marki</ComboBoxItem>
                             <ComboBoxItem Selected="CarGroupYear">Grupuj wg rocznika</ComboBoxItem>
                             <ComboBoxItem Selected="CarGroupType">Grupuj wg rodzaju</ComboBoxItem>
                         </ComboBox>
-                        <Separator/>
-                        <!--<ComboBox SelectedIndex="0" Margin="3px">
-                            <ComboBoxItem Selected="SortNone">Bez sortowania</ComboBoxItem>
-                            <ComboBoxItem Selected="SortSurname">Sortuj wg nazwisk</ComboBoxItem>
-                            <ComboBoxItem Selected="SortAccess">Sortuj wg poziomu dostępu</ComboBoxItem>
-                        </ComboBox>-->
-                        <Separator/>
-                        <Label Margin="3px">Filtr:</Label>
-                        <ComboBox SelectedIndex="0" Name="CarFilterComboBox" Margin="3px" SelectionChanged="CarFilterComboBox_SelectionChanged">
-                            <ComboBoxItem>Bez filtrowania</ComboBoxItem>
-                            <ComboBoxItem>Filtruj po spalaniu</ComboBoxItem>
-                        </ComboBox>
-                        <TextBox Name="CarFilterBox" TextChanged="CarFilterBox_TextChanged"  MinWidth="35px" Margin="3px"/>
-                        <Separator/>
-                        <CheckBox Name="AvailableOnlyCheckBox" Content="Tylko dostępne" Checked="AvailableOnlyCheckBox_CheckChanged" Unchecked="AvailableOnlyCheckBox_CheckChanged"/>
+                        
                     </ToolBar>
                     <ListBox Name="CarListBox" Padding="3px" Margin="3px" Grid.Row="1"
                              HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
@@ -139,11 +128,9 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Button Grid.Row="0" Name="AddNewClientButton" Margin="4" Content="Dodaj nowego" Click="AddNewClientButton_Click" VerticalAlignment="Center"/>
                             <Button Grid.Row="1" Name="DeleteClientButton" Margin="4" Content="Usuń klienta" ToolTip="Usuwa klienta zaznaczonego na liście" VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=ClientListBox}"/>
-                            <Button Grid.Row="2" Name="SearchClientButton" Margin="4" Content="Wyszukaj klienta" VerticalAlignment="Center" Click="SearchClientButton_Click"/>
                         </Grid>
                         <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Name="AddNewClientButton" Margin="4" Content="Dodaj nowego" Click="AddNewClientButton_Click"/>
@@ -158,24 +145,16 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <ToolBar Grid.ColumnSpan="3" Background="LightGray">
+                        <Label>Wyszukaj </Label>
+                        <TextBox Name="ClientNameTextBox" Margin="3px" TextChanged="ClientNameTextBox_TextChanged" Width="120px"
+                                 TextWrapping="WrapWithOverflow"/>
+                        <Separator/>
                         <ComboBox SelectedIndex="0" Margin="3px">
                             <ComboBoxItem Selected="GroupNone">Brak grupowania</ComboBoxItem>
                             <ComboBoxItem Selected="ClientGroupAge">Grupuj wg wieku</ComboBoxItem>
                             <ComboBoxItem Selected="ClientGroupCity">Grupuj wg miejscowości</ComboBoxItem>
                         </ComboBox>
                         <Separator/>
-                        <!--<ComboBox SelectedIndex="0" Margin="3px">
-                            <ComboBoxItem Selected="SortNone">Bez sortowania</ComboBoxItem>
-                            <ComboBoxItem Selected="SortSurname">Sortuj wg nazwisk</ComboBoxItem>
-                            <ComboBoxItem Selected="SortAccess">Sortuj wg poziomu dostępu</ComboBoxItem>
-                        </ComboBox>-->
-                        <Separator/>
-                        <Label Margin="3px">Filtr:</Label>
-                        <ComboBox SelectedIndex="0" Name="ClientFilterComboBox" Margin="3px">
-                            <ComboBoxItem Selected="ClientFilterNone">Bez filtrowania</ComboBoxItem>
-                            <ComboBoxItem Selected="ClientFilterPesel">Filtruj po peselu</ComboBoxItem>
-                        </ComboBox>
-                        <TextBox Name="ClientFilterBox" TextChanged="ClientFilterBox_TextChanged"  MinWidth="35px" Margin="3px"/>
                     </ToolBar>
                     <ListBox Name="ClientListBox" Padding="3px" Margin="3px" Grid.Row="1"
                          HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
@@ -201,24 +180,34 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
-                                <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Button Grid.Row="0"  Margin="4" Content="Nowe wypożyczenie" Name="AddNewRentalButton" Click="AddNewRentalButton_Click" VerticalAlignment="Center" />
                             <Button Grid.Row="1" Margin="4" Content="Usuń wypożyczenie" Name="DeleteRentalButton"  VerticalAlignment="Center" Command="commands:MyCommands.Delete" CommandTarget="{Binding ElementName=RentListBox}"/>
-                            <Button Grid.Row="2" Margin="4" Content="Wyszukaj wypożyczenie" Name="SearchRentalButton"  VerticalAlignment="Center" Click="SearchRentalButton_Click"/>
                         </Grid>
                         <!--<StackPanel Height="{Binding Converter={StaticResource StackPanelHeightConverter}, ElementName=MainTabControl, Path=ActualHeight}">
                             <Button Margin="4" Content="Nowe wypożyczenie" Name="NewRentalButton" Click="NewRentalButton_Click" />
                         </StackPanel>-->
                     </Expander>
                 </TabItem.Header>
-                <ListBox Name="RentListBox" Padding="3px" Margin="3px"
-                         HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
-                    ItemTemplate="{StaticResource RentDataTemplate}">
-                    <ListBox.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GroupTemplate}"/>
-                    </ListBox.GroupStyle>
-                </ListBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ToolBar Background="LightGray">
+                        <Label>Wyszukaj:</Label>
+                        <TextBox Name="RentFilterTextBox" VerticalContentAlignment="Center" TextChanged="RentFilterTextBox_TextChanged" Width="120px"
+                                 TextWrapping="WrapWithOverflow"
+                                 Margin="3px"/>
+                    </ToolBar>
+                    <ListBox Name="RentListBox" Padding="3px" Margin="3px" Grid.Row="1"
+                             HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
+                        ItemTemplate="{StaticResource RentDataTemplate}">
+                        <ListBox.GroupStyle>
+                            <GroupStyle HeaderTemplate="{StaticResource GroupTemplate}"/>
+                        </ListBox.GroupStyle>
+                    </ListBox>
+                </Grid>
             </TabItem>
         </TabControl>
         <!-- Dolny Panel z powiadomieniami i ostrzeżeniami -->

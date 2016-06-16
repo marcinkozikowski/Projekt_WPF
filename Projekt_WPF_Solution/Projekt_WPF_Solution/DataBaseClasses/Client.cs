@@ -37,7 +37,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public string City { get { return city; } set { city = value; } }                       //Miasto
         public string Type { get { return type; } set { type = value; } }                       //Typ klienta
         public BitmapImage Image { get { return image; } set { image = value; OnPropertyChanged("Image"); } }                    //zDjęcie
-        public string NameSurname {  get { return name + " " + surname; } }                     //Imię i nazwisko
+        public string NameSurname { get { return name + " " + surname; } }                     //Imię i nazwisko
         #endregion
         #region Constructors
         //Pesel, Name, Surname, Born, IsMale, PhoneNumber, Address, City, Type, Image
@@ -177,7 +177,6 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         {
             get
             {
-                //throw new NotImplementedException();
                 return null;
             }
         }
@@ -185,11 +184,46 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         {
             get
             {
+                if (columnName.Equals("Name"))
+                {
+                    if (string.IsNullOrWhiteSpace(Name))
+                    {
+                        return "Podaj imię";
+                    }
+                }
+                if (columnName.Equals("Surname"))
+                {
+                    if (string.IsNullOrWhiteSpace(Surname))
+                    {
+                        return "Podaj nazwisko";
+                    }
+                }
                 if (columnName.Equals("Pesel"))
                 {
                     if (Pesel.Count() != 11)
                     {
                         return "Zły pesel";
+                    }
+                }
+                if (columnName.Equals("Born"))
+                {
+                    if (Born.Year < 1920)
+                    {
+                        return "Zły rok urodzenia";
+                    }
+                }
+                if (columnName.Equals("Address"))
+                {
+                    if (string.IsNullOrWhiteSpace(Address))
+                    {
+                        return "Podaj adres";
+                    }
+                }
+                if (columnName.Equals("City"))
+                {
+                    if (string.IsNullOrWhiteSpace(City))
+                    {
+                        return "Podaj miasto";
                     }
                 }
                 return null;
@@ -221,20 +255,19 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public override string ToString()
         {
             string toString = string.Empty;
-            if(!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(name))
             {
                 toString += name;
             }
-            if(!string.IsNullOrEmpty(surname))
+            if (!string.IsNullOrEmpty(surname))
             {
                 toString += " " + surname;
             }
-            if(!string.IsNullOrEmpty(pesel))
+            if (!string.IsNullOrEmpty(pesel))
             {
                 toString += "; " + pesel;
             }
             return toString;
-            //return name + " " + surname + "; PESEL: " + pesel;
         }
     }
 }

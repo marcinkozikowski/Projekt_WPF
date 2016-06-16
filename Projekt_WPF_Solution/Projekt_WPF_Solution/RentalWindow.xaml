@@ -51,9 +51,9 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Nazwisko" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                        <TextBox Name="NazwiskoTextBox" Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Surname}"/>
+                        <TextBox Name="NazwiskoTextBox" Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Surname, ValidatesOnDataErrors=True}"/>
                         <Label Content="Imię" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                        <TextBox Name="ImieTextBox"  Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBox Name="ImieTextBox"  Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name, ValidatesOnDataErrors=True}"/>
                         <Label Content="Data urodzenia" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                         <DatePicker Name="DataUrodzeniaDataPicker" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" SelectedDate="{Binding Path=Born}"/>
                     </Grid>
@@ -81,12 +81,12 @@
                             <ComboBoxItem Content="Kobieta"/>
                         </ComboBox>
                         <Label Content="Numer telefonu" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                        <TextBox Name="NrTelTextBox" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=PhoneNumber}"/>
+                        <TextBox Name="NrTelTextBox" Grid.Row="2" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=PhoneNumber, ValidatesOnDataErrors=True}"/>
 
                         <Label Content="Adres" Grid.Row="0" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                        <TextBox Name="AdresTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Address}"/>
-                        <Label Content="Miejścowość" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                        <TextBox Name="MiejscowoscTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=City}"/>
+                        <TextBox Name="AdresTextBox"  Grid.Row="0" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Address, ValidatesOnDataErrors=True}"/>
+                        <Label Content="Miejscowość" Grid.Row="1" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+                        <TextBox Name="MiejscowoscTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=City, ValidatesOnDataErrors=True}"/>
                         <Label Content="Rodzaj klienta" Grid.Row="2" Grid.Column="2" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                         <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
                     </Grid>
@@ -106,9 +106,9 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Label Name="OdLabel" Grid.Column="0" Content="Od: " Margin="3"/>
-                <DatePicker Name="OdDataPicker" Grid.Column="1" Margin="3" SelectedDate="{Binding Path=RentStart}" SelectedDateChanged="DataPicker_SelectedDateChanged"/>
+                <DatePicker Name="OdDataPicker" Grid.Column="1" Margin="3" SelectedDate="{Binding Path=RentStart, ValidatesOnDataErrors=True}" SelectedDateChanged="DataPicker_SelectedDateChanged"/>
                 <Label Name="DoLabel" Grid.Column="2" Content="Do: " Margin="3"/>
-                <DatePicker Name="DoDataPicker" Grid.Column="3" Margin="3" SelectedDate="{Binding Path=RentEnd}" SelectedDateChanged="DataPicker_SelectedDateChanged"/>
+                <DatePicker Name="DoDataPicker" Grid.Column="3" Margin="3" SelectedDate="{Binding Path=RentEnd, ValidatesOnDataErrors=True}" SelectedDateChanged="DataPicker_SelectedDateChanged"/>
             </Grid>
         </GroupBox>
 
@@ -139,13 +139,10 @@
                         <Label Grid.Row="2">Spalanie:</Label>
                         <ComboBox Grid.Row="0" Grid.Column="1" Name="CarTypeComboBox" VerticalContentAlignment="Center" SelectionChanged="CarTypeComboBox_SelectionChanged" SelectedIndex="0">
                         </ComboBox>
-                        <!--SelectedItem="{Binding Path=Type}"-->
                         <ComboBox Grid.Row="1" Grid.Column="1" Name="CarBodyTypeComboBox" VerticalContentAlignment="Center" SelectionChanged="CarBodyTypeComboBox_SelectionChanged" SelectedIndex="0">
                         </ComboBox>
-                        <!--SelectedItem="{Binding Path=BodyType}"-->
                         <TextBox Grid.Row="2" Grid.Column="1" Name="CarFuelConsumptionTextBox" VerticalContentAlignment="Center" TextChanged="FuelConsumptionTextBox_TextChanged"
                                  />
-                        <!--Text="{Binding Path=FuelConsumption}"-->
                     </Grid>
                 </GroupBox>
 
@@ -155,8 +152,7 @@
                         <ListBox Name="CarsListBox"  ItemTemplate="{StaticResource CarDataTemplate}"
                                  ScrollViewer.VerticalScrollBarVisibility="Visible"
                                  HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"
-                                 SelectedItem="{Binding Path=RentedCar, Mode=TwoWay}"
-                                 SelectionChanged="CarsListBox_SelectionChanged"/>
+                                 SelectedItem="{Binding Path=RentedCar, Mode=TwoWay}"/>
                     </Grid>
                 </GroupBox>
             </Grid>

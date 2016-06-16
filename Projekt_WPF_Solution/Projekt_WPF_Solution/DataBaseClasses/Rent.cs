@@ -1,13 +1,14 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Projekt_WPF_Solution.DataBaseClasses
 {
-    public class Rent
+    public class Rent : IDataErrorInfo
     {
         #region Variables
         int id;
@@ -23,6 +24,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         public Car RentedCar { get { return rentedCar; } set { rentedCar = value; } }
         public Client RentingPerson { get { return rentingPerson; } set { rentingPerson = value; } }
         public bool IsReturned { get { return isReturned; } set { isReturned = value; } }
+
+
         #endregion
 
         public Rent()
@@ -85,7 +88,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 try
                 {
                     MySqlCommand cmd = db.CreateCommand();
-                    cmd.CommandText = "UPDATE rents SET ID = @ID, CarID = @CarID, ClientID = @ClientID, RentStart = @RentStart, RentEnd = @RentEnd, isReturned = @isReturned";
+                    cmd.CommandText = "UPDATE rents SET CarID = @CarID, ClientID = @ClientID, RentStart = @RentStart, RentEnd = @RentEnd, isReturned = @isReturned WHERE ID = @ID";
                     cmd.Parameters.AddWithValue("@ID", this.ID);
                     cmd.Parameters.AddWithValue("@CarID", this.RentedCar.ID);
                     cmd.Parameters.AddWithValue("@ClientID", this.RentingPerson.ID);
@@ -139,5 +142,44 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             this.rentingPerson = rent.rentingPerson;
             this.isReturned = rent.isReturned;
         }
+
+        public override string ToString()
+        {
+            string toString = string.Empty;
+            if(rentingPerson != null)
+            {
+                toString += rentingPerson.ToString();
+            }
+            if(rentedCar != null)
+            {
+                toString += " " + rentedCar.ToString();
+            }
+
+            return toString;
+        }
+        #region IDataErrorInfo
+        public string Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                if(columnName.Equals("RentStart") || columnName.Equals("RentEnd"))
+                {
+                    if(RentStart > rentEnd)
+                    {
+                        return "Data Od musi być wcześniejsza";
+                    }
+                }
+                return null;
+            }
+        }
+        #endregion
     }
 }

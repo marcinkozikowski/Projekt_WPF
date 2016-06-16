@@ -43,6 +43,7 @@ namespace Projekt_WPF_Solution
             //load car
             CarTypeComboBox.ItemsSource = SqlDataGetters.CarTypes;
             CarBodyTypeComboBox.ItemsSource = SqlDataGetters.BodyTypes;
+            TypKlientaComboBox.ItemsSource = SqlDataGetters.ClientTypes;
             CarsListBox.ItemsSource = carsView;
         }
 
@@ -117,32 +118,11 @@ namespace Projekt_WPF_Solution
             FilterCars();
         }
 
-        private void CarsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
+        
 
         private void AddRentalButton_Click(object sender, RoutedEventArgs e)
         {
-            if (SqlDataGetters.Clients.Contains(rent.RentingPerson))
-            {
-                rent.RentingPerson.SqlUpdate();
-            }
-            else
-            {
-                rent.RentingPerson.SqlInsert();
-                rent.RentingPerson.ID = SqlDataGetters.GetUserIdByPesel(rent.RentingPerson.Pesel);
-
-            }
-            if (SqlDataGetters.Rents.Contains(rent))
-            {
-                rent.SqlUpdate();
-            }
-            else
-            {
-                rent.SqlInsert();
-            }
-            SqlDataGetters.GetAll();
+            DialogResult = true;
             this.Close();
         }
     }
