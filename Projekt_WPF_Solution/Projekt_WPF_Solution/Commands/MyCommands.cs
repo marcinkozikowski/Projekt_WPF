@@ -183,8 +183,23 @@ namespace Projekt_WPF_Solution.Commands
 
                 if (selectedItem is Rent)
                 {
+
                     PrintDialog printDialog = new PrintDialog();
-                    if (printDialog.ShowDialog() == true)
+
+                // Stwórz nagłówek
+                DrawingVisual header = new DrawingVisual();
+                ContainerVisual newVisual = new ContainerVisual();
+                using (DrawingContext dc = header.RenderOpen())
+                {
+                    Typeface typeface = new Typeface("Times New Roman");
+                    FormattedText text = new FormattedText("Wypożyczalnia samochodów M&M_auto", CultureInfo.CurrentCulture,
+                    FlowDirection.LeftToRight, typeface, 14, Brushes.Black);
+                    dc.DrawText(text, new Point(96 * 0.25, 96 * 0.25));
+                }
+                // Dodaj nagłówek do Visual
+                newVisual.Children.Add(header);
+
+                if (printDialog.ShowDialog() == true)
                     {
                         // rysujemy na kontekście utworzonego DrawinVisual
                         DrawingVisual visual = new DrawingVisual();

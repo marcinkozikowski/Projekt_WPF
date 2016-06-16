@@ -17,6 +17,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
         Client rentingPerson;
         bool isReturned;
         #endregion
+
         #region Properties
         public int ID { get { return id; } set { id = value; } }
         public DateTime RentStart { get { return rentStart; } set { rentStart = value; } }
