@@ -226,19 +226,19 @@
             <StackPanel Orientation="Horizontal" Grid.Column="0">
                 <Image Source="Icons/Warning.png" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Nie zwrócono: " Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label Content="{Binding Path=NotReturned}" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                <Label Content="{Binding Path=NotReturned, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             </StackPanel>
             <Rectangle Width="2" Height="auto" Fill="DarkGray" Grid.Column="1"/>
             <StackPanel Orientation="Horizontal" Grid.Column="2">
                 <Image Source="Icons/booking.png" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Liczba rezerwacji: " Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label Content="{Binding Path=Booked}" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                <Label Content="{Binding Path=Booked, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             </StackPanel>
             <Rectangle Width="2" Height="auto" Fill="DarkGray" Grid.Column="3"/>
             <StackPanel Orientation="Horizontal" Grid.Column="4">
                 <Image Source="Icons/carRent.png" Grid.Column="0" Height="auto" MaxHeight="40" Width="auto" MaxWidth="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <Label Content="Liczba wypożyczeń: " Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-                <Label Content="{Binding Path=Rented}" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                <Label Content="{Binding Path=Rented, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
             </StackPanel>
         </Grid>
     </Grid>
