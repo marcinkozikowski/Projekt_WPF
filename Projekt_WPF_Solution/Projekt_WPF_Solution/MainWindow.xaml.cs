@@ -104,7 +104,6 @@ namespace Projekt_WPF_Solution
                     rent.RentingPerson.ID = SqlDataGetters.GetUserIdByPesel(rent.RentingPerson.Pesel);
                 }
                 rent.SqlInsert();
-                SqlDataGetters.GetAll();
             }
         }
    

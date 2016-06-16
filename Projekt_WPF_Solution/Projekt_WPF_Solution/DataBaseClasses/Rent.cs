@@ -91,7 +91,7 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                     MySqlCommand cmd = db.CreateCommand();
                     cmd.CommandText = "UPDATE rents SET CarID = @CarID, ClientID = @ClientID, RentStart = @RentStart, RentEnd = @RentEnd, isReturned = @isReturned WHERE ID = @ID";
                     cmd.Parameters.AddWithValue("@ID", this.ID);
-                    cmd.Parameters.AddWithValue("@CarID", this.RentedCar.ID);
+                    cmd.Parameters.AddWithValue("@CarID", RentedCar.ID);
                     cmd.Parameters.AddWithValue("@ClientID", this.RentingPerson.ID);
                     cmd.Parameters.AddWithValue("@RentStart", this.RentStart);
                     cmd.Parameters.AddWithValue("@RentEnd", this.RentEnd);

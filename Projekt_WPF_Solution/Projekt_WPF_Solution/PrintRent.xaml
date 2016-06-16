@@ -1,0 +1,159 @@
+﻿<Page x:Class="Projekt_WPF_Solution.PrintRent"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Projekt_WPF_Solution"
+      mc:Ignorable="d" 
+      Background="White"
+      d:DesignHeight="900" d:DesignWidth="700"
+      Title="PrintRent">
+
+    <Grid ShowGridLines="false">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Naglowek strony wraz z logo -->
+        <Image Source="Icons/logo.png" HorizontalAlignment="Right" Grid.Row="0" Grid.Column="0"/>
+        <Label Content="Wypożyczalnia samochodów MM_cars" FontSize="18" FontStyle="Oblique" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center"/>
+        <!-- Stopka strony -->
+        <TextBlock Margin="10" FontSize="13" Grid.Row="7" Grid.ColumnSpan="2" TextWrapping="Wrap" VerticalAlignment="Bottom"> 
+            W sprawach nie uregulowanych w niniejszej umowie będą miał zastosowanie przepisy Kodeksu cywilnego.
+            Umowa zostaje sporządzona w dwóch jednakowych  egzemplarzach, po jednym dla każdej ze stron.
+        </TextBlock>
+        <!-- Naglowek strony -->
+        <Label Content="Umowa najmu samochodu" Grid.Row="1" Grid.ColumnSpan="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="28" FontWeight="Bold"/>
+        <!-- Najemca -->
+        <Label Margin="5" Content="Najemca" Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <!-- Wynajmujacy -->
+        <Label Margin="5" Content="Wynajmujący" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+        <!-- Pojazd -->
+        <Label Margin="15" Content="Samochód" Grid.Row="4" Grid.ColumnSpan="2" VerticalContentAlignment="Top" HorizontalContentAlignment="Center" FontSize="20" FontWeight="Bold" FontStyle="Italic"/>
+
+        <!-- Grid najemcy -->
+        <Grid Grid.Row="3" Grid.Column="0" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Imię:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Nazwisko:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="1" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Adres:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="2" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Pesel:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="3" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Telefon:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="4" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Okres wypożyczenia:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="5" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+
+            <Label  Name="ImieRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="1" FontSize="14"/>
+            <Label  Name="NazwiskoRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="1" Grid.Column="1" FontSize="14"/>
+            <Label  Name="AdresRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="2" Grid.Column="1" FontSize="14"/>
+            <Label  Name="PeselRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="3" Grid.Column="1" FontSize="14"/>
+            <Label  Name="TelefonRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="4" Grid.Column="1" FontSize="14"/>
+            <Label  Name="RentDurationRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="5" Grid.Column="1" FontSize="14"/>
+
+            <!-- Grid wynajmujacy -->
+        </Grid>
+
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Imię:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Nazwisko:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="1" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Adres:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="2" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="NIP:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="3" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Telefon:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="4" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+
+            <Label Content="Marcin i Marcin" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="1" FontSize="14"/>
+            <Label Content="Sp.zo.o.o" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="1" Grid.Column="1" FontSize="14"/>
+            <Label Content="Białystok  Lipowa 10 15-025" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="2" Grid.Column="1" FontSize="14"/>
+            <Label Content="125-895689-785" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="3" Grid.Column="1" FontSize="14"/>
+            <Label Content="505123505" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="4" Grid.Column="1" FontSize="14"/>
+
+        </Grid>
+
+        <!-- Grid pojazd -->
+
+    <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+        <Label Content="Marka:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Model:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="1" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Numer rejestracyjny:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="2" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+        <Label Content="Typ:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="3" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+
+
+            <Label  Name="MarkaRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="1" FontSize="14"/>
+            <Label  Name="ModelRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="1" Grid.Column="1" FontSize="14"/>
+            <Label  Name="NrRejRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="2" Grid.Column="1" FontSize="14"/>
+            <Label  Name="TypRentPrint" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="3" Grid.Column="1" FontSize="14"/>
+            <Image  Margin="10" Name="ImageRentPrint" Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" Source="Images/brakZdjecia.gif"/>
+
+        </Grid>
+
+        <!-- Grid Data i podpisy -->
+        <Grid Grid.Row="6" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Label Content="Data:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Podpis najemcy:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="1" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+            <Label Content="Podpis wynajmującego:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="2" Grid.Column="0" FontSize="14" FontWeight="Bold"/>
+
+            <Label  Content=".................................." HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="0" Grid.Column="1" FontSize="16"/>
+            <Label  Content=".................................." HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="1" Grid.Column="1" FontSize="16"/>
+            <Label  Content=".................................." HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3" Grid.Row="2" Grid.Column="1" FontSize="16"/>
+
+
+            <!-- Grid wynajmujacy -->
+        </Grid>
+
+    </Grid>
+</Page>

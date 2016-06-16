@@ -104,13 +104,13 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Label Name="OdLabel" Grid.Column="0" Content="Od: " Margin="3"/>
                 <DatePicker Name="OdDataPicker" Grid.Column="1" Margin="3" SelectedDate="{Binding Path=RentStart, ValidatesOnDataErrors=True}" SelectedDateChanged="DataPicker_SelectedDateChanged"/>
                 <Label Name="DoLabel" Grid.Column="2" Content="Do: " Margin="3"/>
                 <DatePicker Name="DoDataPicker" Grid.Column="3" Margin="3" SelectedDate="{Binding Path=RentEnd, ValidatesOnDataErrors=True}" SelectedDateChanged="DataPicker_SelectedDateChanged"/>
-                <ComboBox Name="ZwrotComboBox"  Margin="3" Grid.Column="4" SelectedValue="{Binding Path=IsReturned}"/>
+                <CheckBox Content="Zwrócono" Name="ZwrotComboBox"  Margin="3" Grid.Column="4" IsChecked="{Binding Path=IsReturned}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" DataContextChanged="ZwrotComboBox_DataContextChanged"/>
             </Grid>
         </GroupBox>
 

@@ -125,5 +125,10 @@ namespace Projekt_WPF_Solution
             DialogResult = true;
             this.Close();
         }
+
+        private void ZwrotComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
+        }
     }
 }
