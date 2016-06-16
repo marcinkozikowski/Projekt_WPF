@@ -105,6 +105,7 @@ namespace Projekt_WPF_Solution
                 }
                 rent.SqlInsert();
             }
+            SqlDataGetters.GetAll();
         }
    
         #endregion
