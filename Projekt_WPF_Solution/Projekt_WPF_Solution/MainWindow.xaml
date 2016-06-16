@@ -24,17 +24,7 @@
         <!-- Menu u gory aplikacji  -->
         <Menu Grid.Row="0" FontSize="18" Background="LightGray">
             <MenuItem Header="Pliki">
-                <MenuItem Name="OpenMenuItem" Header="Otwórz" >
-                    <MenuItem.Icon>
-                        <Image MaxHeight="40"  Source="Icons/Open.ico"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Name="SaveMenuItem" Header="Zapisz">
-                    <MenuItem.Icon>
-                        <Image MaxHeight="40" Source="Icons/Save.ico"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <MenuItem Name="CloseMenuItem"  Header="Zakończ">
+                <MenuItem Name="CloseMenuItem"  Header="Zakończ" Click="CloseMenuItem_Click">
                     <MenuItem.Icon>
                         <Image MaxHeight="40" Source="Icons/Close.ico"/>
                     </MenuItem.Icon>

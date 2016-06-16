@@ -267,6 +267,11 @@ namespace Projekt_WPF_Solution
             }
         }
 
+        private void CloseMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
 
         #endregion
 
