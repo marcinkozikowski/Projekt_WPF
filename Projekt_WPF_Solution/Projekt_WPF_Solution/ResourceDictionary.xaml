@@ -28,11 +28,8 @@
                                       Command="commands:MyCommands.Edit"
                                       CommandTarget="{Binding ElementName=CarListBox}"/>
                 </Grid.InputBindings>
-                <!--<Image Margin="0,1,5,1" Grid.RowSpan="3" Grid.Column="0" MaxHeight="128" MaxWidth="128"
-                           Source="{Binding Path=Image1,UpdateSourceTrigger=PropertyChanged}"/>-->
-                <!--<control:ImageSlideShow x:Name="test" DataContext="{Binding RelativeSource={RelativeSource Self}}"/>-->
-                <control:ImageSlideShow x:Name="test" DataContext="{Binding Path=.}"
-                                         Width="128"
+                <control:ImageSlideShow DataContext="{Binding Path=.}"
+                                        Width="128"
                                         Grid.Column="0" Grid.RowSpan="3"
                                         Margin="0,1,5,1"
                                         VerticalAlignment="Center"

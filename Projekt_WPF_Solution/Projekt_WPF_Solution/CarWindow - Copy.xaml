@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         FontSize="16"
         Icon="Icons\car.png"
-        Title="Dodaj nowy samochód" MinHeight="400" Height="400" Width="750">
+        Title="Dodaj nowy samochód" SizeToContent="Height" Width="750">
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </Window.Resources>
@@ -25,10 +25,17 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Zdjęcie" Grid.Column="0" Grid.Row="0" Margin="3">
-            <!--<Image Source="{Binding Path=Image, UpdateSourceTrigger=PropertyChanged}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>-->
-            <control:ImageSlideShow DataContext="{Binding Path=.}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"
+            <!--<Image Source="{Binding Path=Image1, UpdateSourceTrigger=PropertyChanged}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>-->
+            <control:ImageSlideShow DataContext="{Binding Path=.}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+            <!--<control:ImageSlideShow DataContext="{Binding Path=.}" Margin="2" MouseLeftButtonDown="Image_MouseLeftButtonDown"
                                     VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"/>
+                                        HorizontalAlignment="Center"/>-->
+            <!--<control:ImageSlideShow x:Name="test" DataContext="{Binding Path=.}"
+                                         Width="128"
+                                        Grid.Column="0" 
+                                        Margin="0,1,5,1"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"/>-->
         </GroupBox>
         <GroupBox Header="Informacje Podstawowe" Grid.Column="1" Grid.Row="0" Margin="3" Grid.ColumnSpan="2">
             <Grid Name="LeftAddCarGrid">
