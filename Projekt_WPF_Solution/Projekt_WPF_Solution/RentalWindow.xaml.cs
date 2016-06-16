@@ -123,7 +123,14 @@ namespace Projekt_WPF_Solution
         private void AddRentalButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
+            SqlDataGetters.GetAll();
+            SqlDataGetters.GetBottomPanelInfo();
             this.Close();
+        }
+
+        private void ZwrotComboBox_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+
         }
     }
 }

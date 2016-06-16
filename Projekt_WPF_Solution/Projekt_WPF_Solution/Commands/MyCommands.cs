@@ -79,6 +79,7 @@ namespace Projekt_WPF_Solution.Commands
                     (selectedItem as Car).PropertyUpdate(car);
                 }
 
+
             }
             else if (selectedItem is Client)
             {

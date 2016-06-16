@@ -176,7 +176,7 @@ namespace Projekt_WPF_Solution
                 db.CloseConnection();
             }
         }
-        private static void GetBottomPanelInfo()
+        public static void GetBottomPanelInfo()
         {
             bottomPanel.Booked = bottomPanel.NotReturned = bottomPanel.Rented = 0;
             foreach(Rent rent in Rents)
