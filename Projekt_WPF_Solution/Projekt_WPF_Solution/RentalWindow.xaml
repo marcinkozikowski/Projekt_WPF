@@ -13,7 +13,7 @@
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </Window.Resources>
-    <Grid Name="MainRentalGrid">
+    <Grid Name="MainRentalGrid" FocusManager.FocusedElement="{Binding ElementName=ClientAutoCompleteTextBox}">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>

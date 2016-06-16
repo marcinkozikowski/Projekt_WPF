@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Projekt_WPF_Solution.Control"
              mc:Ignorable="d" MinWidth="50" MinHeight="25">
-    <Grid>
+    <Grid FocusManager.FocusedElement="{Binding ElementName=TextBox}">
         <ComboBox Name="ComboBox" IsSynchronizedWithCurrentItem="True" IsTabStop="False" SelectionChanged="AutoCompleteComboBox_SelectionChanged"/>
-        <TextBox Name="TextBox" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name="TextBox" VerticalContentAlignment="Center" TextChanged="TextBox_TextChanged" Focusable="True"/>
 
 
     </Grid>

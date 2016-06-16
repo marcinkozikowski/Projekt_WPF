@@ -12,7 +12,7 @@
     <Window.Resources>
         <ResourceDictionary Source="ResourceDictionary.xaml"/>
     </Window.Resources>
-    <Grid Name="MainAddClientGrid" ShowGridLines="false">
+    <Grid Name="MainAddClientGrid" ShowGridLines="false" FocusManager.FocusedElement="{Binding ElementName=ImieTextBox}">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition Height="auto"/>
@@ -40,7 +40,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Content="Imię" Grid.Row="0" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
-                    <TextBox Name="ImieTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name, ValidatesOnDataErrors=True}"/>
+                    <TextBox Name="ImieTextBox"  Grid.Row="0" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Name, ValidatesOnDataErrors=True}" />
                     <Label Content="Nazwisko" Grid.Row="1" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
                 <TextBox Name="NazwiskoTextBox" Grid.Row="1" Grid.Column="1" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=Surname, ValidatesOnDataErrors=True}"/>
                     <Label Content="Data urodzenia" Grid.Row="2" Grid.Column="0" Margin="3" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>

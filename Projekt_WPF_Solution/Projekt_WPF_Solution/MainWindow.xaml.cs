@@ -18,6 +18,7 @@ using Projekt_WPF_Solution.Converters;
 using System.Collections.ObjectModel;
 using MySql.Data.MySqlClient;
 using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace Projekt_WPF_Solution
 {
@@ -237,6 +238,35 @@ namespace Projekt_WPF_Solution
         {
             ClientFilter();
         }
+
+        private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (MainTabControl != null && MainTabControl.SelectedItem != null)
+            {
+                if ((MainTabControl.SelectedItem as TabItem).Name.Equals("CarTab"))
+                {
+                    CarFilterBox.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        CarFilterBox.Focus();
+                    }));
+                }
+                else if ((MainTabControl.SelectedItem as TabItem).Name.Equals("ClientTab"))
+                {
+                    ClientNameTextBox.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        ClientNameTextBox.Focus();
+                    }));
+                }
+                else if ((MainTabControl.SelectedItem as TabItem).Name.Equals("RentTab"))
+                {
+                    RentFilterTextBox.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                    {
+                        RentFilterTextBox.Focus();
+                    }));
+                }
+            }
+        }
+
 
         #endregion
 
