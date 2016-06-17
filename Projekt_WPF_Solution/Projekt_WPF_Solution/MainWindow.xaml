@@ -9,6 +9,7 @@
         xmlns:commands="clr-namespace:Projekt_WPF_Solution.Commands"
         mc:Ignorable="d"
         FontFamily="CalibriLight"
+        WindowStartupLocation="CenterScreen"
         FontSize="16"
         Title="Wypożyczalnia Samochodów" MinHeight="500" Width="800" Icon="RentCarBlue.ico"
         Background="LightGray">
@@ -193,6 +194,9 @@
                         <TextBox Name="RentFilterTextBox" VerticalContentAlignment="Center" TextChanged="RentFilterTextBox_TextChanged" Width="120px"
                                  TextWrapping="WrapWithOverflow"
                                  Margin="3px"/>
+                        <Separator/>
+                        <CheckBox Name="IsReturnedCheckBox" VerticalContentAlignment="Center" Content="Nie zwrócone"
+                                 Checked="IsReturnedCheckBox_CheckChanged" Unchecked="IsReturnedCheckBox_CheckChanged"/>
                     </ToolBar>
                     <ListBox Name="RentListBox" Padding="3px" Margin="3px" Grid.Row="1"
                              HorizontalContentAlignment="Stretch" ScrollViewer.CanContentScroll="True"

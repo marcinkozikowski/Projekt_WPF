@@ -8,6 +8,8 @@
         xmlns:control="clr-namespace:Projekt_WPF_Solution.Control"
         mc:Ignorable="d"
         Title="Nowe wypożyczenie"
+         WindowStartupLocation="CenterScreen"
+        MinHeight="700"
         MinWidth="600"
         Width="700">
     <Window.Resources>

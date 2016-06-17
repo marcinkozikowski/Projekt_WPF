@@ -185,7 +185,7 @@ namespace Projekt_WPF_Solution
                 {
                     bottomPanel.Booked++;
                 }
-                else if(!rent.IsReturned && DateTime.Today.Date > rent.RentEnd)
+                else if(!rent.IsReturned)// && DateTime.Today.Date > rent.RentEnd)
                 {
                     bottomPanel.NotReturned++;
                 }

@@ -272,6 +272,8 @@ namespace Projekt_WPF_Solution
             this.Close();
         }
 
+        
+
 
         #endregion
 
@@ -286,10 +288,19 @@ namespace Projekt_WPF_Solution
                 {
                     filterValue = rent.ToString().ToLower().Contains(RentFilterTextBox.Text.ToLower());
                 }
+                if(IsReturnedCheckBox.IsChecked == true)
+                {
+                    filterValue = filterValue & !rent.IsReturned;
+                }
                 return filterValue;
             };
         }
         private void RentFilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RentFilter();
+        }
+
+        private void IsReturnedCheckBox_CheckChanged(object sender, RoutedEventArgs e)
         {
             RentFilter();
         }
