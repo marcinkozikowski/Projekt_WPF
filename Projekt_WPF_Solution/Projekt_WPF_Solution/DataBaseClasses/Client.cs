@@ -205,7 +205,8 @@ namespace Projekt_WPF_Solution.DataBaseClasses
                 }
                 if (columnName.Equals("Pesel"))
                 {
-                    if (Pesel.Count() != 11)
+                    Regex regex = new Regex("[0-9]{11}");
+                    if(!regex.IsMatch(Pesel))
                     {
                         return "Zły pesel";
                     }

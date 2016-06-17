@@ -180,15 +180,16 @@ namespace Projekt_WPF_Solution.Commands
         public static void Print_Executed(object sender, ExecutedRoutedEventArgs e)
         {
 
-                ListBox lw = e.Source as ListBox;
-                var selectedItem = lw.SelectedItem;
+            ListBox lw = e.Source as ListBox;
+            var selectedItem = lw.SelectedItem;
 
-                if (selectedItem is Rent)
+            if (selectedItem is Rent)
+            {
+                Rent rent = selectedItem as Rent;
+
+                PrintDialog printDialog = new PrintDialog();
+                if (printDialog.ShowDialog() == true)
                 {
-                    Rent rent = selectedItem as Rent;
-                    
-                    PrintDialog printDialog = new PrintDialog();
-                    printDialog.ShowDialog();
 
                     PrintRent grid = new PrintRent();
 
@@ -199,7 +200,7 @@ namespace Projekt_WPF_Solution.Commands
                     grid.PeselRentPrint.Content = rent.RentingPerson.Pesel.ToString();
                     grid.AdresRentPrint.Content = rent.RentingPerson.Address;
                     grid.TelefonRentPrint.Content = rent.RentingPerson.PhoneNumber.ToString();
-                    grid.RentDurationRentPrint.Content = rent.RentStart.ToString().Substring(0,10) + " - " + rent.RentEnd.ToString().Substring(0,10);
+                    grid.RentDurationRentPrint.Content = rent.RentStart.ToString().Substring(0, 10) + " - " + rent.RentEnd.ToString().Substring(0, 10);
 
                     /* Dane Samochodu */
 
@@ -210,7 +211,8 @@ namespace Projekt_WPF_Solution.Commands
                     grid.ImageRentPrint.Source = rent.RentedCar.Image1;
 
                     printDialog.PrintVisual(grid, "Moja strona tekstu");
-             }
+                }
+            }
         }
 
         #endregion
