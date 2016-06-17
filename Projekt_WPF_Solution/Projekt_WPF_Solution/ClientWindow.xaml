@@ -80,17 +80,18 @@
                     <ComboBox Name="TypKlientaComboBox" Grid.Row="2" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" SelectedValue="{Binding Path=Type}"/>
                 </Grid>
             </GroupBox>
-    <StackPanel Name="ButtonPanel" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
+        
+    <StackPanel Name="ButtonPanel" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="5">
         <Button Name="AddClientButton" Margin="3" HorizontalAlignment="Right" Click="AddClientButton_Click">
             <StackPanel Orientation="Horizontal">
-                <Image Source="Icons/CheckSign.png"/>
-                <Label Content="OK" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <Image Source="Icons/CheckSign.png" MaxHeight="15"/>
+                    <Label Content="OK" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>
 
         <Button Name="CancelClientButton" Margin="3" HorizontalAlignment="Right" Click="CancelClientButton_Click">
             <StackPanel Orientation="Horizontal">
-                <Image Source="Icons/CrossSign.png"/>
+                <Image Source="Icons/CrossSign.png" MaxHeight="15"/>
                 <Label Content="Anuluj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
         </Button>

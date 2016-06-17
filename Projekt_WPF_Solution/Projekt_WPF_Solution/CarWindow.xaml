@@ -76,17 +76,18 @@
                 <TextBox Name="SpalanieTextBox" Grid.Row="1" Grid.Column="3" Margin="3" VerticalContentAlignment="Center" Text="{Binding Path=FuelConsumption, ValidatesOnDataErrors=True}"/>
             </Grid>
         </GroupBox>
-        <StackPanel Name="ButtonPanel" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">
+        
+        <StackPanel Name="ButtonPanel" Orientation="Horizontal" VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" Margin="5">
             <Button Name="AddCarButton" Margin="3" HorizontalAlignment="Right" Click="AddCarButton_Click">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Icons/CheckSign.png"/>
+                    <Image Source="Icons/CheckSign.png" MaxHeight="15"/>
                     <Label Content="OK" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Button>
 
             <Button Name="CancelCarButton" Margin="3" HorizontalAlignment="Right" Click="CancelCarButton_Click">
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="Icons/CrossSign.png"/>
+                    <Image Source="Icons/CrossSign.png" MaxHeight="15"/>
                     <Label Content="Anuluj" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
                 </StackPanel>
             </Button>
