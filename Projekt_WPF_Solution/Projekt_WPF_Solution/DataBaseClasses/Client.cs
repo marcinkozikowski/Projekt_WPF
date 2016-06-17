@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Media.Imaging;
+using System.Text.RegularExpressions;
 
 namespace Projekt_WPF_Solution.DataBaseClasses
 {
@@ -186,14 +187,18 @@ namespace Projekt_WPF_Solution.DataBaseClasses
             {
                 if (columnName.Equals("Name"))
                 {
-                    if (string.IsNullOrWhiteSpace(Name))
+                    Regex regex = new Regex("^[a-zA-Z ]*$"); 
+
+                    if (string.IsNullOrWhiteSpace(Name) || !regex.IsMatch(Name))
                     {
                         return "Podaj imię";
                     }
                 }
                 if (columnName.Equals("Surname"))
                 {
-                    if (string.IsNullOrWhiteSpace(Surname))
+                    Regex regex = new Regex("^[a-zA-Z ]*$");
+
+                    if (string.IsNullOrWhiteSpace(Surname) || !regex.IsMatch(Surname))
                     {
                         return "Podaj nazwisko";
                     }
